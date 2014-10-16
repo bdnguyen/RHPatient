@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RehApp</string>
+    <string name="login">Enter your email address..</string>
+    <string name="password">Enter your password..</string>
+    <string name="login_button">Login</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_home_activity">Today Activity</string>
+    <string name="action_home">Home</string>
+    <string name="action_schedule">Schedule</string>
+    <string name="action_photos">Photos</string>
+    <string name="checkbox1">Exercice 1</string>
+    <string name="checkbox2">Exercice 2</string>
+    <string name="checkbox3">Exercice 3</string>
+    <string name="title_activity_schedule">Schedule</string>
+    <string name="title_activity_photos">Photos</string>
+    <string name="schedule">Schedule</string>
+    <string name="photos">Photos</string>
+    
+    <string name="choose_from_gallery_btn">Choose from gallery..</string>
+    <string name="take_photo_btn">Take a photo</string>
+
+</resources>

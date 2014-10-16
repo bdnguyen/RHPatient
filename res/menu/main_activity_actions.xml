@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+      xmlns:RehApp="http://schemas.android.com/apk/res-auto" 	>
+    <item android:id="@+id/action_home"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/action_home"
+          RehApp:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/action_schedule"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/action_schedule"
+          RehApp:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/action_photos"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/action_photos"
+          RehApp:showAsAction="ifRoom|withText" />
+</menu>
