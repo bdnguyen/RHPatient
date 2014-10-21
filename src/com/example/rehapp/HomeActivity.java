@@ -39,7 +39,7 @@ public class HomeActivity extends ActionBarActivity {
 	    //textView.setText(message);
 	    
 	    // Set view as the activity layout
-	    setContentView(R.layout.fragment_display_message);
+	    setContentView(R.layout.fragment_home);
 	    
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => "+c.getTime());
@@ -77,25 +77,19 @@ public class HomeActivity extends ActionBarActivity {
 	        case R.id.action_home:
 	            return true;
 	        case R.id.action_schedule:	            
-	        	Intent intent = new Intent(this,Schedule.class);
-	            startActivity(intent);
+	        	//Intent intent = new Intent(this,Schedule.class);
+	            //startActivity(intent);
+	        	
 	            return true;
 	        case R.id.action_photos:
-	        	Intent intent2 = new Intent(this,Photos.class);
-	            startActivity(intent2);
+	        	//Intent intent2 = new Intent(this,Photos.class);
+	            //startActivity(intent2);
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 
-		
-		//int id = item.getItemId();
-		//if (id == R.id.action_settings) {
-		//	return true;
-		//}
-		//return super.onOptionsItemSelected(item);
-	}
-
+	}    
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -107,9 +101,10 @@ public class HomeActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_display_message,
+			View rootView = inflater.inflate(R.layout.fragment_home,
 					container, false);
 			return rootView;
 		}
 	}
 }
+
