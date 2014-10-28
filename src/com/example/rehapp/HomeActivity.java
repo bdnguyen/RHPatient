@@ -29,15 +29,6 @@ public class HomeActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-	    // Get the message from the intent
-	    //Intent intent = getIntent();
-	    //String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
-	    // Create the text view
-	    //TextView textView = new TextView(this);
-	    //textView.setTextSize(40);
-	    //textView.setText(message);
-	    
 	    // Set view as the activity layout
 	    setContentView(R.layout.fragment_home);
 	    
@@ -55,7 +46,7 @@ public class HomeActivity extends ActionBarActivity {
         txtDateView.setText("TODAY: "+formattedDate);
         txtDateView.setGravity(Gravity.TOP);
         txtDateView.setTextSize(40);
-        setContentView(txtDateView);
+        //setContentView(txtDateView);
 	}
 	
 	@Override
@@ -77,13 +68,13 @@ public class HomeActivity extends ActionBarActivity {
 	        case R.id.action_home:
 	            return true;
 	        case R.id.action_schedule:	            
-	        	//Intent intent = new Intent(this,Schedule.class);
-	            //startActivity(intent);
+	        	Intent intent = new Intent(this,Schedule.class);
+	            startActivity(intent);
 	        	
 	            return true;
 	        case R.id.action_photos:
-	        	//Intent intent2 = new Intent(this,Photos.class);
-	            //startActivity(intent2);
+	        	Intent intent2 = new Intent(this,Photos.class);
+	            startActivity(intent2);
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

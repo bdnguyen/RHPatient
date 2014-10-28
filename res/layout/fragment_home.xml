@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.rehapp.HomeActivity$PlaceholderFragment" >
-
+    
     <CheckBox
         android:id="@+id/checkBox1"
         android:layout_width="wrap_content"
@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="86dp"
-        android:text="@string/checkbox3"/>
+        android:text="@string/checkbox1"/>
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -31,6 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBox2"
         android:layout_below="@+id/checkBox2"
-        android:text="@string/checkbox1" />
+        android:text="@string/checkbox3" />
 
 </RelativeLayout>

@@ -12,16 +12,30 @@
     <string name="action_home">Home</string>
     <string name="action_schedule">Schedule</string>
     <string name="action_photos">Photos</string>
+    <string name="action_exercises">Exercises</string>
     <string name="checkbox1">Exercice 1</string>
     <string name="checkbox2">Exercice 2</string>
     <string name="checkbox3">Exercice 3</string>
+    <string name="title_activity_home">Home</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_photos">Photos</string>
+    <string name="title_activity_exercises">Exercises</string>
     <string name="schedule">Schedule</string>
     <string name="photos">Photos</string>
-    
     <string name="choose_from_gallery_btn">Choose from gallery..</string>
     <string name="take_photo_btn">Take a photo</string>
+    
+    <string-array name="ExerciseTitle">
+		<item>Arm Exercise 1</item>
+		<item>Arm Exercise 2</item>
+		<item>Leg Exercise 1</item>
+	</string-array>
+	
+     <string-array name="ExerciseDesc">
+		<item>Raise arm</item>
+		<item>Do things with arm</item>
+		<item>Move leg up</item>
+	</string-array>
     
 
 </resources>

@@ -16,6 +16,10 @@ public final class R {
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
     }
+    public static final class array {
+        public static final int ExerciseDesc=0x7f0c0001;
+        public static final int ExerciseTitle=0x7f0c0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1157,6 +1161,7 @@ containing a value of this type.
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
+		public static final int action_exercises = 0;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within
@@ -1216,13 +1221,14 @@ containing a value of this type.
         public static final int fragment_main=0x7f03001d;
         public static final int fragment_photos=0x7f03001e;
         public static final int fragment_schedule=0x7f03001f;
-        public static final int support_simple_spinner_dropdown_item=0x7f030020;
+        public static final int list_exercises_layout=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
-        public static final int main_activity_actions=0x7f0c0001;
-        public static final int photos=0x7f0c0002;
-        public static final int schedule=0x7f0c0003;
+        public static final int main=0x7f0d0000;
+        public static final int main_activity_actions=0x7f0d0001;
+        public static final int photos=0x7f0d0002;
+        public static final int schedule=0x7f0d0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1265,24 +1271,27 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
+        public static final int action_exercises=0x7f0a0017;
         public static final int action_help=0x7f0a0012;
         public static final int action_home=0x7f0a0014;
         public static final int action_photos=0x7f0a0016;
         public static final int action_schedule=0x7f0a0015;
         public static final int action_settings=0x7f0a0011;
         public static final int app_name=0x7f0a000d;
-        public static final int checkbox1=0x7f0a0017;
-        public static final int checkbox2=0x7f0a0018;
-        public static final int checkbox3=0x7f0a0019;
-        public static final int choose_from_gallery_btn=0x7f0a001e;
+        public static final int checkbox1=0x7f0a0018;
+        public static final int checkbox2=0x7f0a0019;
+        public static final int checkbox3=0x7f0a001a;
+        public static final int choose_from_gallery_btn=0x7f0a0021;
         public static final int login=0x7f0a000e;
         public static final int login_button=0x7f0a0010;
         public static final int password=0x7f0a000f;
-        public static final int photos=0x7f0a001d;
-        public static final int schedule=0x7f0a001c;
-        public static final int take_photo_btn=0x7f0a001f;
-        public static final int title_activity_photos=0x7f0a001b;
-        public static final int title_activity_schedule=0x7f0a001a;
+        public static final int photos=0x7f0a0020;
+        public static final int schedule=0x7f0a001f;
+        public static final int take_photo_btn=0x7f0a0022;
+        public static final int title_activity_exercises=0x7f0a001e;
+        public static final int title_activity_home=0x7f0a001b;
+        public static final int title_activity_photos=0x7f0a001d;
+        public static final int title_activity_schedule=0x7f0a001c;
         public static final int title_home_activity=0x7f0a0013;
     }
     public static final class style {
