@@ -3,6 +3,7 @@ package com.example.rehapp;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,17 +14,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
-public class Schedule extends ActionBarActivity {
+public class Schedule extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule);
 
-		if (savedInstanceState == null) {
+		/*	if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		}*/
 	}
 
 	@Override
@@ -41,13 +42,13 @@ public class Schedule extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 	    switch (item.getItemId()) {
-        case R.id.action_home:
+        //case R.id.action_schedule:
+        //    return true;
+	    case R.id.action_home:
             Intent intent = new Intent(this,HomeActivity.class);
             startActivity(intent);
-        case R.id.action_schedule:
-            return true;
-        case R.id.action_photos:
-        	Intent intent2 = new Intent(this,Photos.class);
+        case R.id.action_exercises:
+        	Intent intent2 = new Intent(this,Exercises.class);
             startActivity(intent2);
             return true;
         default:

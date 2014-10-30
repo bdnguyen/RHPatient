@@ -71,9 +71,6 @@ public class MainActivity extends ActionBarActivity {
 	
 	public void login(View view) {
 		Intent intent = new Intent(this, HomeActivity.class);
-		//EditText editText = (EditText) findViewById(R.id.login);
-		//String message = editText.getText().toString();
-		//intent.putExtra(EXTRA_MESSAGE, message);
 		startActivity(intent);
 	}
 

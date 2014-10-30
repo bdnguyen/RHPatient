@@ -63,17 +63,14 @@ public class HomeActivity extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		   // Handle presses on the action bar items
+		// Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.action_home:
+	        	Intent intent = new Intent(this, HomeActivity.class);
+	        	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            return true;
-	        case R.id.action_schedule:	            
-	        	Intent intent = new Intent(this,Schedule.class);
-	            startActivity(intent);
-	        	
-	            return true;
-	        case R.id.action_photos:
-	        	Intent intent2 = new Intent(this,Photos.class);
+	        case R.id.action_exercises:
+	        	Intent intent2 = new Intent(this,Exercises.class);
 	            startActivity(intent2);
 	            return true;
 	        default:
