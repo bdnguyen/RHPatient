@@ -33,6 +33,7 @@ public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	// Retain this Fragment across Activity reconfigurations
 	setRetainInstance(true);
+	setHasOptionsMenu(true);
 }
 
 // Called to create the content view for this Fragment

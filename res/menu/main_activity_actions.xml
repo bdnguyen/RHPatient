@@ -5,15 +5,15 @@
           android:icon="@drawable/ic_launcher"
           android:title="@string/action_home"
           RehApp:showAsAction="ifRoom|withText" />
+          
+    <item android:id="@+id/action_exercises"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/action_exercises"
+          RehApp:showAsAction="ifRoom|withText" />
     
     <item android:id="@+id/action_schedule"
           android:icon="@drawable/ic_launcher"
           android:title="@string/action_schedule"
-          RehApp:showAsAction="ifRoom|withText" />
-    
-    <item android:id="@+id/action_exercises"
-          android:icon="@drawable/ic_launcher"
-          android:title="@string/action_exercises"
           RehApp:showAsAction="ifRoom|withText" />    
     
     <item android:id="@+id/action_photos"

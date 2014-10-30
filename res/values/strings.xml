@@ -13,14 +13,17 @@
     <string name="action_schedule">Schedule</string>
     <string name="action_photos">Photos</string>
     <string name="action_exercises">Exercises</string>
-    <string name="checkbox1">Exercice 1</string>
-    <string name="checkbox2">Exercice 2</string>
-    <string name="checkbox3">Exercice 3</string>
+    <string name="checkbox1">Arm Exercice 1</string>
+    <string name="checkbox2">Arm Exercice 2</string>
+    <string name="checkbox3">Leg Exercice 1</string>
+    <string name="button1">Details</string>
+    <string name="button2">Details</string>
+    <string name="button3">Details</string>
+    <string name="homeIntro">Today: date,</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_photos">Photos</string>
     <string name="title_activity_exercises">Exercises</string>
-    <string name="schedule">Schedule</string>
     <string name="photos">Photos</string>
     <string name="choose_from_gallery_btn">Choose from gallery..</string>
     <string name="take_photo_btn">Take a photo</string>
@@ -29,12 +32,26 @@
 		<item>Arm Exercise 1</item>
 		<item>Arm Exercise 2</item>
 		<item>Leg Exercise 1</item>
+		<item>Arm Exercise 2</item>
+		<item>Leg Exercise 1</item>
+		<item>Arm Exercise 2</item>
+		<item>Leg Exercise 1</item>
 	</string-array>
 	
      <string-array name="ExerciseDescs">
+		<item>    
+    -Step one foot forward, letting that knee bend.\n
+    -Lean onto the front leg, bringing your head and chest toward the corner. \n
+    -Hold for 20-30 seconds. \n
+    -Stand up straight and switch feet. \n
+    -Repeat it on the other side. \n
+	</item>
+		<item>Do things with arm</item>
+		<item>Move leg up</item>
 		<item>Raise arm</item>
 		<item>Do things with arm</item>
 		<item>Move leg up</item>
+		<item>Do things with arm</item>
 	</string-array>
     
 

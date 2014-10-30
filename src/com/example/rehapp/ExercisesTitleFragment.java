@@ -35,9 +35,12 @@ public void onAttach(Activity activity) {
 }
 @Override
 public void onCreate(Bundle savedInstanceState) {
-super.onCreate(savedInstanceState);
-setRetainInstance(true);
+	super.onCreate(savedInstanceState);
+	
+	setHasOptionsMenu(true);
+	setRetainInstance(true);
 }
+
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 Bundle savedInstanceState) {

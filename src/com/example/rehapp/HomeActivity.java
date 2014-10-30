@@ -8,6 +8,8 @@ import com.example.rehapp.MainActivity.PlaceholderFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -23,8 +25,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class HomeActivity extends ActionBarActivity {
-
+public class HomeActivity extends ActionBarActivity{
+	
+	private HomeActivityTodayDateFragment mTodayFragment;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,7 +36,11 @@ public class HomeActivity extends ActionBarActivity {
 	    // Set view as the activity layout
 	    setContentView(R.layout.fragment_home);
 	    
-        Calendar c = Calendar.getInstance();
+		// Get a reference to the QuotesFragment
+	    /*mTodayFragment = (HomeActivityTodayDateFragment) getSupportFragmentManager()
+	    .findFragmentById(R.id.todayDate);*/
+	    
+/*        Calendar c = Calendar.getInstance();
         System.out.println("Current time => "+c.getTime());
 
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
@@ -47,7 +55,10 @@ public class HomeActivity extends ActionBarActivity {
         txtDateView.setGravity(Gravity.TOP);
         txtDateView.setTextSize(40);
         //setContentView(txtDateView);
-	}
+*/	}
+	
+
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,9 +81,17 @@ public class HomeActivity extends ActionBarActivity {
 	        	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            return true;
 	        case R.id.action_exercises:
-	        	Intent intent2 = new Intent(this,Exercises.class);
+	        	Intent intent1 = new Intent(this,Exercises.class);
+	            startActivity(intent1);
+	            return true;
+	        case R.id.action_schedule:
+	        	Intent intent2 = new Intent(this,Schedule.class);
 	            startActivity(intent2);
 	            return true;
+	        case R.id.action_photos:
+	        	Intent intent3 = new Intent(this,Photos.class);
+	            startActivity(intent3);
+	            return true;       
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

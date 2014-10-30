@@ -46,12 +46,20 @@ public class Photos extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 	    switch (item.getItemId()) {
-        case R.id.action_exercises:
+	    case R.id.action_home:
+        	Intent intent1 = new Intent(this,HomeActivity.class);
+            startActivity(intent1);
+        	return true;
+        case R.id.action_schedule:
+        	Intent intent2 = new Intent(this,Schedule.class);
+            startActivity(intent2);
+        	return true; 
+	    case R.id.action_exercises:
         	Intent intent3 = new Intent(this,Exercises.class);
             startActivity(intent3);
         	return true;        	
-        //case R.id.action_photos:
-        //    return true;
+        case R.id.action_photos:
+            return true;
         default:
             return super.onOptionsItemSelected(item);
     }
