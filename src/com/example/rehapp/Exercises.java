@@ -3,6 +3,8 @@ package com.example.rehapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 import com.example.rehapp.ExercisesTitleFragment.ListSelectionListener;
@@ -26,13 +29,22 @@ ListSelectionListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+	    // Set ActionBar color
+	    android.app.ActionBar bar = getActionBar();
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
+	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+	    TextView abTitle = (TextView) findViewById(titleId);
+	    abTitle.setTextColor(Color.WHITE);
+	    
+		
 		// Get the string arrays with the titles and descs
 		mTitleArray = getResources().getStringArray(R.array.ExerciseTitles);
 		mDescArray = getResources().getStringArray(R.array.ExerciseDescs);
 		setContentView(R.layout.exercises_main);
-		// Get a reference to the QuotesFragment
+		// Get a reference to the ExercisesDescFragment
 		mDescsFragment = (ExercisesDescFragment) getFragmentManager().findFragmentById(R.id.descs);
-
+		//
+		//getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	
 	// Called when the user selects an item in the ExercisesTitleFragment
@@ -63,15 +75,23 @@ ListSelectionListener {
 	            return true;
 	        case R.id.action_schedule:	            
 	        	Intent intent = new Intent(this,Schedule.class);
+	        	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent);        	
 	            return true;
 	        case R.id.action_home:	            
 	        	Intent intent2 = new Intent(this,HomeActivity.class);
+	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent2);        	
-	            return true;   
+	            return true;
+	        case R.id.action_notes:
+	        	Intent intent3 = new Intent(this,DoctorNotes.class);
+	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	            startActivity(intent3);	            
+	            return true;          
 	        case R.id.action_photos:
-	        	Intent intent3 = new Intent(this,Photos.class);
-	            startActivity(intent3);
+	        	Intent intent4 = new Intent(this,Photos.class);
+	        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	            startActivity(intent4);
 	            return true;       
 	        default:
 	            return super.onOptionsItemSelected(item);

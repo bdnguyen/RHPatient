@@ -10,7 +10,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,35 +31,40 @@ import android.os.Build;
 
 public class HomeActivity extends ActionBarActivity{
 	
-	private HomeActivityTodayDateFragment mTodayFragment;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 	    // Set view as the activity layout
 	    setContentView(R.layout.fragment_home);
+	    // Set ActionBar color
+	    android.app.ActionBar bar = getActionBar();
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
+	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+	    TextView abTitle = (TextView) findViewById(titleId);
+	    abTitle.setTextColor(Color.WHITE);
 	    
-		// Get a reference to the QuotesFragment
-	    /*mTodayFragment = (HomeActivityTodayDateFragment) getSupportFragmentManager()
-	    .findFragmentById(R.id.todayDate);*/
-	    
-/*        Calendar c = Calendar.getInstance();
-        System.out.println("Current time => "+c.getTime());
-
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+	    // Set Today's Date
+        Calendar c = Calendar.getInstance();
+        //System.out.println("Current time => "+c.getTime());
+        SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());
         // formattedDate have current date/time
         //Toast.makeText(this, formattedDate, Toast.LENGTH_SHORT).show();
-
-
+        
       // Display formattedDate value in TextView
+        Resources res = getResources();
+        String homeIntro = String.format(res.getString(R.string.homeIntro), formattedDate);
+        ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
+        //CharSequence styledText = Html.fromHtml(textDate);
+        /*
         TextView txtDateView = new TextView(this);
         txtDateView.setText("TODAY: "+formattedDate);
         txtDateView.setGravity(Gravity.TOP);
         txtDateView.setTextSize(40);
-        //setContentView(txtDateView);
-*/	}
+        setContentView(txtDateView);
+        */
+	}
 	
 
 	
@@ -77,20 +86,28 @@ public class HomeActivity extends ActionBarActivity{
 		// Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.action_home:
-	        	Intent intent = new Intent(this, HomeActivity.class);
-	        	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        	//Intent intent = new Intent(this, HomeActivity.class);
+	        	//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            return true;
 	        case R.id.action_exercises:
 	        	Intent intent1 = new Intent(this,Exercises.class);
+	        	intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent1);
 	            return true;
 	        case R.id.action_schedule:
 	        	Intent intent2 = new Intent(this,Schedule.class);
+	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent2);
 	            return true;
+	        case R.id.action_notes:
+	        	Intent intent3 = new Intent(this,DoctorNotes.class);
+	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	            startActivity(intent3);	            
+	            return true;      
 	        case R.id.action_photos:
-	        	Intent intent3 = new Intent(this,Photos.class);
-	            startActivity(intent3);
+	        	Intent intent4 = new Intent(this,Photos.class);
+	        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	            startActivity(intent4);
 	            return true;       
 	        default:
 	            return super.onOptionsItemSelected(item);

@@ -19,7 +19,7 @@ public class ExercisesTitleFragment extends ListFragment {
 	// Callback interface that allows this Fragment to notify the 'Exercises' activity when
 // user clicks on a List Item
 public interface ListSelectionListener {
-public void onListSelection(int index);
+	public void onListSelection(int index);
 }
 
 @Override
@@ -37,8 +37,8 @@ public void onAttach(Activity activity) {
 public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	
-	setHasOptionsMenu(true);
 	setRetainInstance(true);
+	setHasOptionsMenu(true);
 }
 
 @Override

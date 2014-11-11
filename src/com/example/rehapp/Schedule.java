@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 import android.os.Build;
 
 public class Schedule extends ActionBarActivity {
@@ -36,6 +39,13 @@ public class Schedule extends ActionBarActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule);
+	    // Set ActionBar color
+	    android.app.ActionBar bar = getActionBar();
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
+	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+	    TextView abTitle = (TextView) findViewById(titleId);
+	    abTitle.setTextColor(Color.WHITE);
+		
 		mWebView = (WebView) findViewById(R.id.scheduleWebView);
 		// Set a kind of listener on the WebView so the WebView can intercept
 		// URL loading requests if it wants to
@@ -85,15 +95,23 @@ public class Schedule extends ActionBarActivity {
             return true;
 	    case R.id.action_home:
             Intent intent = new Intent(this,HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
             return true;
         case R.id.action_exercises:
         	Intent intent2 = new Intent(this,Exercises.class);
+        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent2);
             return true;
+        case R.id.action_notes:
+        	Intent intent3 = new Intent(this,DoctorNotes.class);
+        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent3);	            
+            return true;    
         case R.id.action_photos:
-        	Intent intent3 = new Intent(this,Photos.class);
-            startActivity(intent3);
+        	Intent intent4 = new Intent(this,Photos.class);
+        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent4);
             return true;   
         default:
             return super.onOptionsItemSelected(item);

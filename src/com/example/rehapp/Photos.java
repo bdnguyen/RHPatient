@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.os.Build;
 import android.provider.MediaStore;
 
@@ -24,6 +27,13 @@ public class Photos extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_photos);
+		
+	    // Set ActionBar color
+	    android.app.ActionBar bar = getActionBar();
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
+	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+	    TextView abTitle = (TextView) findViewById(titleId);
+	    abTitle.setTextColor(Color.WHITE);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -57,7 +67,12 @@ public class Photos extends ActionBarActivity {
 	    case R.id.action_exercises:
         	Intent intent3 = new Intent(this,Exercises.class);
             startActivity(intent3);
-        	return true;        	
+        	return true;
+	    case R.id.action_notes:
+        	Intent intent4 = new Intent(this,DoctorNotes.class);
+        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent4);	            
+            return true;	
         case R.id.action_photos:
             return true;
         default:

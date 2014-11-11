@@ -1,0 +1,104 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:stretchColumns="0"
+android:shrinkColumns="0" >
+    
+	
+    <TextView
+		android:id="@+id/homeIntroView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/homeIntro"
+		android:textSize="24sp" >
+	</TextView> 
+   
+    
+    
+    <TableRow android:gravity="left" >
+
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox1"
+            android:textSize="20sp" />
+
+        <RatingBar
+			android:id="@+id/ratingbar1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:numStars="5"
+			android:stepSize="1.0" >
+			</RatingBar>
+        
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button1" />
+         
+     </TableRow>
+     
+
+
+     
+     <TableRow android:gravity="left" >
+            
+            <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox2"
+            android:textSize="20sp" />
+            
+            <RatingBar
+			android:id="@+id/ratingbar2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:numStars="5"
+			android:stepSize="1.0" >
+			</RatingBar>
+            
+            <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button2" />
+            
+
+            
+     </TableRow>
+
+     
+	 <TableRow android:gravity="left">
+	     
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox3"
+            android:textSize="20sp" />
+   
+       <RatingBar
+			android:id="@+id/ratingbar3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:numStars="5"
+			android:stepSize="1.0" >
+	   </RatingBar>
+        
+        <Button
+            android:id="@+id/button3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button3" />
+        
+        
+        
+     </TableRow>
+    
+</TableLayout>    

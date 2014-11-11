@@ -1,21 +1,21 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:stretchColumns="1"
-android:shrinkColumns="1" >
+android:stretchColumns="0"
+android:shrinkColumns="0" >
     
-	<TableRow android:gravity="left" >
-        <TextView
-		android:id="@+id/textView"
-		android:layout_width="wrap_content"
+	
+    <TextView
+		android:id="@+id/homeIntroView"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/homeIntro"
-		android:textSize="22sp" >
-		</TextView> 
-    </TableRow>
+		android:textSize="24sp" >
+	</TextView> 
+   
     
     
-    <TableRow android:gravity="top|bottom" >
+    <TableRow android:gravity="top|bottom|center" >
 
         <CheckBox
             android:id="@+id/checkBox1"
