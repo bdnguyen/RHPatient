@@ -19,12 +19,12 @@ public class ExercisesDescFragment extends Fragment {
 	public int getShownIndex() {
 		return mCurrIdx;
 }
-// Show the Quote string at position newIndex
+// Show the Desc string at position newIndex
 public void showDescAtIndex(int newIndex) {
 	if (newIndex < 0 || newIndex >= mDescArrayLen)
 		return;
 	mCurrIdx = newIndex;
-	mDescView.setText(Exercises.mDescArray[mCurrIdx]);
+	mDescView.setText(ExercisesActivity.mDescArray[mCurrIdx]);
 }
 
 @Override
@@ -51,7 +51,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 	Log.i(TAG, getClass().getSimpleName() + ":onActivityCreated()");
 	super.onActivityCreated(savedInstanceState);
 	mDescView = (TextView) getActivity().findViewById(R.id.exercisesDescView);
-	mDescArrayLen = Exercises.mDescArray.length;
+	mDescArrayLen = ExercisesActivity.mDescArray.length;
 	showDescAtIndex(mCurrIdx);
 }
 

@@ -13,7 +13,11 @@ android:shrinkColumns="0" >
 		android:textSize="24sp" >
 	</TextView> 
    
-    
+    <ListView android:id="@+id/exercisesListViewHome" 
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:choiceMode="multipleChoice" >
+    </ListView>
     
     <TableRow android:gravity="top|bottom|center" >
 
@@ -30,7 +34,7 @@ android:shrinkColumns="0" >
 			android:layout_height="wrap_content"
 			android:numStars="5"
 			android:stepSize="1.0" >
-			</RatingBar>
+		</RatingBar>
         
         <Button
             android:id="@+id/button1"

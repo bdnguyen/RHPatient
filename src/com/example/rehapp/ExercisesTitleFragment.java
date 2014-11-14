@@ -54,7 +54,7 @@ public void onActivityCreated(Bundle savedState) {
 	getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 	// Set the list adapter for the ListView
 	setListAdapter(new ArrayAdapter<String>(getActivity(),
-			R.layout.exercises_list_item, Exercises.mTitleArray));
+			R.layout.exercises_list_item, ExercisesActivity.mTitleArray));
 	// If an item has been selected, set its checked state
 	if (-1 != mCurrIdx)
 		getListView().setItemChecked(mCurrIdx, true);

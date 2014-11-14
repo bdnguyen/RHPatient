@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -71,11 +72,32 @@ public class DoctorNotes extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+	        case R.id.action_home:
+	        	Intent intent = new Intent(this,HomeActivity.class);
+	        	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	            startActivity(intent);	
+	            return true;
+	        case R.id.action_exercises:
+	        	Intent intent1 = new Intent(this,ExercisesActivity.class);
+	        	intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	            startActivity(intent1);
+	            return true;
+	        case R.id.action_schedule:
+	        	Intent intent2 = new Intent(this,Schedule.class);
+	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	            startActivity(intent2);
+	            return true;
+	        case R.id.action_notes:            
+	            return true;      
+	        case R.id.action_photos:
+	        	Intent intent3 = new Intent(this,Photos.class);
+	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	            startActivity(intent3);
+	            return true;       
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 
 	/**

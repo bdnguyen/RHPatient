@@ -99,7 +99,7 @@ public class Schedule extends ActionBarActivity {
             startActivity(intent);
             return true;
         case R.id.action_exercises:
-        	Intent intent2 = new Intent(this,Exercises.class);
+        	Intent intent2 = new Intent(this,ExercisesActivity.class);
         	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent2);
             return true;

@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.example.rehapp.ExercisesTitleFragment.ListSelectionListener;
 //Several Activity lifecycle methods are instrumented to emit LogCat output
 //so you can follow this class' lifecycle
-public class Exercises extends ActionBarActivity implements
+public class ExercisesActivity extends ActionBarActivity implements
 ListSelectionListener {
 	public static String[] mTitleArray;
 	public static String[] mDescArray;

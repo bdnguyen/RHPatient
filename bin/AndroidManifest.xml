@@ -34,7 +34,7 @@
         </activity>
         
         <activity
-            android:name="com.example.rehapp.Exercises"
+            android:name="com.example.rehapp.ExercisesActivity"
             android:label="@string/title_activity_exercises"
             android:parentActivityName="com.example.RehApp.HomeActivity" >
         </activity>

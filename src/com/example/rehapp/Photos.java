@@ -65,7 +65,7 @@ public class Photos extends ActionBarActivity {
             startActivity(intent2);
         	return true; 
 	    case R.id.action_exercises:
-        	Intent intent3 = new Intent(this,Exercises.class);
+        	Intent intent3 = new Intent(this,ExercisesActivity.class);
             startActivity(intent3);
         	return true;
 	    case R.id.action_notes:
