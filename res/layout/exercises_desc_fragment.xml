@@ -4,12 +4,28 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical" >
 
-	<TextView
-		android:id="@+id/exercisesDescView"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:padding="5dip"
-		android:textSize="24sp" >
-	</TextView>
+	<ScrollView
+	    android:id="@+id/scrollView1"
+	    android:layout_width="match_parent"
+	    android:layout_height="308dp" >
+	
+		<TextView
+		    android:id="@+id/exercisesDescView"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dip"
+		    android:textSize="24sp" >
+	
+		</TextView>
+	</ScrollView>
 
+	    <ImageView
+	        android:id="@+id/exImg"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:adjustViewBounds="true"
+	        android:contentDescription="Ex_img"
+	        android:scaleType="fitCenter" />
+
+	
 </LinearLayout>

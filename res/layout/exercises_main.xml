@@ -10,13 +10,13 @@ android:orientation="horizontal" >
 	android:layout_width="0px"
 	android:layout_height="match_parent"
 	android:layout_weight="2"
-	class="com.example.rehapp.ExercisesTitleFragment" />
+	class="com.pjwstk.rehapp.ExercisesTitleFragment" />
 	
 	<fragment
 	android:id="@+id/descs"
 	android:layout_width="0px"
 	android:layout_height="match_parent"
 	android:layout_weight="5"
-	class="com.example.rehapp.ExercisesDescFragment" />
+	class="com.pjwstk.rehapp.ExercisesDescFragment" />
 	
 </LinearLayout>

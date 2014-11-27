@@ -20,6 +20,7 @@
     <string name="button2">Details</string>
     <string name="button3">Details</string>
     <string name="homeIntro">Today is: %1$s, \nPlease tick the box once you\'ve done the exercise, for more informations on the exercise, click \'details\'</string>
+    <string name="noteIntro">Your therapist is: %1$s</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_photos">Photos</string>
@@ -52,8 +53,5 @@
     </string-array>
 
     <string name="title_activity_doctor_notes">DoctorNotes</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
 
 </resources>
