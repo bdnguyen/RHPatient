@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.os.Build;
 import com.pjwstk.rehapp.R;
 
-public class Schedule extends ActionBarActivity {
+public class ScheduleActivity extends ActionBarActivity {
 
 /*	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +110,7 @@ public class Schedule extends ActionBarActivity {
             startActivity(intent3);	            
             return true;    
         case R.id.action_photos:
-        	Intent intent4 = new Intent(this,Photos.class);
+        	Intent intent4 = new Intent(this,PhotosActivity.class);
         	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent4);
             return true;   

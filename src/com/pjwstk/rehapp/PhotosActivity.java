@@ -19,7 +19,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import com.pjwstk.rehapp.R;
 
-public class Photos extends ActionBarActivity {
+public class PhotosActivity extends ActionBarActivity {
 
 	private static final int PICK_IMAGE = 1;
 	ImageView imageView1;
@@ -62,7 +62,7 @@ public class Photos extends ActionBarActivity {
             startActivity(intent1);
         	return true;
         case R.id.action_schedule:
-        	Intent intent2 = new Intent(this,Schedule.class);
+        	Intent intent2 = new Intent(this,ScheduleActivity.class);
             startActivity(intent2);
         	return true; 
 	    case R.id.action_exercises:

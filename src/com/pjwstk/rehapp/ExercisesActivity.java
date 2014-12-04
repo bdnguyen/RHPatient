@@ -36,10 +36,10 @@ ListSelectionListener {
 	    abTitle.setTextColor(Color.WHITE);
 	    
 		
-		// Get the string arrays with the titles and descs
+		// Get the resources titles and descs
 		mTitleArray = getResources().getStringArray(R.array.ExerciseTitles);
 		mDescArray = getResources().getStringArray(R.array.ExerciseDescs);
-		setContentView(R.layout.exercises_main);
+		setContentView(R.layout.activity_exercises);
 		// Get a reference to the ExercisesDescFragment
 		mDescsFragment = (ExercisesDescFragment) getFragmentManager().findFragmentById(R.id.descs);
 		//
@@ -73,7 +73,7 @@ ListSelectionListener {
 	        case R.id.action_exercises:
 	            return true;
 	        case R.id.action_schedule:	            
-	        	Intent intent = new Intent(this,Schedule.class);
+	        	Intent intent = new Intent(this,ScheduleActivity.class);
 	        	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent);        	
 	            return true;
@@ -88,7 +88,7 @@ ListSelectionListener {
 	            startActivity(intent3);	            
 	            return true;          
 	        case R.id.action_photos:
-	        	Intent intent4 = new Intent(this,Photos.class);
+	        	Intent intent4 = new Intent(this,PhotosActivity.class);
 	        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent4);
 	            return true;       
@@ -100,32 +100,32 @@ ListSelectionListener {
 	
 @Override
 protected void onDestroy() {
-Log.i(TAG, getClass().getSimpleName() + ":entered onDestroy()");
-super.onDestroy();
+	Log.i(TAG, getClass().getSimpleName() + ":entered onDestroy()");
+	super.onDestroy();
 }
 @Override
 protected void onPause() {
-Log.i(TAG, getClass().getSimpleName() + ":entered onPause()");
-super.onPause();
+	Log.i(TAG, getClass().getSimpleName() + ":entered onPause()");
+	super.onPause();
 }
 @Override
 protected void onRestart() {
-Log.i(TAG, getClass().getSimpleName() + ":entered onRestart()");
-super.onRestart();
+	Log.i(TAG, getClass().getSimpleName() + ":entered onRestart()");
+	super.onRestart();
 }
 @Override
 protected void onResume() {
-Log.i(TAG, getClass().getSimpleName() + ":entered onResume()");
-super.onResume();
+	Log.i(TAG, getClass().getSimpleName() + ":entered onResume()");
+	super.onResume();
 }
 @Override
 protected void onStart() {
-Log.i(TAG, getClass().getSimpleName() + ":entered onStart()");
-super.onStart();
+	Log.i(TAG, getClass().getSimpleName() + ":entered onStart()");
+	super.onStart();
 }
 @Override
 protected void onStop() {
-Log.i(TAG, getClass().getSimpleName() + ":entered onStop()");
-super.onStop();
+	Log.i(TAG, getClass().getSimpleName() + ":entered onStop()");
+	super.onStop();
 }
 }

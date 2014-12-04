@@ -36,7 +36,7 @@ public class NotesActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_notes);
+		setContentView(R.layout.activity_notes);
 	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
@@ -71,7 +71,7 @@ public class NotesActivity extends ActionBarActivity {
 		private LinearLayout noteWrapper;
 		
 		public NoteListAdapter() {
-			super(NotesActivity.this, R.layout.fragment_notes, notes);
+			super(NotesActivity.this, R.layout.activity_notes, notes);
 		}
 		
 		@Override
@@ -124,14 +124,14 @@ public class NotesActivity extends ActionBarActivity {
 	            startActivity(intent1);
 	            return true;
 	        case R.id.action_schedule:
-	        	Intent intent2 = new Intent(this,Schedule.class);
+	        	Intent intent2 = new Intent(this,ScheduleActivity.class);
 	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent2);
 	            return true;
 	        case R.id.action_notes:            
 	            return true;      
 	        case R.id.action_photos:
-	        	Intent intent3 = new Intent(this,Photos.class);
+	        	Intent intent3 = new Intent(this,PhotosActivity.class);
 	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent3);
 	            return true;       
@@ -139,21 +139,4 @@ public class NotesActivity extends ActionBarActivity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_notes,
-					container, false);
-			return rootView;
-		}
-	}
-
 }

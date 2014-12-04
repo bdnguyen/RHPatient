@@ -8,6 +8,7 @@ import java.util.List;
 import com.pjwstk.rehapp.R;
 import com.pjwstk.rehapp.ExercisesTitleFragment.ListSelectionListener;
 import com.pjwstk.rehapp.MainActivity.PlaceholderFragment;
+import com.pjwstk.rehapp.model.Exercise;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -53,7 +54,7 @@ public class HomeActivity extends ActionBarActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
 	    // Set view as activity layout
-	    setContentView(R.layout.fragment_home);
+	    setContentView(R.layout.activity_home);
 	    
 	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
@@ -89,7 +90,7 @@ public class HomeActivity extends ActionBarActivity{
 	}
 	
 	private void populateExerciseListHome() {
-		todayExercises.add(new Exercise("Arm 1", "Swing hands above head"));
+		todayExercises.add(new Exercise("Arm 1", "-Step one foot forward, letting that knee bend.\n -Lean onto the front leg, bringing your head and chest toward the corner.\n -Hold for 20-30 seconds. \n -Stand up straight and switch feet. \n -Repeat it on the other side. \n"));
 		todayExercises.add(new Exercise("Leg 1", "Swing legs above head"));
 		todayExercises.add(new Exercise("Neck 1", "Turn neck"));
 		todayExercises.add(new Exercise("Arm 2", "Swing hands above head"));
@@ -186,7 +187,7 @@ public class HomeActivity extends ActionBarActivity{
 	            startActivity(intent1);
 	            return true;
 	        case R.id.action_schedule:
-	        	Intent intent2 = new Intent(this,Schedule.class);
+	        	Intent intent2 = new Intent(this,ScheduleActivity.class);
 	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent2);
 	            return true;
@@ -196,7 +197,7 @@ public class HomeActivity extends ActionBarActivity{
 	            startActivity(intent3);	            
 	            return true;      
 	        case R.id.action_photos:
-	        	Intent intent4 = new Intent(this,Photos.class);
+	        	Intent intent4 = new Intent(this,PhotosActivity.class);
 	        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent4);
 	            return true;       
@@ -215,7 +216,7 @@ public class HomeActivity extends ActionBarActivity{
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_home,
+			View rootView = inflater.inflate(R.layout.activity_home,
 					container, false);
 			return rootView;
 		}

@@ -69,47 +69,47 @@ public void onActivityCreated(Bundle savedInstanceState) {
 
 @Override
 public void onAttach(Activity activity) {
-Log.i(TAG, getClass().getSimpleName() + ":onAttach()");
-super.onAttach(activity);
+	Log.i(TAG, getClass().getSimpleName() + ":onAttach()");
+	super.onAttach(activity);
 }
 @Override
 public void onConfigurationChanged(Configuration newConfig) {
-Log.i(TAG, getClass().getSimpleName() + ":onConfigurationChanged()");
-super.onConfigurationChanged(newConfig);
+	Log.i(TAG, getClass().getSimpleName() + ":onConfigurationChanged()");
+	super.onConfigurationChanged(newConfig);
 }
 @Override
 public void onDestroy() {
-Log.i(TAG, getClass().getSimpleName() + ":onDestroy()");
-super.onDestroy();
+	Log.i(TAG, getClass().getSimpleName() + ":onDestroy()");
+	super.onDestroy();
 }
 @Override
 public void onDestroyView() {
-Log.i(TAG, getClass().getSimpleName() + ":onDestroyView()");
-super.onDestroyView();
+	Log.i(TAG, getClass().getSimpleName() + ":onDestroyView()");
+	super.onDestroyView();
 }
 @Override
 public void onDetach() {
-Log.i(TAG, getClass().getSimpleName() + ":onDetach()");
-super.onDetach();
+	Log.i(TAG, getClass().getSimpleName() + ":onDetach()");
+	super.onDetach();
 }
 @Override
 public void onPause() {
-Log.i(TAG, getClass().getSimpleName() + ":onPause()");
-super.onPause();
+	Log.i(TAG, getClass().getSimpleName() + ":onPause()");
+	super.onPause();
 }
 @Override
 public void onResume() {
-Log.i(TAG, getClass().getSimpleName() + ":onResume()");
-super.onResume();
+	Log.i(TAG, getClass().getSimpleName() + ":onResume()");
+	super.onResume();
 }
 @Override
 public void onStart() {
-Log.i(TAG, getClass().getSimpleName() + ":onStart()");
-super.onStart();
+	Log.i(TAG, getClass().getSimpleName() + ":onStart()");
+	super.onStart();
 }
 @Override
 public void onStop() {
-Log.i(TAG, getClass().getSimpleName() + ":onStop()");
-super.onStop();
-}
+	Log.i(TAG, getClass().getSimpleName() + ":onStop()");
+	super.onStop();
+	}
 }
