@@ -22,6 +22,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="116dp"
+        android:gravity="center_vertical"
         android:text="@string/choose_from_gallery_btn"
         android:onClick="choosePhotosGallery" />
 
@@ -32,6 +33,7 @@
         android:layout_below="@+id/choose_from_gallery_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
+        android:gravity="center_vertical"
         android:text="@string/take_photo_btn"
         android:onClick="takePhoto" />
 

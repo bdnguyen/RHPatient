@@ -51,7 +51,7 @@ public class HomeActivity extends ActionBarActivity {
 	private ArrayAdapter<Exercise> HLAdapter = null; 
 	ListView list = null; 
 	private List<Exercise> todayExercises = new ArrayList();
-	private int mCurrIdx = -1;	
+	private int currentIndex = -1;	
 	
 	// Callback interface that allows this to notify the 'Home' activity when
 	// user clicks on a List Item
@@ -81,19 +81,11 @@ public class HomeActivity extends ActionBarActivity {
         Resources res = getResources();
         String homeIntro = String.format(res.getString(R.string.homeIntro), formattedDate);
         ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
-               
-    	if (-1 != mCurrIdx){
-    		ListView list = (ListView) findViewById(R.id.exercisesListViewHome);
-       		list.setItemChecked(mCurrIdx, true);
-    	}
-    	
+                   	
         //Populate Exercise list
         populateExerciseListHome();
         //Populate the List View
-        //populateListViewHome();
-		HLAdapter = new HomeListAdapter();
-		list = (ListView) findViewById(R.id.exercisesListViewHome);
-		list.setAdapter(HLAdapter);
+        populateListViewHome();
         //Handle clicks on List View
         registerClickCallback();
         
@@ -108,9 +100,9 @@ public class HomeActivity extends ActionBarActivity {
 	}
 	
 	private void populateListViewHome() {
-		ArrayAdapter<Exercise> HLadapter = new HomeListAdapter();
+		HLAdapter = new HomeListAdapter();
 		ListView list = (ListView) findViewById(R.id.exercisesListViewHome);
-		list.setAdapter(HLadapter);
+		list.setAdapter(HLAdapter);
 	}
 	
 	// Inner class for the custom Adapter
@@ -146,6 +138,9 @@ public class HomeActivity extends ActionBarActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View viewClicked,
 					int position, long id) {
+				if (currentIndex != position) {
+					currentIndex = position;
+				}
 				Exercise clickedExercise = todayExercises.get(position);				
 				Intent SingleExIntent = new Intent(getApplicationContext(),SingleExerciseActivity.class);
 				SingleExIntent.putExtra("clickedExercise", clickedExercise);
@@ -160,10 +155,11 @@ public class HomeActivity extends ActionBarActivity {
 	        if (resultCode == RESULT_OK) {
 	        	Bundle res = data.getExtras();
 	        	Exercise CK = res.getParcelable("clickedExercise");
-	        	Toast.makeText(getApplicationContext(), ""+CK.isDoneToday(), Toast.LENGTH_LONG).show();
+//	        	Toast.makeText(getApplicationContext(), ""+CK.isDoneToday(), Toast.LENGTH_LONG).show();
+//	        	Toast.makeText(getApplicationContext(), ""+todayExercises.get(0).isDoneToday(), Toast.LENGTH_SHORT).show();
 	        	//update ex object
-//				CheckBox cb = (CheckBox) findViewById(R.id.homeCheckBox);
-//				cb.setChecked(CK.isDoneToday());	        	
+	        	todayExercises.get(currentIndex).setDoneToday(CK.isDoneToday());
+	        	HLAdapter.notifyDataSetChanged();
 	        }
 	    }
 	}

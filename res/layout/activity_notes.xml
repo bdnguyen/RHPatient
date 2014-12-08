@@ -23,8 +23,7 @@
 		android:cacheColorHint="@android:color/transparent"
 		android:divider="@null"
 		android:transcriptMode="normal"    
-		android:stackFromBottom="true"
-		</ListView>
+		android:stackFromBottom="true" />
 
     <RelativeLayout
         android:id="@+id/RelativeLayout1"
