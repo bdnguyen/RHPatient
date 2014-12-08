@@ -30,7 +30,8 @@
         
         <activity
             android:name="com.pjwstk.rehapp.HomeActivity"
-            android:label="@string/title_home_activity" >
+            android:label="@string/title_home_activity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         
         <activity

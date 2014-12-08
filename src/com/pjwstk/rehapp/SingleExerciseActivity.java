@@ -160,6 +160,7 @@ public class SingleExerciseActivity extends FragmentActivity {
   	      public void onInit(int status) {
   	         if(status != TextToSpeech.ERROR){
   	        	 ttsObj.setLanguage(new Locale("pl_PL"));
+  	        	 ttsObj.setSpeechRate((float)0.7);
 //  	             ttsObj.setLanguage(Locale.UK);
   	         }				
   	      }
