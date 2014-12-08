@@ -42,7 +42,6 @@ ListSelectionListener {
 		setContentView(R.layout.activity_exercises);
 		// Get a reference to the ExercisesDescFragment
 		mDescsFragment = (ExercisesDescFragment) getFragmentManager().findFragmentById(R.id.descs);
-		//
 		//getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	

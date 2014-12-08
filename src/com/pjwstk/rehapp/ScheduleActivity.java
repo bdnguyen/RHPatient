@@ -98,21 +98,25 @@ public class ScheduleActivity extends ActionBarActivity {
             Intent intent = new Intent(this,HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
+            finish();
             return true;
         case R.id.action_exercises:
         	Intent intent2 = new Intent(this,ExercisesActivity.class);
         	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent2);
+            finish();
             return true;
         case R.id.action_notes:
         	Intent intent3 = new Intent(this,NotesActivity.class);
         	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent3);	            
+            startActivity(intent3);
+            finish();
             return true;    
         case R.id.action_photos:
         	Intent intent4 = new Intent(this,PhotosActivity.class);
         	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent4);
+            finish();
             return true;   
         default:
             return super.onOptionsItemSelected(item);

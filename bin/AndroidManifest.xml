@@ -57,6 +57,12 @@
             android:parentActivityName="com.example.HomeActivity" >
         </activity>
         
+        <activity
+            android:name="com.pjwstk.rehapp.SingleExerciseActivity"
+            android:label="@string/title_activity_single_ex" 
+            android:parentActivityName="com.example.HomeActivity" >
+        </activity>  
+        
     </application>
 
 </manifest>

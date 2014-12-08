@@ -13,18 +13,14 @@
     <string name="action_photos">Photos</string>
     <string name="action_exercises">Exercises</string>
     <string name="action_notes">Notes</string>
-    <string name="checkbox1">Arm Exercice 1</string>
-    <string name="checkbox2">Arm Exercice 2</string>
-    <string name="checkbox3">Leg Exercice 1</string>
-    <string name="button1">Details</string>
-    <string name="button2">Details</string>
-    <string name="button3">Details</string>
-    <string name="homeIntro">Today is: %1$s, \nPlease tick the box once you\'ve done the exercise, for more informations on the exercise, click \'details\'</string>
+    <string name="homeIntro">Today is: %1$s, \n Tap on each exercise for details</string>
     <string name="noteIntro">Your therapist is: %1$s</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_photos">Photos</string>
     <string name="title_activity_exercises">Exercises</string>
+    <string name="title_activity_doctor_notes">Notes</string>
+    <string name="title_activity_single_ex">Chosen Exercise</string>
     <string name="photos">Photos</string>
     <string name="choose_from_gallery_btn">Choose from gallery..</string>
     <string name="take_photo_btn">Take a photo</string>
@@ -51,7 +47,5 @@
         <item>Move leg up</item>
         <item>Do things with arm</item>
     </string-array>
-
-    <string name="title_activity_doctor_notes">DoctorNotes</string>
 
 </resources>

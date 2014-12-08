@@ -8,11 +8,11 @@
 	
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/noteIntro"
-        android:textSize="24sp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="24sp" />
     
     <ListView
         android:id="@+id/listViewNotes"
@@ -21,8 +21,10 @@
         android:layout_weight="0.63"
         android:listSelector="@android:color/transparent" 
 		android:cacheColorHint="@android:color/transparent"
-		android:divider="@null" >
-    </ListView>
+		android:divider="@null"
+		android:transcriptMode="normal"    
+		android:stackFromBottom="true"
+		</ListView>
 
     <RelativeLayout
         android:id="@+id/RelativeLayout1"

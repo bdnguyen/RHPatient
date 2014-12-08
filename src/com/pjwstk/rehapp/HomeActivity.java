@@ -16,7 +16,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.util.Log;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -30,6 +34,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -37,12 +42,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
+import android.preference.PreferenceManager;
 
-public class HomeActivity extends ActionBarActivity{
+public class HomeActivity extends ActionBarActivity {
+	private static final String TAG = "HomeActivity";
+	private static final int EXERCISE_DONE_REQUEST_CODE = 1;
 	
-	private List<Exercise> todayExercises = new ArrayList(); 
-	private int mCurrIdx = -1;
-	private ListSelectionListener mListener = null;
+	private ArrayAdapter<Exercise> HLAdapter = null; 
+	ListView list = null; 
+	private List<Exercise> todayExercises = new ArrayList();
+	private int mCurrIdx = -1;	
 	
 	// Callback interface that allows this to notify the 'Home' activity when
 	// user clicks on a List Item
@@ -67,7 +76,6 @@ public class HomeActivity extends ActionBarActivity{
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());    
-        //Toast.makeText(this, formattedDate, Toast.LENGTH_SHORT).show();
         
         //Display formattedDate value in TextView
         Resources res = getResources();
@@ -76,41 +84,33 @@ public class HomeActivity extends ActionBarActivity{
                
     	if (-1 != mCurrIdx){
     		ListView list = (ListView) findViewById(R.id.exercisesListViewHome);
-    		list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-    		list.setItemChecked(mCurrIdx, true);
+       		list.setItemChecked(mCurrIdx, true);
     	}
     	
         //Populate Exercise list
         populateExerciseListHome();
         //Populate the List View
-        populateListViewHome();
+        //populateListViewHome();
+		HLAdapter = new HomeListAdapter();
+		list = (ListView) findViewById(R.id.exercisesListViewHome);
+		list.setAdapter(HLAdapter);
         //Handle clicks on List View
-        //registerClickCallback();
-
+        registerClickCallback();
+        
 	}
 	
+
 	private void populateExerciseListHome() {
-		todayExercises.add(new Exercise("Arm 1", "-Step one foot forward, letting that knee bend.\n -Lean onto the front leg, bringing your head and chest toward the corner.\n -Hold for 20-30 seconds. \n -Stand up straight and switch feet. \n -Repeat it on the other side. \n"));
-		todayExercises.add(new Exercise("Leg 1", "Swing legs above head"));
-		todayExercises.add(new Exercise("Neck 1", "Turn neck"));
-		todayExercises.add(new Exercise("Arm 2", "Swing hands above head"));
-		todayExercises.add(new Exercise("Leg 2", "Swing legs above head"));
-		todayExercises.add(new Exercise("Neck 2", "Turn neck"));
-		todayExercises.add(new Exercise("Arm 3", "Swing hands above head"));
-		todayExercises.add(new Exercise("Leg 3", "Swing legs above head"));
-		todayExercises.add(new Exercise("Neck 3", "Turn neck"));
-		todayExercises.add(new Exercise("Arm 4", "Swing hands above head"));
-		todayExercises.add(new Exercise("Leg 4", "Swing legs above head"));
-		todayExercises.add(new Exercise("Neck 4", "Turn neck"));
-		todayExercises.add(new Exercise("Arm 5", "Swing hands above head"));
-		todayExercises.add(new Exercise("Leg 5", "Swing legs above head"));
-		todayExercises.add(new Exercise("Neck 5", "Turn neck"));
+		todayExercises.add(new Exercise("Arm 1", "-Step one foot forward, letting that knee bend.\n -Lean onto the front leg, bringing your head and chest toward the corner.\n -Hold for 20-30 seconds. \n -Stand up straight and switch feet. \n -Repeat it on the other side. \n", false));
+		todayExercises.add(new Exercise("Double leg squats", "Standing squats with a ball squeezed between your knees. (This may be easier if you slide your back down a wall), Hold at 45° for 5 sec, Repeat 10 times",false));
+		todayExercises.add(new Exercise("Ćwiczenie wyprostu stawu kolanowego", "Siedząc z wyprostowanymi nogami podłóż pod pietę złożony ręcznik. Rozluźnij mięśnie i pozwól, żeby staw kolanowy zaczął się prostować pod wpływem siły grawitacji. Podczas tego ćwiczenia napinaj mięsień czworogłowy. Postaraj się wytrzymać w tej pozycji 5 minut.",false));
+		todayExercises.add(new Exercise("Arm 2", "Swing hands above head", false));
 	}
 	
 	private void populateListViewHome() {
-		ArrayAdapter<Exercise> adapter = new HomeListAdapter();
+		ArrayAdapter<Exercise> HLadapter = new HomeListAdapter();
 		ListView list = (ListView) findViewById(R.id.exercisesListViewHome);
-		list.setAdapter(adapter);
+		list.setAdapter(HLadapter);
 	}
 	
 	// Inner class for the custom Adapter
@@ -133,6 +133,8 @@ public class HomeActivity extends ActionBarActivity{
 			// Fill the view
 			TextView exTitleTxt = (TextView) itemView.findViewById(R.id.exerciseTitleHomeView);
 			exTitleTxt.setText(currentExercise.getTitle());
+			CheckBox cb = (CheckBox) itemView.findViewById(R.id.homeCheckBox);
+			cb.setChecked(currentExercise.isDoneToday());
 			
 			return itemView;
 		}
@@ -144,23 +146,32 @@ public class HomeActivity extends ActionBarActivity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View viewClicked,
 					int position, long id) {
-				Exercise clickedExercise = todayExercises.get(position);
-//				String message = "Exericise number " + position
-//								+ " with the name " + clickedExercise.getTitle();
-//				Toast.makeText(HomeActivity.this, message, Toast.LENGTH_SHORT).show();
-				
-				if (mCurrIdx != position) {
-					mCurrIdx = position;
-					// Inform the 'Home' activity that the item in position has been selected
-					mListener.onListSelection(position);
-				}
-				// Indicates the selected item has been checked
-				ListView list = (ListView) findViewById(R.id.exercisesListViewHome);	
-				list.setItemChecked(mCurrIdx, true);								
+				Exercise clickedExercise = todayExercises.get(position);				
+				Intent SingleExIntent = new Intent(getApplicationContext(),SingleExerciseActivity.class);
+				SingleExIntent.putExtra("clickedExercise", clickedExercise);
+				startActivityForResult(SingleExIntent,EXERCISE_DONE_REQUEST_CODE);							
 			}
 		});			
-	}	
+	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    if (requestCode == EXERCISE_DONE_REQUEST_CODE) {
+	        if (resultCode == RESULT_OK) {
+	        	Bundle res = data.getExtras();
+	        	Exercise CK = res.getParcelable("clickedExercise");
+	        	Toast.makeText(getApplicationContext(), ""+CK.isDoneToday(), Toast.LENGTH_LONG).show();
+	        	//update ex object
+//				CheckBox cb = (CheckBox) findViewById(R.id.homeCheckBox);
+//				cb.setChecked(CK.isDoneToday());	        	
+	        }
+	    }
+	}
+	
+    @Override
+    public void onBackPressed() {
+            //super.onBackPressed();
+    }	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -172,14 +183,8 @@ public class HomeActivity extends ActionBarActivity{
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		// Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.action_home:
-	        	//Intent intent = new Intent(this, HomeActivity.class);
-	        	//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            return true;
 	        case R.id.action_exercises:
 	        	Intent intent1 = new Intent(this,ExercisesActivity.class);
@@ -205,21 +210,12 @@ public class HomeActivity extends ActionBarActivity{
 	            return super.onOptionsItemSelected(item);
 	    }
 	}    
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
 
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.activity_home,
-					container, false);
-			return rootView;
-		}
-	}
+	
+	@Override
+	protected void onResume() {
+		Log.i(TAG, getClass().getSimpleName() + ":entered onResume()");
+		super.onResume();
+	}	
 }
 

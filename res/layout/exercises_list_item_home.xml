@@ -3,35 +3,26 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:descendantFocusability="blocksDescendants" >
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/exerciseTitleHomeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/linkToExerciseDescBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/linkToExerciseDescBtn"
         android:text="TextView"
-        android:textSize="32sp" />
-    
-    <Button
-        android:id="@+id/linkToExerciseDescBtn"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="Details" />
+        android:textSize="32sp"
+        android:focusable="false" />
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/homeCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/linkToExerciseDescBtn"
-        android:layout_alignBottom="@+id/linkToExerciseDescBtn"
-        android:layout_alignRight="@+id/exerciseTitleHomeView" />
+        android:layout_alignBottom="@+id/exerciseTitleHomeView"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="14dp"
+        android:focusable="false" />
 
 </RelativeLayout>

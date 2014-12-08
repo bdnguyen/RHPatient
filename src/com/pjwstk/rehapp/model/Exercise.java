@@ -7,18 +7,20 @@ public class Exercise implements Parcelable {
 	private String title;
 	private String description;
 	private int imgID;
-	private int doneToday; // 1 -- done 0 -- not done
+	private boolean doneToday;
 	private String treatmentType;
 	
-	public Exercise(String title, String description) {
+	public Exercise(String title, String description, boolean doneToday) {
 		super();
 		this.title = title;
 		this.description = description;
+		this.doneToday = doneToday;
 	}
 	
 	public Exercise(Parcel in) {
 		this.title = in.readString();
 		this.description = in.readString();
+		this.doneToday = in.readByte() != 0; //doneToday true if byte != 0
 	}
 
 	public String getTitle() {
@@ -39,10 +41,10 @@ public class Exercise implements Parcelable {
 	public void setImgID(int imgID) {
 		this.imgID = imgID;
 	}
-	public int isDoneToday() {
+	public boolean isDoneToday() {
 		return doneToday;
 	}
-	public void setDoneToday(int doneToday) {
+	public void setDoneToday(boolean doneToday) {
 		this.doneToday = doneToday;
 	}
 
@@ -63,6 +65,7 @@ public class Exercise implements Parcelable {
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeString(title);
 		out.writeString(description);
+		out.writeByte((byte) (doneToday ? 1 : 0)); //if doneToday true, byte == 1
 	}
 	
 	public static final Parcelable.Creator<Exercise> CREATOR = new Parcelable.Creator<Exercise>() {

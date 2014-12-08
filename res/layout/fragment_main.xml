@@ -16,6 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"
         android:ems="10"
+        android:gravity="center_vertical"
         android:hint="@string/login" >
 
         <requestFocus />
@@ -29,6 +30,7 @@
         android:layout_below="@+id/login"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:gravity="center_vertical"
         android:inputType="textPassword" />
 
     <Button
@@ -39,6 +41,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
         android:hint="@string/login_button"
+        android:gravity="center_vertical"
         android:onClick="login" />
     
 </RelativeLayout>
