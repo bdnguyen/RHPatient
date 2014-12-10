@@ -3,12 +3,14 @@ package com.pjwstk.rehapp;
 import java.util.Locale;
 import com.pjwstk.rehapp.model.Exercise;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
@@ -39,7 +41,7 @@ public class SingleExerciseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_single_exercise);
-	        
+	        	      	        
 		    // Set ActionBar color
 		    android.app.ActionBar bar = getActionBar();
 		    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
@@ -69,6 +71,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 		            intent.putExtra("clickedExercise",CK);
 		            setResult(RESULT_OK, intent);
 					finish();
+					overridePendingTransition(R.anim.hold, R.anim.slide_out_right);
 				}	
 	        });
 	        
@@ -84,6 +87,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 		            intent.putExtra("clickedExercise",CK);
 		            setResult(RESULT_OK, intent);
 					finish();
+					overridePendingTransition(R.anim.hold, R.anim.slide_out_right);
 				}	    	        	
 	        });
 	        
@@ -106,7 +110,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 			private int[] mImages = new int[] {
 				R.drawable.leg1,
 				R.drawable.leg2,
-				R.drawable.leg_ex1
+				R.drawable.leg4
 			};
 
 			@Override
@@ -166,7 +170,12 @@ public class SingleExerciseActivity extends FragmentActivity {
   	      }
   	 });
     }
-	
+	  
+    @Override
+    public void onBackPressed(){   	
+        super.onBackPressed();
+        overridePendingTransition(R.anim.hold, R.anim.slide_out_right);
+    }
     
     
 	@Override

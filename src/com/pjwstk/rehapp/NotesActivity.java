@@ -104,37 +104,34 @@ public class NotesActivity extends ActionBarActivity {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 	        case R.id.action_home:
 	        	Intent intent = new Intent(this,HomeActivity.class);
 	        	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent);	
 	            return true;
-	        case R.id.action_exercises:
-	        	Intent intent1 = new Intent(this,ExercisesActivity.class);
-	        	intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent1);
-	            return true;
-	        case R.id.action_schedule:
-	        	Intent intent2 = new Intent(this,ScheduleActivity.class);
+//	        case R.id.action_exercises:
+//	        	Intent intent1 = new Intent(this,ExercisesActivity.class);
+//	        	intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//	            startActivity(intent1);
+//	            return true;
+	        case R.id.action_calendar:
+	        	Intent intent2 = new Intent(this,CalendarActivity.class);
 	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent2);
 	            return true;
 	        case R.id.action_notes:            
 	            return true;      
-	        case R.id.action_photos:
-	        	Intent intent3 = new Intent(this,PhotosActivity.class);
-	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent3);
-	            return true;       
+//	        case R.id.action_photos:
+//	        	Intent intent3 = new Intent(this,PhotosActivity.class);
+//	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//	            startActivity(intent3);
+//	            return true;       
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

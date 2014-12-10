@@ -19,7 +19,7 @@
         android:launchMode="singleTop"
         android:theme="@style/RHTheme" >
         <activity
-            android:name="com.pjwstk.rehapp.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,43 +27,40 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
-            android:name="com.pjwstk.rehapp.HomeActivity"
-            android:label="@string/title_home_activity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:name=".HomeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_home_activity" >
         </activity>
-        
         <activity
-            android:name="com.pjwstk.rehapp.ExercisesActivity"
+            android:name=".ExercisesActivity"
             android:label="@string/title_activity_exercises"
             android:parentActivityName="com.example.RehApp.HomeActivity" >
         </activity>
-        
         <activity
-            android:name="com.pjwstk.rehapp.ScheduleActivity"
+            android:name=".ScheduleActivity"
             android:label="@string/title_activity_schedule"
             android:parentActivityName="com.example.RehApp.HomeActivity" >
-        </activity>        
-        
-		<activity
-            android:name="com.pjwstk.rehapp.NotesActivity"
-            android:label="@string/title_activity_doctor_notes" 
-            android:parentActivityName="com.example.HomeActivity" >
-        </activity>       
-        
+        </activity>
         <activity
-            android:name="com.pjwstk.rehapp.PhotosActivity"
+            android:name=".NotesActivity"
+            android:label="@string/title_activity_doctor_notes"
+            android:parentActivityName="com.example.HomeActivity" >
+        </activity>
+        <activity
+            android:name=".PhotosActivity"
             android:label="@string/title_activity_photos"
             android:parentActivityName="com.example.HomeActivity" >
         </activity>
-        
         <activity
-            android:name="com.pjwstk.rehapp.SingleExerciseActivity"
-            android:label="@string/title_activity_single_ex" 
+            android:name=".SingleExerciseActivity"
+            android:label="@string/title_activity_single_ex"
             android:parentActivityName="com.example.HomeActivity" >
-        </activity>  
-        
+        </activity>
+        <activity
+            android:name=".CalendarActivity"
+            android:label="@string/title_activity_calendar" >
+        </activity>
     </application>
 
 </manifest>

@@ -5,25 +5,25 @@
           android:icon="@drawable/ic_menu_home"
           android:title="@string/action_home"
           RehApp:showAsAction="ifRoom|withText" />
-          
-    <item android:id="@+id/action_exercises"
-          android:icon="@drawable/ic_menu_exercise"
-          android:title="@string/action_exercises"
-          RehApp:showAsAction="ifRoom|withText" />
-    
-    <item android:id="@+id/action_schedule"
-          android:icon="@drawable/ic_menu_my_calendar"
-          android:title="@string/action_schedule"
-          RehApp:showAsAction="ifRoom|withText" />
     
     <item android:id="@+id/action_notes"
           android:icon="@drawable/ic_menu_notifications"
           android:title="@string/action_notes"
-          RehApp:showAsAction="ifRoom|withText" />           
+          RehApp:showAsAction="ifRoom|withText" />
     
-    <item android:id="@+id/action_photos"
-          android:icon="@drawable/ic_menu_camera"
-          android:title="@string/action_photos"
-          RehApp:showAsAction="ifRoom|withText" />   
+    <item android:id="@+id/action_calendar"
+          android:icon="@drawable/ic_menu_my_calendar"
+          android:title="@string/action_calendar"
+          RehApp:showAsAction="ifRoom|withText" />        
+    
+<!--     <item android:id="@+id/action_exercises" -->
+<!--           android:icon="@drawable/ic_menu_exercise" -->
+<!--           android:title="@string/action_exercises" -->
+<!--           RehApp:showAsAction="ifRoom|withText" /> -->
+     
+<!--     <item android:id="@+id/action_photos" -->
+<!--           android:icon="@drawable/ic_menu_camera" -->
+<!--           android:title="@string/action_photos" -->
+<!--           RehApp:showAsAction="ifRoom|withText" />    -->
     
 </menu>

@@ -17,6 +17,8 @@
     <style name="RHTheme" parent="Theme.AppCompat.Light">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_right</item>
         
     </style>
 	

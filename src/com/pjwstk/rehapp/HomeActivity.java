@@ -5,28 +5,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.pjwstk.rehapp.R;
-import com.pjwstk.rehapp.ExercisesTitleFragment.ListSelectionListener;
-import com.pjwstk.rehapp.MainActivity.PlaceholderFragment;
-import com.pjwstk.rehapp.model.Exercise;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.text.Html;
-import android.util.Log;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,14 +21,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.os.Build;
-import android.preference.PreferenceManager;
+
+import com.pjwstk.rehapp.model.Exercise;
 
 public class HomeActivity extends ActionBarActivity {
 	private static final String TAG = "HomeActivity";
@@ -78,8 +60,8 @@ public class HomeActivity extends ActionBarActivity {
         String formattedDate = df.format(c.getTime());    
         
         //Display formattedDate value in TextView
-        Resources res = getResources();
-        String homeIntro = String.format(res.getString(R.string.homeIntro), formattedDate);
+        int daysLeft = 2;
+        String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
         ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
                    	
         //Populate Exercise list
@@ -144,10 +126,41 @@ public class HomeActivity extends ActionBarActivity {
 				Exercise clickedExercise = todayExercises.get(position);				
 				Intent SingleExIntent = new Intent(getApplicationContext(),SingleExerciseActivity.class);
 				SingleExIntent.putExtra("clickedExercise", clickedExercise);
-				startActivityForResult(SingleExIntent,EXERCISE_DONE_REQUEST_CODE);							
+				startActivityForResult(SingleExIntent,EXERCISE_DONE_REQUEST_CODE);
+				overridePendingTransition(R.anim.slide_in_right, R.anim.hold);
+				//new loadingDialogTask().execute();		
 			}
 		});			
 	}
+	
+	
+    private class loadingDialogTask extends AsyncTask<Void, Void, Void>{
+        ProgressDialog Asyncdialog = new ProgressDialog(HomeActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            //Asycdialog.setMessage(getString(R.string.loadingtype));
+        	Asyncdialog.setMessage("Loading exercise..");
+            Asyncdialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            //do some lengthy stuff
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {           
+            Asyncdialog.dismiss();            
+            super.onPostExecute(result);
+        }
+
+}
+	
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -164,10 +177,6 @@ public class HomeActivity extends ActionBarActivity {
 	    }
 	}
 	
-    @Override
-    public void onBackPressed() {
-            //super.onBackPressed();
-    }	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -182,31 +191,32 @@ public class HomeActivity extends ActionBarActivity {
 	    switch (item.getItemId()) {
 	        case R.id.action_home:
 	            return true;
-	        case R.id.action_exercises:
-	        	Intent intent1 = new Intent(this,ExercisesActivity.class);
-	        	intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent1);
-	            return true;
-	        case R.id.action_schedule:
-	        	Intent intent2 = new Intent(this,ScheduleActivity.class);
+//	        case R.id.action_exercises:
+//	        	Intent intent1 = new Intent(this,ExercisesActivity.class);
+//	        	intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//	            startActivity(intent1);
+//	            return true;
+	        case R.id.action_calendar:
+	        	Intent intent2 = new Intent(this,CalendarActivity.class);
 	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent2);
 	            return true;
 	        case R.id.action_notes:
 	        	Intent intent3 = new Intent(this,NotesActivity.class);
 	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent3);	            
-	            return true;      
-	        case R.id.action_photos:
-	        	Intent intent4 = new Intent(this,PhotosActivity.class);
-	        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent4);
-	            return true;       
+	            startActivity(intent3);
+	            //overridePendingTransition(R.anim.together, R.anim.zoom_out);
+	            return true;          
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}    
 
+	
+    @Override
+    public void onBackPressed() {
+            //super.onBackPressed();
+    }	
 	
 	@Override
 	protected void onResume() {

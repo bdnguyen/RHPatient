@@ -32,7 +32,7 @@ public void showDescAtIndex(int newIndex) {
 	//For test and debug only, to be modified
 	if (newIndex == 0) {
 	mImgView = (ImageView) getView().findViewById(R.id.exImg);
-	mImgView.setImageResource(R.drawable.leg_ex1);
+	mImgView.setImageResource(R.drawable.leg4);
 	} else {
 		mImgView = (ImageView) getView().findViewById(R.id.exImg);
 		mImgView.setImageDrawable(null);

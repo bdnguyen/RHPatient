@@ -68,13 +68,13 @@ ListSelectionListener {
 		// as you specify a parent activity in AndroidManifest.xml.
 		   // Handle presses on the action bar items
 	    switch (item.getItemId()) { 	
-	        case R.id.action_exercises:
-	            return true;
-	        case R.id.action_schedule:	            
-	        	Intent intent = new Intent(this,ScheduleActivity.class);
-	        	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent);        	
-	            return true;
+//	        case R.id.action_exercises:
+//	            return true;
+//	        case R.id.action_schedule:	            
+//	        	Intent intent = new Intent(this,ScheduleActivity.class);
+//	        	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//	            startActivity(intent);        	
+//	            return true;
 	        case R.id.action_home:	            
 	        	Intent intent2 = new Intent(this,HomeActivity.class);
 	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -85,11 +85,11 @@ ListSelectionListener {
 	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent3);	            
 	            return true;          
-	        case R.id.action_photos:
-	        	Intent intent4 = new Intent(this,PhotosActivity.class);
-	        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent4);
-	            return true;       
+//	        case R.id.action_photos:
+//	        	Intent intent4 = new Intent(this,PhotosActivity.class);
+//	        	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//	            startActivity(intent4);
+//	            return true;       
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

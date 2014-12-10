@@ -13,7 +13,8 @@
     <string name="action_photos">Photos</string>
     <string name="action_exercises">Exercises</string>
     <string name="action_notes">Notes</string>
-    <string name="homeIntro">Today is: %1$s, \n Tap on each exercise for details</string>
+    <string name="action_calendar">Calendar</string>
+    <string name="homeIntro">Today is: %1$s, \nTap on each exercise for details, Days left until the end of treatment: %2$d</string>
     <string name="noteIntro">Your therapist is: %1$s</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_schedule">Schedule</string>
@@ -47,5 +48,8 @@
         <item>Move leg up</item>
         <item>Do things with arm</item>
     </string-array>
+
+    <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
