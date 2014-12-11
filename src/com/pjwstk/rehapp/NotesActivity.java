@@ -22,7 +22,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,7 +35,8 @@ import com.pjwstk.rehapp.model.*;
 public class NotesActivity extends ActionBarActivity {
 	
 	private List<Note> notes = new ArrayList();	
-	
+	ArrayAdapter<Note> noteAdapter;
+	EditText editTextNote;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +47,19 @@ public class NotesActivity extends ActionBarActivity {
 	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
 	    TextView abTitle = (TextView) findViewById(titleId);
 	    abTitle.setTextColor(Color.WHITE);
+	    
+	    //Handle button and edit_text
+        Button sendBtn = (Button) findViewById(R.id.sendNoteBtn);
+        editTextNote = (EditText) findViewById(R.id.editTextNote);
+        
+        sendBtn.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {				
+				notes.add(new Note("self",editTextNote.getText().toString(),false));
+				editTextNote.setText("");
+				noteAdapter.setNotifyOnChange(true);				
+			}	        	
+        });
 	    
 	    populateNoteList();
 	    populateListViewNote();
@@ -61,9 +78,9 @@ public class NotesActivity extends ActionBarActivity {
 	}
 	
 	private void populateListViewNote() {
-		ArrayAdapter<Note> mAdapter = new NoteListAdapter();
+		noteAdapter = new NoteListAdapter();
 		ListView list = (ListView) findViewById(R.id.listViewNotes);
-		list.setAdapter(mAdapter);		
+		list.setAdapter(noteAdapter);		
 	}
 	
 	private class NoteListAdapter extends ArrayAdapter<Note>{
@@ -98,7 +115,7 @@ public class NotesActivity extends ActionBarActivity {
 		}
 		
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 

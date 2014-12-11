@@ -1,5 +1,7 @@
 package com.pjwstk.rehapp.api;
 
+
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -18,18 +20,17 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManagerFactory;
 
-import android.content.Context;
-import android.content.res.AssetManager;
 
 public class ConnectionWS {
-	
-//	public ConnectionWS(Context context){
-//	}
+	String passwordtokeystore = "hJ4D2Vd6tc";
+	String privatekeypassword = "6v9TGy53gA";
 	public static void main(String[] args) {
 		try {
 
@@ -49,10 +50,10 @@ public class ConnectionWS {
 
 			// to transfer from pfx to jks
             // keytool -importkeystore -srckeystore mypfxfile.pfx -srcstoretype pkcs12 -destkeystore clientcert.jks -deststoretype JKS
-            KeyStore clientKeyStore = KeyStore.getInstance("pkcs12");
+            KeyStore clientKeyStore = KeyStore.getInstance("JKS"); //pkcs12
             clientKeyStore.load(null, null);
-            InputStream clientInputStream = new FileInputStream("RehabilitationAppClient.p12");
-            clientKeyStore.load(clientInputStream, "passwordtokeystore".toCharArray());
+            InputStream clientInputStream = new FileInputStream("clientcert.jks"); //p12
+            clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray());
 
             // Trustmanager that trusts ca from keystore
             String trustManagerFactoryAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
@@ -60,8 +61,8 @@ public class ConnectionWS {
             trustManagerFactory.init(keyStore);
 
             // Key manager that trusts client certificate
-            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("X.509");
-            keyManagerFactory.init(clientKeyStore, "privatekeypassword".toCharArray());
+            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("Sunx509"); //X.509
+            keyManagerFactory.init(clientKeyStore, "6v9TGy53gA".toCharArray());
 
 
             // We create ssl context that uses trustmanager
@@ -69,17 +70,33 @@ public class ConnectionWS {
             context.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
 
             // Connection
-            URL url = new URL("https://172.21.40.69/");
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+            	public boolean verify(String hostname, SSLSession session){
+            		if(hostname.equals("172.21.40.69"))
+            			return true;
+            		return false;
+            	}
+            	
+            });
+            URL url = new URL("https://172.21.40.69/token");
             HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+            urlConnection.setDoOutput(true);
             urlConnection.setSSLSocketFactory(context.getSocketFactory());
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             DataOutputStream writer = new DataOutputStream(urlConnection.getOutputStream());
-            writer.writeBytes("Content");
+            String Content = "grant_type=password&username=patient@pjwstk.edu.pl&password=Zg7e3T8F";
+            writer.writeBytes(Content);
             writer.flush();
             writer.close();
-
-            InputStream inputStream = urlConnection.getInputStream();
+            
+            
+            InputStream inputStream = null;
+            if(urlConnection.getResponseCode() >= 400){
+            	inputStream = urlConnection.getErrorStream();            	
+            } else {
+            	inputStream = urlConnection.getInputStream();
+            }
             BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             StringBuffer response = new StringBuffer();
@@ -90,6 +107,7 @@ public class ConnectionWS {
             rd.close();
 
             String responseContent = response.toString();
+            System.out.println(responseContent);
 
 
 
