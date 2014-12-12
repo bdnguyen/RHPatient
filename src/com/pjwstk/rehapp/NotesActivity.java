@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,6 +35,7 @@ import com.pjwstk.rehapp.model.*;
 
 public class NotesActivity extends ActionBarActivity {
 	
+	private static final String TAG = "NoteActivity";
 	private List<Note> notes = new ArrayList();	
 	ArrayAdapter<Note> noteAdapter;
 	EditText editTextNote;
@@ -43,7 +45,7 @@ public class NotesActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_notes);
 	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
-	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
 	    TextView abTitle = (TextView) findViewById(titleId);
 	    abTitle.setTextColor(Color.WHITE);
@@ -54,10 +56,12 @@ public class NotesActivity extends ActionBarActivity {
         
         sendBtn.setOnClickListener(new OnClickListener(){
 			@Override
-			public void onClick(View v) {				
-				notes.add(new Note("self",editTextNote.getText().toString(),false));
-				editTextNote.setText("");
-				noteAdapter.setNotifyOnChange(true);				
+			public void onClick(View v) {
+				if (!editTextNote.getText().toString().isEmpty()) {
+					notes.add(new Note("self",editTextNote.getText().toString(),false));
+					noteAdapter.setNotifyOnChange(true);
+					editTextNote.setText("");	
+				}							
 			}	        	
         });
 	    
@@ -130,13 +134,8 @@ public class NotesActivity extends ActionBarActivity {
 	        case R.id.action_home:
 	        	Intent intent = new Intent(this,HomeActivity.class);
 	        	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent);	
+	            startActivity(intent);
 	            return true;
-//	        case R.id.action_exercises:
-//	        	Intent intent1 = new Intent(this,ExercisesActivity.class);
-//	        	intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//	            startActivity(intent1);
-//	            return true;
 	        case R.id.action_calendar:
 	        	Intent intent2 = new Intent(this,CalendarActivity.class);
 	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -144,13 +143,15 @@ public class NotesActivity extends ActionBarActivity {
 	            return true;
 	        case R.id.action_notes:            
 	            return true;      
-//	        case R.id.action_photos:
-//	        	Intent intent3 = new Intent(this,PhotosActivity.class);
-//	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//	            startActivity(intent3);
-//	            return true;       
+     
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+	
+	@Override
+	protected void onResume() {
+		Log.i(TAG, getClass().getSimpleName() + ":entered onResume()");
+		super.onResume();
+	}	
 }

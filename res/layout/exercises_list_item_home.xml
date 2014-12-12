@@ -12,9 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/homeCheckBox"
+        android:focusable="false"
         android:text="TextView"
-        android:textSize="32sp"
-        android:focusable="false" />
+        android:textColor="@color/red"
+        android:textColorHighlight="@color/white"
+        android:textSize="28sp" />
 
     <CheckBox
         android:id="@+id/homeCheckBox"
@@ -22,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/exerciseTitleHomeView"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
+        android:layout_alignParentTop="true"
         android:enabled="false"
         android:focusable="false" />
 

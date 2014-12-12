@@ -9,20 +9,6 @@
     tools:context="com.pjwstk.rehapp.MainActivity$PlaceholderFragment">
 
     <EditText
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:hint="@string/login" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,14 +20,28 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:hint="@string/login_button"
+        android:layout_marginTop="33dp"
         android:gravity="center_vertical"
+        android:hint="@string/login_button"
         android:onClick="login" />
+
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dp"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="@string/login" >
+
+        <requestFocus />
+    </EditText>
     
 </RelativeLayout>

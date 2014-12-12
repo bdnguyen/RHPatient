@@ -45,11 +45,12 @@ public class HomeActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
 	    // Set view as activity layout
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
 	    setContentView(R.layout.activity_home);
 	    
 	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
-	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
 	    TextView abTitle = (TextView) findViewById(titleId);
 	    abTitle.setTextColor(Color.WHITE);
@@ -75,10 +76,11 @@ public class HomeActivity extends ActionBarActivity {
 	
 
 	private void populateExerciseListHome() {
-		todayExercises.add(new Exercise("Arm 1", "-Step one foot forward, letting that knee bend.\n -Lean onto the front leg, bringing your head and chest toward the corner.\n -Hold for 20-30 seconds. \n -Stand up straight and switch feet. \n -Repeat it on the other side. \n", false));
+		todayExercises.add(new Exercise("Step ups", "Lead up with your operated leg and then step down again. Repeat 20 times", false));
 		todayExercises.add(new Exercise("Double leg squats", "Standing squats with a ball squeezed between your knees. (This may be easier if you slide your back down a wall), Hold at 45° for 5 sec, Repeat 10 times",false));
-		todayExercises.add(new Exercise("Ćwiczenie wyprostu stawu kolanowego", "Siedząc z wyprostowanymi nogami podłóż pod pietę złożony ręcznik. Rozluźnij mięśnie i pozwól, żeby staw kolanowy zaczął się prostować pod wpływem siły grawitacji. Podczas tego ćwiczenia napinaj mięsień czworogłowy. Postaraj się wytrzymać w tej pozycji 5 minut.",false));
-		todayExercises.add(new Exercise("Arm 2", "Swing hands above head", false));
+		todayExercises.add(new Exercise("Single knee extensions in sitting","Hold a straight leg for 5 sec. Return to start position.Repeat x 15", false ));
+		todayExercises.add(new Exercise("Hamstring catches \n(In lying)", "Lying on your front, bend your knee, bringing your heel towards your bottom. Return to start position. Repeat 15 times.", false));
+		todayExercises.add(new Exercise("Ćwiczenie wyprostu stawu kolanowego", "Siedząc z wyprostowanymi nogami podłóż pod pietę złożony ręcznik. Rozluźnij mięśnie i pozwól, żeby staw kolanowy zaczął się prostować pod wpływem siły grawitacji. Podczas tego ćwiczenia napinaj mięsień czworogłowy. Postaraj się wytrzymać w tej pozycji 5 minut.",false));		
 	}
 	
 	private void populateListViewHome() {
@@ -109,7 +111,11 @@ public class HomeActivity extends ActionBarActivity {
 			exTitleTxt.setText(currentExercise.getTitle());
 			CheckBox cb = (CheckBox) itemView.findViewById(R.id.homeCheckBox);
 			cb.setChecked(currentExercise.isDoneToday());
-			
+			if (currentExercise.isDoneToday()){
+				exTitleTxt.setTextColor(getResources().getColor(R.color.greenhospital));
+			} else { 
+				exTitleTxt.setTextColor(getResources().getColor(R.color.red));
+			}
 			return itemView;
 		}
 	}
@@ -191,21 +197,15 @@ public class HomeActivity extends ActionBarActivity {
 	    switch (item.getItemId()) {
 	        case R.id.action_home:
 	            return true;
-//	        case R.id.action_exercises:
-//	        	Intent intent1 = new Intent(this,ExercisesActivity.class);
-//	        	intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//	            startActivity(intent1);
-//	            return true;
 	        case R.id.action_calendar:
 	        	Intent intent2 = new Intent(this,CalendarActivity.class);
 	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent2);
+	            startActivity(intent2);	         
 	            return true;
 	        case R.id.action_notes:
 	        	Intent intent3 = new Intent(this,NotesActivity.class);
 	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent3);
-	            //overridePendingTransition(R.anim.together, R.anim.zoom_out);
 	            return true;          
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -221,6 +221,7 @@ public class HomeActivity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		Log.i(TAG, getClass().getSimpleName() + ":entered onResume()");
+		//overridePendingTransition(R.anim.hold, R.anim.slide_out_right);
 		super.onResume();
 	}	
 }

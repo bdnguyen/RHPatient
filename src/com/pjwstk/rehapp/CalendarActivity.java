@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 public class CalendarActivity extends ActionBarActivity {
+
+	private static final String TAG = "CalendarActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +21,7 @@ public class CalendarActivity extends ActionBarActivity {
 		
 	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
-	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
 	    TextView abTitle = (TextView) findViewById(titleId);
 	    abTitle.setTextColor(Color.WHITE);
@@ -36,7 +39,7 @@ public class CalendarActivity extends ActionBarActivity {
         case R.id.action_home:
         	Intent intent = new Intent(this,HomeActivity.class);
         	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);	
+            startActivity(intent);
             return true;
         case R.id.action_calendar:
             return true;           
@@ -44,10 +47,15 @@ public class CalendarActivity extends ActionBarActivity {
         	Intent intent3 = new Intent(this,NotesActivity.class);
         	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent3);
-            //overridePendingTransition(R.anim.together, R.anim.zoom_out);
             return true;             
         default:
             return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	@Override
+	protected void onResume() {
+		Log.i(TAG, getClass().getSimpleName() + ":entered onResume()");
+		super.onResume();
+	}	
 }

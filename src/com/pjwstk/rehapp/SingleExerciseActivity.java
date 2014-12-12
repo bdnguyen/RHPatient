@@ -44,7 +44,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        	      	        
 		    // Set ActionBar color
 		    android.app.ActionBar bar = getActionBar();
-		    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#99CCFF")));
+		    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 		    bar.setDisplayHomeAsUpEnabled(false);
 		    //bar.hide();
 	        		    

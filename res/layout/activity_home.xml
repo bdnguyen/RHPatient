@@ -15,7 +15,8 @@
     <ListView
         android:id="@+id/exercisesListViewHome"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:listSelector="@color/greenhospital" >
     </ListView>
     
 </TableLayout>    

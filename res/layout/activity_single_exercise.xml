@@ -3,20 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/singleExDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="24sp" />
-	
+	<ScrollView
+	   android:id="@+id/scrollView1"
+	   android:layout_width="match_parent"
+	   android:layout_height="85dp"
+	   android:layout_weight="0.2" >
+	    <TextView
+	        android:id="@+id/singleExDesc"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="TextView"	        
+	        android:textSize="24sp" />
+	</ScrollView>
     <fragment
         android:id="@+id/fragment1"
         android:name="android.support.v4.app.DialogFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.08"
+        android:layout_weight="0.7"
         class="com.pjwstk.rehapp.ExercisesPhotosFragment" />
 
     <RelativeLayout
