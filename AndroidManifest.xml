@@ -35,17 +35,18 @@
         <activity
             android:name=".ExercisesActivity"
             android:label="@string/title_activity_exercises"
-            android:parentActivityName="com.example.RehApp.HomeActivity" >
+            android:parentActivityName="com.pjwstk.RehApp.HomeActivity" >
         </activity>
         <activity
             android:name=".ScheduleActivity"
             android:label="@string/title_activity_schedule"
-            android:parentActivityName="com.example.RehApp.HomeActivity" >
+            android:parentActivityName="com.pjwstk.RehApp.HomeActivity" >
         </activity>
         <activity
             android:name=".NotesActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_doctor_notes"
-            android:parentActivityName="com.example.HomeActivity" >
+            android:parentActivityName="com.pjwstk.HomeActivity" >
         </activity>
         <activity
             android:name=".PhotosActivity"
@@ -55,11 +56,12 @@
         <activity
             android:name=".SingleExerciseActivity"
             android:label="@string/title_activity_single_ex"
-            android:parentActivityName="com.example.HomeActivity" >
+            android:parentActivityName="com.pjwstk.HomeActivity" >
         </activity>
         <activity
             android:name=".CalendarActivity"
-            android:label="@string/title_activity_calendar" >
+            android:label="@string/title_activity_calendar"
+            android:parentActivityName="com.pjwstk.HomeActivity" >
         </activity>
     </application>
 

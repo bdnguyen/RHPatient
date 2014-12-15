@@ -58,7 +58,7 @@ public class NotesActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				if (!editTextNote.getText().toString().isEmpty()) {
-					notes.add(new Note("self",editTextNote.getText().toString(),false));
+					notes.add(new Note("self",editTextNote.getText().toString().trim(),false));
 					noteAdapter.setNotifyOnChange(true);
 					editTextNote.setText("");	
 				}							
@@ -112,10 +112,15 @@ public class NotesActivity extends ActionBarActivity {
 			TextView noteContent = (TextView) itemView.findViewById(R.id.noteContent);
 			noteContent.setText(currentNote.getContent());
 			
-			noteContent.setBackgroundResource(currentNote.isfromTherapist() ? R.drawable.bubble_blue : R.drawable.bubble_grey);
+			noteContent.setBackgroundResource(currentNote.isfromTherapist() ? R.drawable.bubble_blue : R.drawable.bubble_grey1);
 			noteWrapper.setGravity(currentNote.isfromTherapist() ? Gravity.LEFT : Gravity.RIGHT);
 			
 			return itemView;
+		}
+		// Prevent clicking bug on listview items
+		@Override
+		public boolean isEnabled(int position) {
+		    return false;
 		}
 		
 	}
