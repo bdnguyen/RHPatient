@@ -29,13 +29,17 @@ import javax.net.ssl.TrustManagerFactory;
 
 
 public class ConnectionWS {
-	String passwordtokeystore = "hJ4D2Vd6tc";
-	String privatekeypassword = "6v9TGy53gA";
-	public static void main(String[] args) {
+	private String passwordtokeystore = "hJ4D2Vd6tc";
+	private String privatekeypassword = "6v9TGy53gA";
+	
+	public static String getLoginResponse(String username, String password) {
+		String responseContent = null;
+		String uname = username;
+		String pw = password;
 		try {
 
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-            InputStream certificateAuthorityInput = new BufferedInputStream(new FileInputStream("RehabilitationAppCA.cer"));
+            InputStream certificateAuthorityInput = new BufferedInputStream(new FileInputStream("assets/RehabilitationAppCA.cer"));
             Certificate certificateAuthority = certificateFactory.generateCertificate(certificateAuthorityInput);
 
             // Now we should have certificate authority loaded - check by checking SubjectDN name
@@ -52,8 +56,8 @@ public class ConnectionWS {
             // keytool -importkeystore -srckeystore mypfxfile.pfx -srcstoretype pkcs12 -destkeystore clientcert.jks -deststoretype JKS
             KeyStore clientKeyStore = KeyStore.getInstance("JKS"); //pkcs12
             clientKeyStore.load(null, null);
-            InputStream clientInputStream = new FileInputStream("clientcert.jks"); //p12
-            clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray());
+            InputStream clientInputStream = new FileInputStream("assets/clientcert.jks"); //p12
+            clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray()); //passwordToKeystore
 
             // Trustmanager that trusts ca from keystore
             String trustManagerFactoryAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
@@ -62,7 +66,7 @@ public class ConnectionWS {
 
             // Key manager that trusts client certificate
             KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("Sunx509"); //X.509
-            keyManagerFactory.init(clientKeyStore, "6v9TGy53gA".toCharArray());
+            keyManagerFactory.init(clientKeyStore, "6v9TGy53gA".toCharArray()); //privateKeyPassword
 
 
             // We create ssl context that uses trustmanager
@@ -85,7 +89,7 @@ public class ConnectionWS {
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             DataOutputStream writer = new DataOutputStream(urlConnection.getOutputStream());
-            String Content = "grant_type=password&username=patient@pjwstk.edu.pl&password=Zg7e3T8F";
+            String Content = "grant_type=password"+"&username="+uname+"&password="+pw;
             writer.writeBytes(Content);
             writer.flush();
             writer.close();
@@ -106,7 +110,7 @@ public class ConnectionWS {
             }
             rd.close();
 
-            String responseContent = response.toString();
+            responseContent = response.toString();
             System.out.println(responseContent);
 
 
@@ -125,8 +129,9 @@ public class ConnectionWS {
             e.printStackTrace();
         } catch (UnrecoverableKeyException e) {
             e.printStackTrace();
-        }
-
-
+        } 
+		
+		return responseContent;
     }	
 }
+

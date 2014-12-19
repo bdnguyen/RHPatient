@@ -431,12 +431,14 @@ int string action_schedule 0x7f0a0015
 int string action_settings 0x7f0a0011
 int string app_name 0x7f0a000d
 int string choose_from_gallery_btn 0x7f0a0023
+int string editTextNoteHint 0x7f0a0027
 int string homeIntro 0x7f0a001a
 int string login 0x7f0a000e
 int string login_button 0x7f0a0010
 int string noteIntro 0x7f0a001b
 int string password 0x7f0a000f
 int string photos 0x7f0a0022
+int string sendNoteBtnTitle 0x7f0a0026
 int string take_photo_btn 0x7f0a0024
 int string title_activity_calendar 0x7f0a0025
 int string title_activity_doctor_notes 0x7f0a0020

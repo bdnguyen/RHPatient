@@ -45,7 +45,7 @@
             android:layout_toStartOf="@+id/sendNoteBtn"
             android:layout_toLeftOf="@+id/sendNoteBtn"
             android:ems="17"
-            android:hint="Type message.."           
+            android:hint="@string/editTextNoteHint"           
             android:inputType="textMultiLine|textCapSentences">          
         </EditText>
         <Button
@@ -54,7 +54,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="Send" />
+            android:text="@string/sendNoteBtnTitle" />
     </RelativeLayout>
 
 </LinearLayout>

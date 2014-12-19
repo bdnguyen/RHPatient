@@ -1335,12 +1335,14 @@ containing a value of this type.
         public static final int action_settings=0x7f0a0011;
         public static final int app_name=0x7f0a000d;
         public static final int choose_from_gallery_btn=0x7f0a0023;
+        public static final int editTextNoteHint=0x7f0a0027;
         public static final int homeIntro=0x7f0a001a;
         public static final int login=0x7f0a000e;
         public static final int login_button=0x7f0a0010;
         public static final int noteIntro=0x7f0a001b;
         public static final int password=0x7f0a000f;
         public static final int photos=0x7f0a0022;
+        public static final int sendNoteBtnTitle=0x7f0a0026;
         public static final int take_photo_btn=0x7f0a0024;
         public static final int title_activity_calendar=0x7f0a0025;
         public static final int title_activity_doctor_notes=0x7f0a0020;
