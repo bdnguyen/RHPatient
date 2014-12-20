@@ -7,7 +7,6 @@
     <string name="login_button">Login</string>
     <string name="action_settings">Settings</string>
     <string name="action_help">Help</string>
-    <string name="title_home_activity">Home Activity</string>
     <string name="action_home">Home</string>
     <string name="action_schedule">Schedule</string>
     <string name="action_photos">Photos</string>
@@ -16,7 +15,7 @@
     <string name="action_calendar">Calendar</string>
     <string name="homeIntro">Today is: %1$s, \nDays left until the end of treatment: %2$d</string>
     <string name="noteIntro">Your therapist is: %1$s</string>
-    <string name="title_activity_home">Home</string>
+    <string name="title_activity_home">Home Activity</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_photos">Photos</string>
     <string name="title_activity_exercises">Exercises</string>
@@ -28,6 +27,9 @@
     <string name="title_activity_calendar">CalendarActivity</string>
     <string name="sendNoteBtnTitle">Send</string>
     <string name="editTextNoteHint">Type message...</string>
+    <string name="exDoneBtnTitle">Done</string>
+    <string name="exNotDoneBtnTitle">Not Done</string>
+    <string name="exTTSBtnTitle">Text to Speech</string>
 
     <string-array name="ExerciseTitles">
         <item>Arm Exercise 1</item>

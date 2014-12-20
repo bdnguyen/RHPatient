@@ -46,9 +46,7 @@ public class NotesActivity extends ActionBarActivity {
 	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
-	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
-	    TextView abTitle = (TextView) findViewById(titleId);
-	    abTitle.setTextColor(Color.WHITE);
+	    bar.setDisplayHomeAsUpEnabled(true);
 	    
 	    //Handle button and edit_text
         Button sendBtn = (Button) findViewById(R.id.sendNoteBtn);

@@ -33,8 +33,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:text="Text to Speech" />
+            android:text="@string/exTTSBtnTitle" />
 
         <Button
             android:id="@+id/doneBtn"
@@ -43,7 +44,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:text="Done" />
+            android:text="@string/exDoneBtnTitle" />
 
         <Button
             android:id="@+id/notDoneBtn"
@@ -52,7 +53,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/doneBtn"
             android:layout_toEndOf="@+id/doneBtn"
-            android:text="Not Done" />
+            android:text="@string/exNotDoneBtnTitle" />
 
     </RelativeLayout>
 

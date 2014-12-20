@@ -45,7 +45,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 		    // Set ActionBar color
 		    android.app.ActionBar bar = getActionBar();
 		    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
-		    bar.setDisplayHomeAsUpEnabled(false);
+		    bar.setDisplayHomeAsUpEnabled(true);
 		    //bar.hide();
 	        		    
 		    // set Exercise title on actionBar and Desc
@@ -108,9 +108,10 @@ public class SingleExerciseActivity extends FragmentActivity {
 	    
 	private class PhotoSlidePagerAdapter extends PagerAdapter {		
 			private int[] mImages = new int[] {
-				R.drawable.leg1,
-				R.drawable.leg2,
-				R.drawable.leg4
+				R.drawable.ex_izo1,
+				R.drawable.ex_izo2,
+				R.drawable.ex_izo3,
+				R.drawable.ex_izo4
 			};
 
 			@Override

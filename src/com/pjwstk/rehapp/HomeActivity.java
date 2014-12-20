@@ -50,10 +50,8 @@ public class HomeActivity extends ActionBarActivity {
 	    
 	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
-	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
-	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
-	    TextView abTitle = (TextView) findViewById(titleId);
-	    abTitle.setTextColor(Color.WHITE);
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));	    
+	    bar.setDisplayHomeAsUpEnabled(false);
 	    
 	    // Set Today's Date
         Calendar c = Calendar.getInstance();
@@ -76,11 +74,11 @@ public class HomeActivity extends ActionBarActivity {
 	
 
 	private void populateExerciseListHome() {
-		todayExercises.add(new Exercise("Step ups", "Lead up with your operated leg and then step down again. Repeat 20 times", false));
-		todayExercises.add(new Exercise("Double leg squats", "Standing squats with a ball squeezed between your knees. (This may be easier if you slide your back down a wall), Hold at 45° for 5 sec, Repeat 10 times",false));
-		todayExercises.add(new Exercise("Single knee extensions in sitting","Hold a straight leg for 5 sec. Return to start position.Repeat x 15", false ));
-		todayExercises.add(new Exercise("Hamstring catches \n(In lying)", "Lying on your front, bend your knee, bringing your heel towards your bottom. Return to start position. Repeat 15 times.", false));
-		todayExercises.add(new Exercise("Ćwiczenie wyprostu stawu kolanowego", "Siedząc z wyprostowanymi nogami podłóż pod pietę złożony ręcznik. Rozluźnij mięśnie i pozwól, żeby staw kolanowy zaczął się prostować pod wpływem siły grawitacji. Podczas tego ćwiczenia napinaj mięsień czworogłowy. Postaraj się wytrzymać w tej pozycji 5 minut.",false));		
+		todayExercises.add(new Exercise("Ćwiczenie izometryczne mięśnia czworogłowego (głowy przyśrodkowej)", "Leżąc tyłem lub siedząc z wyprostowanymi nogami podłóż nieco powyżej kolana zwinięty ręcznik. Nie odrywając pięty od podłoża naciśnij udem na ręcznik, tak, aby napiął się mięsień czworogłowy. Utrzymaj napięcie przez 5 sekund, a następnie rozluźnij nogę.", false));
+		todayExercises.add(new Exercise("Ćwiczenie zgięcia stawu kolanowego", "Stań przy ścianie, tak aby plecy i pośladki całkowicie przylegały do ściany. Przesuń stopy około 15 cm od ściany. Powoli staraj się zrobić przysiad, tak aby stawy kolanowe nie przekroczyły linii stóp. Postaraj się zejść jak najniżej i wytrzymać w tej pozycji 10-15 sekund. Wróć do pozycji wyjściowej.",false));
+		todayExercises.add(new Exercise("Ćwiczenie wyprostu stawu kolanowego", "Siedząc z wyprostowanymi nogami podłóż pod pietę złożony ręcznik. Rozluźnij mięśnie i pozwól, żeby staw kolanowy zaczął się prostować pod wpływem siły grawitacji. Podczas tego ćwiczenia napinaj mięsień czworogłowy. Postaraj się wytrzymać w tej pozycji 5 minut.",false));
+		//todayExercises.add(new Exercise("Single knee extensions in sitting","Hold a straight leg for 5 sec. Return to start position.Repeat x 15", false ));
+		//todayExercises.add(new Exercise("Hamstring catches \n(In lying)", "Lying on your front, bend your knee, bringing your heel towards your bottom. Return to start position. Repeat 15 times.", false));		
 	}
 	
 	private void populateListViewHome() {

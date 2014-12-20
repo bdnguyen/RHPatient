@@ -14,7 +14,7 @@
     <item android:id="@+id/action_calendar"
           android:icon="@drawable/ic_menu_my_calendar"
           android:title="@string/action_calendar"
-          RehApp:showAsAction="ifRoom|withText" />        
+          android:showAsAction="ifRoom|withText" />        
     
 <!--     <item android:id="@+id/action_exercises" -->
 <!--           android:icon="@drawable/ic_menu_exercise" -->
