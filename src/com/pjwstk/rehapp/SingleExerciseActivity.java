@@ -45,7 +45,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 		    // Set ActionBar color
 		    android.app.ActionBar bar = getActionBar();
 		    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
-		    bar.setDisplayHomeAsUpEnabled(true);
+		    bar.setDisplayHomeAsUpEnabled(false);
 		    //bar.hide();
 	        		    
 		    // set Exercise title on actionBar and Desc
@@ -182,6 +182,10 @@ public class SingleExerciseActivity extends FragmentActivity {
 	@Override
 	protected void onDestroy() {
 		Log.i(TAG, getClass().getSimpleName() + ":entered onDestroy()");
+	    if(ttsObj !=null){
+	        ttsObj.stop();
+	        ttsObj.shutdown();
+	    }
 		super.onDestroy();
 	}
 	@Override
