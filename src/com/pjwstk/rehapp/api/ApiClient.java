@@ -22,13 +22,10 @@ public class ApiClient {
 		new ApiClient().getTodayExercises();
 	}
 		
-	private void getTherapistName() {
-		
-	}
-	
 	private void getTodayExercises() {			
 			String responseContent = null;
-			String getTodayExercise_url = "https://172.21.40.69/api/exercise/GetTodayExercises";								
+			String getTodayExercise_url = "https://172.21.40.69/api/therapy/GetTodayExercises";
+			//String getTodayExercise_url = "https://172.21.40.69/api/exercise/getall";
             URL url;
 			try {
 	           
@@ -45,9 +42,9 @@ public class ApiClient {
 	            httpsCon.setRequestMethod("GET");
 	            httpsCon.setRequestProperty("User-Agent", "Droidz");
 	            httpsCon.setRequestProperty("Content-Type", "application/json");
+	            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
 	            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("patient@pjwstk.edu.pl", "Zg7e3T8F"));
-	            
-	            
+
 	            InputStream inputStream = null;
 	            
 	            if(httpsCon.getResponseCode() >= 400){
@@ -73,7 +70,6 @@ public class ApiClient {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}	
-//		return responseContent;
 	}
 }
 

@@ -35,13 +35,9 @@ public class ConnectionWS {
 	private String passwordtokeystore = "hJ4D2Vd6tc";
 	private String privatekeypassword = "6v9TGy53gA";
 	
-	public static String getAuthToken(String username, String password) {
-		String responseContent = null;
-		String accessToken = null;	
-		String uname = username;
-		String pw = password;
+	public static SSLContext certHandler(){
+		SSLContext context = null;
 		try {
-
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
             InputStream certificateAuthorityInput = new BufferedInputStream(new FileInputStream("assets/RehabilitationAppCA.cer"));
             Certificate certificateAuthority = certificateFactory.generateCertificate(certificateAuthorityInput);
@@ -74,9 +70,35 @@ public class ConnectionWS {
 
 
             // We create ssl context that uses trustmanager
-            SSLContext context = SSLContext.getInstance("TLS");
+            context = SSLContext.getInstance("TLS");
             context.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
 
+            
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (UnrecoverableKeyException e) {
+            e.printStackTrace();
+        }
+		return context; 
+	}
+	
+	
+	public static String getAuthToken(String username, String password) throws IOException {
+		String responseContent = null;
+		String accessToken = null;	
+		String uname = username;
+		String pw = password;
+			
             // Connection
             HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
             	public boolean verify(String hostname, SSLSession session){
@@ -89,7 +111,7 @@ public class ConnectionWS {
             URL url = new URL("https://172.21.40.69/token");
             HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
             urlConnection.setDoOutput(true);
-            urlConnection.setSSLSocketFactory(context.getSocketFactory());
+            urlConnection.setSSLSocketFactory(certHandler().getSocketFactory());
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             DataOutputStream writer = new DataOutputStream(urlConnection.getOutputStream());
@@ -117,24 +139,7 @@ public class ConnectionWS {
             responseContent = response.toString();
             System.out.println(responseContent);
             
-
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        } catch (UnrecoverableKeyException e) {
-            e.printStackTrace();
-        } 
-		
+	
 		try {
 			JSONObject parsedObject = new JSONObject(responseContent);				
 			accessToken = parsedObject.getString("access_token");
