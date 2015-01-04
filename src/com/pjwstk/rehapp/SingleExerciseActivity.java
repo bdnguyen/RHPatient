@@ -193,7 +193,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 		Log.i(TAG, getClass().getSimpleName() + ":entered onPause()");
 	      if(ttsObj !=null){
 	          ttsObj.stop();
-	          ttsObj.shutdown();
+//	          ttsObj.shutdown();
 	      }
 		super.onPause();
 	}

@@ -27,13 +27,17 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManagerFactory;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class ConnectionWS {
 	private String passwordtokeystore = "hJ4D2Vd6tc";
 	private String privatekeypassword = "6v9TGy53gA";
 	
-	public static String getLoginResponse(String username, String password) {
+	public static String getAuthToken(String username, String password) {
 		String responseContent = null;
+		String accessToken = null;	
 		String uname = username;
 		String pw = password;
 		try {
@@ -79,9 +83,9 @@ public class ConnectionWS {
             		if(hostname.equals("172.21.40.69"))
             			return true;
             		return false;
-            	}
-            	
+            	}           	
             });
+            
             URL url = new URL("https://172.21.40.69/token");
             HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
             urlConnection.setDoOutput(true);
@@ -89,12 +93,12 @@ public class ConnectionWS {
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             DataOutputStream writer = new DataOutputStream(urlConnection.getOutputStream());
-            String Content = "grant_type=password"+"&username="+uname+"&password="+pw;
+            String Content = "grant_type=password"+"&username="+uname+"&password="+pw; //patient@pjwstk.edu.pl pw:Zg7e3T8F
             writer.writeBytes(Content);
             writer.flush();
             writer.close();
             
-            
+            //parse the response
             InputStream inputStream = null;
             if(urlConnection.getResponseCode() >= 400){
             	inputStream = urlConnection.getErrorStream();            	
@@ -112,7 +116,7 @@ public class ConnectionWS {
 
             responseContent = response.toString();
             System.out.println(responseContent);
-
+            
 
 
         } catch (MalformedURLException e) {
@@ -131,7 +135,14 @@ public class ConnectionWS {
             e.printStackTrace();
         } 
 		
-		return responseContent;
+		try {
+			JSONObject parsedObject = new JSONObject(responseContent);				
+			accessToken = parsedObject.getString("access_token");
+		} catch (JSONException e) {
+			throw new RuntimeException(e);
+		}
+		System.out.println(accessToken);
+		return accessToken;
     }	
 }
 
