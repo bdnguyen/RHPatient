@@ -22,7 +22,6 @@ import com.pjwstk.rehapp.R;
 
 public class MainActivity extends ActionBarActivity {
 	
-	//public final static String EXTRA_MESSAGE = "Logged in!";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +32,6 @@ public class MainActivity extends ActionBarActivity {
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
 	}
 
 	@Override
@@ -54,22 +49,6 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-	}
 	
 	public void login(View view) {
 		Intent intent = new Intent(this, HomeActivity.class);

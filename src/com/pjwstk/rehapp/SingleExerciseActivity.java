@@ -158,17 +158,22 @@ public class SingleExerciseActivity extends FragmentActivity {
     public void speakText(View view){
 	      String toSpeak = txtViewDesc.getText().toString();
 	      ttsObj.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
-    }	
+    }
+    
     public void initiateTextToSpeech(){
         ttsObj=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {     	     
       	  @Override
-  	      public void onInit(int status) {
-  	         if(status != TextToSpeech.ERROR){
-  	        	 ttsObj.setLanguage(new Locale("pl_PL"));
-  	        	 ttsObj.setSpeechRate((float)0.7);
-//  	             ttsObj.setLanguage(Locale.UK);
-  	         }				
-  	      }
+  	      public void onInit(final int status) {
+      		 new Thread(new Runnable(){
+      			 public void run(){
+          	         if(status != TextToSpeech.ERROR){
+          	        	 ttsObj.setLanguage(new Locale("pl_PL"));
+          	        	 ttsObj.setSpeechRate((float)0.7);
+//          	             ttsObj.setLanguage(Locale.UK);
+          	         }	
+      			 }				      
+      		 }).start();
+      	  }
   	 });
     }
 	  

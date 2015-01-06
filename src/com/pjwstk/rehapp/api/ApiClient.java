@@ -21,11 +21,11 @@ public class ApiClient {
 	public static void main(String[] args) {
 		new ApiClient().getTodayExercises();
 	}
-		
+	
+	
 	private void getTodayExercises() {			
 			String responseContent = null;
 			String getTodayExercise_url = "https://172.21.40.69/api/therapy/GetTodayExercises";
-			//String getTodayExercise_url = "https://172.21.40.69/api/exercise/getall";
             URL url;
 			try {
 	           
