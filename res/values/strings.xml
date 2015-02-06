@@ -30,7 +30,8 @@
     <string name="exDoneBtnTitle">Done</string>
     <string name="exNotDoneBtnTitle">Not Done</string>
     <string name="exTTSBtnTitle">Text to Speech</string>
-
+	<string name="loginFailMessage">Username or password not recognized, please try again.</string>
+    
     <string-array name="ExerciseTitles">
         <item>Arm Exercise 1</item>
         <item>Arm Exercise 2</item>

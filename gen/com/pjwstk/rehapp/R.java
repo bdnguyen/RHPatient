@@ -1147,8 +1147,9 @@ containing a value of this type.
         public static final int disableHome=0x7f050008;
         public static final int doneBtn=0x7f050051;
         public static final int dropdown=0x7f05000f;
-        public static final int editText1=0x7f050041;
         public static final int editTextNote=0x7f050047;
+        public static final int editTextPassword=0x7f050041;
+        public static final int editTextUsername=0x7f050042;
         public static final int edit_query=0x7f050030;
         public static final int end=0x7f050013;
         public static final int exImg=0x7f050054;
@@ -1168,7 +1169,6 @@ containing a value of this type.
         public static final int listMode=0x7f050001;
         public static final int listViewNotes=0x7f050046;
         public static final int list_item=0x7f050029;
-        public static final int login=0x7f050042;
         public static final int loginBtn=0x7f050043;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
@@ -1343,6 +1343,7 @@ containing a value of this type.
         public static final int exTTSBtnTitle=0x7f0a0029;
         public static final int homeIntro=0x7f0a0019;
         public static final int login=0x7f0a000e;
+        public static final int loginFailMessage=0x7f0a002a;
         public static final int login_button=0x7f0a0010;
         public static final int noteIntro=0x7f0a001a;
         public static final int password=0x7f0a000f;

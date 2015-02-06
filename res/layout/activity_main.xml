@@ -9,11 +9,11 @@
     tools:context="com.pjwstk.rehapp.MainActivity">
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/login"
-        android:layout_below="@+id/login"
+        android:layout_alignLeft="@+id/editTextUsername"
+        android:layout_below="@+id/editTextUsername"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:gravity="center_vertical"
@@ -23,7 +23,7 @@
         android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/editTextPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
         android:gravity="center_vertical"
@@ -31,7 +31,7 @@
         android:onClick="login" />
 
     <EditText
-        android:id="@+id/login"
+        android:id="@+id/editTextUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
