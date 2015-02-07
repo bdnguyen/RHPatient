@@ -30,8 +30,10 @@ import javax.net.ssl.TrustManagerFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.preference.PreferenceManager;
+import com.pjwstk.rehapp.MainActivity;
+import com.pjwstk.rehapp.Rehapp;
 
+import android.preference.PreferenceManager;
 
 public class ConnectionWS {
 	private String passwordtokeystore = "hJ4D2Vd6tc";
@@ -41,7 +43,8 @@ public class ConnectionWS {
 		SSLContext context = null;
 		try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-            InputStream certificateAuthorityInput = new BufferedInputStream(new FileInputStream("assets/RehabilitationAppCA.cer"));
+            //InputStream certificateAuthorityInput = new BufferedInputStream(new FileInputStream("assets/RehabilitationAppCA.cer")); //
+            InputStream certificateAuthorityInput = MainActivity.getAppContext().getResources().getAssets().open("RehabilitationAppCA.cer");
             Certificate certificateAuthority = certificateFactory.generateCertificate(certificateAuthorityInput);
 
             // Now we should have certificate authority loaded - check by checking SubjectDN name
@@ -56,9 +59,10 @@ public class ConnectionWS {
 
 			// to transfer from pfx to jks
             // keytool -importkeystore -srckeystore mypfxfile.pfx -srcstoretype pkcs12 -destkeystore clientcert.jks -deststoretype JKS
-            KeyStore clientKeyStore = KeyStore.getInstance("JKS"); //pkcs12
+            KeyStore clientKeyStore = KeyStore.getInstance("BKS"); //pkcs12
             clientKeyStore.load(null, null);
-            InputStream clientInputStream = new FileInputStream("assets/clientcert.jks"); //p12
+            //InputStream clientInputStream = new FileInputStream("assets/clientcert.jks"); //p12 
+            InputStream clientInputStream = MainActivity.getAppContext().getResources().getAssets().open("clientcertificate.bks");
             clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray()); //passwordToKeystore
 
             // Trustmanager that trusts ca from keystore
@@ -67,7 +71,7 @@ public class ConnectionWS {
             trustManagerFactory.init(keyStore);
 
             // Key manager that trusts client certificate
-            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("Sunx509"); //X.509
+            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("X509"); //X.509 //Sunx509
             keyManagerFactory.init(clientKeyStore, "6v9TGy53gA".toCharArray()); //privateKeyPassword
 
 
