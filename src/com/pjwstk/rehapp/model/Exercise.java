@@ -1,12 +1,17 @@
 package com.pjwstk.rehapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Exercise implements Parcelable {
 	private String title;
 	private String description;
-	private int imgID;
+	List<String> imgURLs = new ArrayList<String>();
 	private boolean doneToday;
 	private String treatmentType;
 	
@@ -35,12 +40,21 @@ public class Exercise implements Parcelable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getImgID() {
-		return imgID;
+	
+	public void addImgURL(String iURL){
+		if(iURL != null){
+			if(!imgURLs.contains(iURL)){
+				imgURLs.add(iURL);
+			}
+		}
 	}
-	public void setImgID(int imgID) {
-		this.imgID = imgID;
+	
+	public void removeImgURL(String iURL){
+		if(imgURLs.contains(iURL)){
+			imgURLs.remove(iURL);
+		}
 	}
+	
 	public boolean isDoneToday() {
 		return doneToday;
 	}

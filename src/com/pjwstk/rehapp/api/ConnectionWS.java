@@ -30,6 +30,8 @@ import javax.net.ssl.TrustManagerFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.preference.PreferenceManager;
+
 
 public class ConnectionWS {
 	private String passwordtokeystore = "hJ4D2Vd6tc";

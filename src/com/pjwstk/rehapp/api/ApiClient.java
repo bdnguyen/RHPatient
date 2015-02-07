@@ -15,6 +15,11 @@ import javax.net.ssl.SSLSession;
 
 import org.json.JSONArray;
 
+import com.pjwstk.rehapp.MainActivity;
+
+import android.content.Context;
+import android.preference.PreferenceManager;
+
 
 public class ApiClient {
 	
@@ -43,8 +48,9 @@ public class ApiClient {
 	            httpsCon.setRequestProperty("User-Agent", "Droidz");
 	            httpsCon.setRequestProperty("Content-Type", "application/json");
 	            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
-	            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("patient@pjwstk.edu.pl", "Zg7e3T8F"));
-
+	            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("patient@pjwstk.edu.pl", "Zg7e3T8F"));	           
+	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ PreferenceManager.getDefaultSharedPreferences(MainActivity.getApplicationContext);
+	            
 	            InputStream inputStream = null;
 	            
 	            if(httpsCon.getResponseCode() >= 400){

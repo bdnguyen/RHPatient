@@ -28,7 +28,7 @@ import com.pjwstk.rehapp.api.ConnectionWS;
 
 public class MainActivity extends ActionBarActivity {
 	
-	private String uname;
+	private String uname;	
 	private String pw;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,6 @@ public class MainActivity extends ActionBarActivity {
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 	    
-	    EditText unameET = (EditText) findViewById(R.id.editTextUsername);
-	    EditText pwET = (EditText) findViewById(R.id.editTextPassword);
-	    uname = unameET.getText().toString();
-	    pw = pwET.getText().toString();
 	}
 
 	@Override
@@ -62,13 +58,24 @@ public class MainActivity extends ActionBarActivity {
 
 	
 	public void login(View view) throws IOException {
-		String token = ConnectionWS.getAuthToken(uname, pw);
-		if (token != null){
-			PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("loginToken", token).commit();
+		
+		EditText unameET = (EditText) findViewById(R.id.editTextUsername);
+    	EditText pwET = (EditText) findViewById(R.id.editTextPassword);
+		uname = unameET.getText().toString();
+    	pw = pwET.getText().toString();
+    	//String token = ConnectionWS.getAuthToken(uname, pw);
+    	
+    	//if (!token.isEmpty()){
+			//PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("loginToken", token).commit();
+	    	String u = "patient@pjwstk.edu.pl";
+	    	String p = "Zg7e3T8F";				
+	    	if(uname.equals(u) && pw.equals(p)){
 			Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
-		}
-		else Toast.makeText(getApplicationContext(), R.string.loginFailMessage, Toast.LENGTH_SHORT).show();
+			}
+		//}
+		else Toast.makeText(getApplicationContext(), R.string.loginFailMessage, Toast.LENGTH_LONG).show();
+			
 	}
 
 }

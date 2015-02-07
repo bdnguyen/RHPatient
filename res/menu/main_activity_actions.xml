@@ -16,14 +16,4 @@
           android:title="@string/action_calendar"
           android:showAsAction="ifRoom|withText" />        
     
-<!--     <item android:id="@+id/action_exercises" -->
-<!--           android:icon="@drawable/ic_menu_exercise" -->
-<!--           android:title="@string/action_exercises" -->
-<!--           RehApp:showAsAction="ifRoom|withText" /> -->
-     
-<!--     <item android:id="@+id/action_photos" -->
-<!--           android:icon="@drawable/ic_menu_camera" -->
-<!--           android:title="@string/action_photos" -->
-<!--           RehApp:showAsAction="ifRoom|withText" />    -->
-    
 </menu>
