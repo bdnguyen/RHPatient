@@ -2,13 +2,12 @@ package com.pjwstk.rehapp.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Exercise implements Parcelable {
+	
 	private String title;
 	private String description;
 	List<String> imgURLs = new ArrayList<String>();

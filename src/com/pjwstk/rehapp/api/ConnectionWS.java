@@ -31,9 +31,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.pjwstk.rehapp.MainActivity;
+import com.pjwstk.rehapp.R;
 import com.pjwstk.rehapp.Rehapp;
 
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 public class ConnectionWS {
 	private String passwordtokeystore = "hJ4D2Vd6tc";
@@ -145,13 +147,15 @@ public class ConnectionWS {
             responseContent = response.toString();
             System.out.println(responseContent);
             
-	
-		try {
-			JSONObject parsedObject = new JSONObject(responseContent);				
-			accessToken = parsedObject.getString("access_token");
-		} catch (JSONException e) {
-			throw new RuntimeException(e);
-		}
+        if(responseContent != null){     
+			try {
+				JSONObject parsedObject = new JSONObject(responseContent);				
+				accessToken = parsedObject.getString("access_token");
+			} catch (JSONException e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+        }
 		System.out.println(accessToken);
 		return accessToken;
     }	

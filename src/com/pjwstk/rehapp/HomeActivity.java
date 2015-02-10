@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -29,11 +30,13 @@ import com.pjwstk.rehapp.model.Exercise;
 public class HomeActivity extends ActionBarActivity {
 	private static final String TAG = "HomeActivity";
 	private static final int EXERCISE_DONE_REQUEST_CODE = 1;
+	private static Context ct;
 	
 	private ArrayAdapter<Exercise> HLAdapter = null; 
 	ListView list = null; 
 	private List<Exercise> todayExercises = new ArrayList();
 	private int currentIndex = -1;	
+	
 	
 	// Callback interface that allows this to notify the 'Home' activity when
 	// user clicks on a List Item
@@ -41,14 +44,17 @@ public class HomeActivity extends ActionBarActivity {
 		public void onListSelection(int index);
 	}	
 	
+	public static Context getAppContext(){
+		return HomeActivity.ct;
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
-	    // Set view as activity layout
+		
 		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
 	    setContentView(R.layout.activity_home);
-	    
-	    // Set ActionBar color
+	    	    
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));	    
 	    bar.setDisplayHomeAsUpEnabled(false);

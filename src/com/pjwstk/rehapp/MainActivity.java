@@ -4,14 +4,18 @@ package com.pjwstk.rehapp;
 
 import java.io.IOException;
 
+import org.json.JSONException;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,9 +36,9 @@ public class MainActivity extends ActionBarActivity {
 	
 	private String uname;	
 	private String pw;
-	private String loginToken;
+	protected String loginToken;
+	private Exception loginException;
 	private static Context ct;
-	EditText et
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,6 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		
 		MainActivity.ct = getApplicationContext();
-	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));	    	    
 	    
@@ -67,25 +70,43 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private class loginTask extends AsyncTask<Void, Void, Void>{
+	private class loginTask extends AsyncTask<String, Void, Boolean>{
+		private ProgressDialog loginDialog = new ProgressDialog(MainActivity.this);
+        @Override
+        protected void onPreExecute() {
+        	loginDialog.setMessage("Loading...Please be 'patient'.");
+        	loginDialog.show();
+            super.onPreExecute();
+        }
 		
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Boolean doInBackground(String... params) {
 			try {
 				loginToken = ConnectionWS.getAuthToken(uname, pw);
+				return true;
 			} catch (IOException e) {
+				loginException = e;
 				e.printStackTrace();
-			}
-			return null;
+	        	if(loginDialog != null){
+					loginDialog.dismiss();
+				}  					
+				return false;
+			} 
 		}
 		
-        protected void onPostExecute(Void result) {                      
-        	if (!loginToken.isEmpty()){
+        protected void onPostExecute(final Boolean result) {                      
+        	
+        	if(loginDialog != null){
+				loginDialog.dismiss();
+			}  	
+        	
+        	if (result){
     			PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("loginToken", loginToken).commit();
     			Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-    			startActivity(intent);
+    			startActivity(intent);  			
     		}
     		else Toast.makeText(getApplicationContext(), R.string.loginFailMessage, Toast.LENGTH_LONG).show();
+        		
         }   
 	}
 	
@@ -95,19 +116,13 @@ public class MainActivity extends ActionBarActivity {
 		uname = unameET.getText().toString().trim();
     	pw = pwET.getText().toString().trim();
     	
-    	new loginTask().execute();
-//    	String token = ConnectionWS.getAuthToken(uname, pw);
-//  	
-//    	if (!token.isEmpty()){
-//			PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("loginToken", token).commit();
-//	    	String u = "patient@pjwstk.edu.pl";
-//	    	String p = "12345"; //Zg7e3T8F				
-//	    	if(uname.equals(u) && pw.equals(p)){
-//	    		Intent intent = new Intent(this, HomeActivity.class);
-//	    		startActivity(intent);
-//	    	}
-//    	}
-//    	else Toast.makeText(getApplicationContext(), R.string.loginFailMessage, Toast.LENGTH_LONG).show();			
+    	new loginTask().execute();		
 	}
 
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}	
+	
 }

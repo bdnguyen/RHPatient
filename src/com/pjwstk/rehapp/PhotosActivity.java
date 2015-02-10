@@ -54,16 +54,6 @@ public class PhotosActivity extends ActionBarActivity {
             startActivity(intent1);
             finish();
         	return true;
-//        case R.id.action_schedule:
-//        	Intent intent2 = new Intent(this,ScheduleActivity.class);
-//            startActivity(intent2);
-//            finish();
-//        	return true; 
-//	    case R.id.action_exercises:
-//        	Intent intent3 = new Intent(this,ExercisesActivity.class);
-//            startActivity(intent3);
-//            finish();
-//        	return true;
 	    case R.id.action_notes:
         	Intent intent4 = new Intent(this,NotesActivity.class);
         	intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

@@ -23,12 +23,29 @@ import android.preference.PreferenceManager;
 
 public class ApiClient {
 	
+	private static final String endpoint = "https://172.21.40.69/api/";
+	
 	public static void main(String[] args) {
 		new ApiClient().getTodayExercises();
 	}
 	
+	private void getTherapistName(){
+		
+	}
 	
-	private void getTodayExercises() {			
+	private void getDaysLeft(){
+		
+	}
+	
+	private void getNotes(){
+		
+	}
+	
+	private void postNotes(){
+		
+	}
+	
+	private void getTodayExercises() {
 			String responseContent = null;
 			String getTodayExercise_url = "https://172.21.40.69/api/therapy/GetTodayExercises";
             URL url;
@@ -75,7 +92,8 @@ public class ApiClient {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
+		//return responseContent;
 	}
 }
 
