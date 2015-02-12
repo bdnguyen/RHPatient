@@ -441,6 +441,7 @@ int string homeIntro 0x7f0a0019
 int string login 0x7f0a000e
 int string loginFailMessage 0x7f0a002a
 int string login_button 0x7f0a0010
+int string networkFailMessage 0x7f0a002b
 int string noteIntro 0x7f0a001a
 int string password 0x7f0a000f
 int string photos 0x7f0a0021

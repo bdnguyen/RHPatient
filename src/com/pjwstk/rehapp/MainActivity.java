@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,7 +39,6 @@ public class MainActivity extends ActionBarActivity {
 	private String uname;	
 	private String pw;
 	protected String loginToken;
-	private Exception loginException;
 	private static Context ct;
 	
 	@Override
@@ -69,14 +70,21 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	private boolean isOnline(){
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo ni = cm.getActiveNetworkInfo();
+		if (ni != null && ni.isConnectedOrConnecting())
+			return true; 
+		else return false;
+	}
+	
 	private class loginTask extends AsyncTask<String, Void, Boolean>{
 		private ProgressDialog loginDialog = new ProgressDialog(MainActivity.this);
         @Override
         protected void onPreExecute() {
         	loginDialog.setMessage("Loading...Please be 'patient'.");
         	loginDialog.show();
-            super.onPreExecute();
         }
 		
 		@Override
@@ -85,7 +93,6 @@ public class MainActivity extends ActionBarActivity {
 				loginToken = ConnectionWS.getAuthToken(uname, pw);
 				return true;
 			} catch (IOException e) {
-				loginException = e;
 				e.printStackTrace();
 	        	if(loginDialog != null){
 					loginDialog.dismiss();
@@ -111,12 +118,14 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	public void login(View view) throws IOException {
-		EditText unameET = (EditText) findViewById(R.id.editTextUsername);
-    	EditText pwET = (EditText) findViewById(R.id.editTextPassword);
-		uname = unameET.getText().toString().trim();
-    	pw = pwET.getText().toString().trim();
-    	
-    	new loginTask().execute();		
+		if(isOnline()){
+			EditText unameET = (EditText) findViewById(R.id.editTextUsername);
+	    	EditText pwET = (EditText) findViewById(R.id.editTextPassword);
+			uname = unameET.getText().toString().trim();
+	    	pw = pwET.getText().toString().trim();
+	    	
+	    	new loginTask().execute();
+		} else Toast.makeText(getApplicationContext(), R.string.networkFailMessage, Toast.LENGTH_LONG).show();
 	}
 
 	

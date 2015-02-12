@@ -1345,6 +1345,7 @@ containing a value of this type.
         public static final int login=0x7f0a000e;
         public static final int loginFailMessage=0x7f0a002a;
         public static final int login_button=0x7f0a0010;
+        public static final int networkFailMessage=0x7f0a002b;
         public static final int noteIntro=0x7f0a001a;
         public static final int password=0x7f0a000f;
         public static final int photos=0x7f0a0021;
