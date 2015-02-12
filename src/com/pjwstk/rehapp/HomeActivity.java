@@ -25,7 +25,9 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.pjwstk.rehapp.api.ApiClient;
 import com.pjwstk.rehapp.model.Exercise;
+import com.pjwstk.rehapp.parsers.ExerciseJSONParser;
 
 public class HomeActivity extends ActionBarActivity {
 	private static final String TAG = "HomeActivity";
@@ -34,9 +36,9 @@ public class HomeActivity extends ActionBarActivity {
 	
 	private ArrayAdapter<Exercise> HLAdapter = null; 
 	ListView list = null; 
-	private List<Exercise> todayExercises = new ArrayList();
+	private List<Exercise> todayExercises = new ArrayList<>(ExerciseJSONParser.parseFeed(ApiClient.getTodayAllExercises("therapy/GetTodayAllExercises")));
 	private int currentIndex = -1;	
-	
+
 	
 	// Callback interface that allows this to notify the 'Home' activity when
 	// user clicks on a List Item
@@ -65,12 +67,12 @@ public class HomeActivity extends ActionBarActivity {
         String formattedDate = df.format(c.getTime());    
         
         //Display formattedDate value in TextView
-        int daysLeft = 2;
+        int daysLeft = 6;
         String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
         ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
                    	
         //Populate Exercise list
-        populateExerciseListHome();
+        //populateExerciseListHome();
         //Populate the List View
         populateListViewHome();
         //Handle clicks on List View

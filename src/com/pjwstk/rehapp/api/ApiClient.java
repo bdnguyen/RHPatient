@@ -25,29 +25,29 @@ public class ApiClient {
 	
 	private static final String endpoint = "https://172.21.40.69/api/";
 	
-	public static void main(String[] args) {
-		new ApiClient().getTodayExercises();
-	}
+//	public static void main(String[] args) {
+//		new ApiClient().getTodayAllExercises("therapy/GetTodayAllExercises");
+//	}
 	
-	private void getTherapistName(){
+	public static void getTherapistName(){
 		
 	}
 	
-	private void getDaysLeft(){
+	public static void getDaysLeft(){
 		
 	}
 	
-	private void getNotes(){
+	public static void getNotes(){
 		
 	}
 	
-	private void postNotes(){
+	public static void postNotes(){
 		
 	}
 	
-	private void getTodayExercises() {
-			String responseContent = null;
-			String getTodayExercise_url = "https://172.21.40.69/api/therapy/GetTodayExercises";
+	public static String getTodayAllExercises(String URI) {
+	
+			String getTodayAllExercise_url = endpoint + URI;
             URL url;
 			try {
 	           
@@ -59,13 +59,13 @@ public class ApiClient {
 	            	}           	
 	            });
 				
-				url = new URL(getTodayExercise_url);
+				url = new URL(getTodayAllExercise_url);
 	            HttpsURLConnection httpsCon = (HttpsURLConnection)url.openConnection();
 	            httpsCon.setRequestMethod("GET");
 	            httpsCon.setRequestProperty("User-Agent", "Droidz");
 	            httpsCon.setRequestProperty("Content-Type", "application/json");
 	            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
-	            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("patient@pjwstk.edu.pl", "Zg7e3T8F"));	           
+	            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
 	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ PreferenceManager.getDefaultSharedPreferences(MainActivity.getApplicationContext);
 	            
 	            InputStream inputStream = null;
@@ -78,22 +78,21 @@ public class ApiClient {
 	            
 	            BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
 	            String line;
-	            StringBuffer response = new StringBuffer();
+	            StringBuilder response = new StringBuilder();
 	            while((line = rd.readLine()) != null) {
-	                response.append(line);
-	                response.append('\r');
+	                response.append(line + "\n");
+	                //response.append('\r');
 	            }
 	            rd.close();
-	            responseContent = response.toString();
-	            System.out.println(responseContent);
-	                     
+	    		return response.toString();         
 	            
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
+				return null;
 			} catch (IOException e) {
 				e.printStackTrace();
+				return null;
 			}
-		//return responseContent;
 	}
 }
 
