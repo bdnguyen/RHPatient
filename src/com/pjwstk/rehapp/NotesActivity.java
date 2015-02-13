@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -31,7 +32,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.pjwstk.rehapp.R;
+import com.pjwstk.rehapp.api.ApiClient;
 import com.pjwstk.rehapp.model.*;
+import com.pjwstk.rehapp.parsers.ExerciseJSONParser;
+import com.pjwstk.rehapp.parsers.TherapistJSONParser;
 
 public class NotesActivity extends ActionBarActivity {
 	
@@ -39,16 +43,19 @@ public class NotesActivity extends ActionBarActivity {
 	private List<Note> notes = new ArrayList();	
 	ArrayAdapter<Note> noteAdapter;
 	EditText editTextNote;
+	Therapist tp = new Therapist("");
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notes);
-	    // Set ActionBar color
+	    
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 	    bar.setDisplayHomeAsUpEnabled(true);
 	    
-	    //Handle button and edit_text
+	    new loadTherapistNameTask().execute("patient/GetTherapist");
+	    
         Button sendBtn = (Button) findViewById(R.id.sendNoteBtn);
         editTextNote = (EditText) findViewById(R.id.editTextNote);
         
@@ -72,9 +79,9 @@ public class NotesActivity extends ActionBarActivity {
 	private void populateNoteList() {
 		notes.add(new Note("Zukowska","Hello there", true));
 		notes.add(new Note("self","hi", false));
-		notes.add(new Note("Zukowska","Bye", true));
-		notes.add(new Note("Zukowska","dflkasdklfsdklfskdfdfsd", true));
-		notes.add(new Note("Zukowska","Cleaning keyboard", true));
+		notes.add(new Note("Zukowska","test", true));
+		notes.add(new Note("Zukowska","test2", true));
+		notes.add(new Note("Zukowska","How are you", true));
 		notes.add(new Note("self","ok", false));
 		notes.add(new Note("self","I have a problem", false));
 	}
@@ -95,15 +102,14 @@ public class NotesActivity extends ActionBarActivity {
 		
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// Make sure to have a view to work with (can be given null)
+	
 			View itemView = convertView;
 			if (itemView == null) {
 				itemView = getLayoutInflater().inflate(R.layout.notes_list_item, parent, false);
 			}
 			
 			noteWrapper = (LinearLayout) itemView.findViewById(R.id.noteWrapper);
-			
-			// Find the note to work with
+				
 			Note currentNote = notes.get(position);
 			
 			// Fill the view
@@ -123,10 +129,36 @@ public class NotesActivity extends ActionBarActivity {
 		
 	}
 	
+	   private class loadTherapistNameTask extends AsyncTask<String, String, String>{
+
+	        @Override
+	        protected void onPreExecute() {
+	        	super.onPreExecute();
+	        }
+
+	        @Override
+	        protected String doInBackground(String... params) {
+
+	        	String responseContent = ApiClient.httpGET(params[0]);	        	
+	            return responseContent;
+	        }
+
+	        @Override
+	        protected void onPostExecute(String result) {           
+	        	tp = TherapistJSONParser.parseFeed(result);
+	    	    String therapistName = tp.getName();
+	    	    if (therapistName == null){
+	    	    	therapistName = "Zukowska";
+	    	    }
+	    	    String noteIntro = String.format(getResources().getString(R.string.noteIntro), therapistName);
+	    	    ((TextView)findViewById (R.id.textViewNoteIntro)).setText(noteIntro);	
+	    	}	
+
+	    }
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
 		return super.onCreateOptionsMenu(menu);
 	}

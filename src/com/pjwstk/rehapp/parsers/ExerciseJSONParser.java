@@ -11,16 +11,19 @@ public class ExerciseJSONParser {
 	
 	public static List<Exercise> parseFeed(String content) {	
 		try {
-			JSONArray jArray = new JSONArray(content);
+			JSONArray exArray = new JSONArray(content);
 			List<Exercise> exerciseList = new ArrayList<>();
 			
-			for (int i = 0; i < jArray.length(); i++) {
+			for (int i = 0; i < exArray.length(); i++) {
 				
-				JSONObject jObj =  jArray.getJSONObject(i);
-				Exercise ex = new Exercise(null,null,false);
+				JSONObject jObj =  exArray.getJSONObject(i);
+				Exercise ex = new Exercise("","",false,null);
 				ex.setTitle(jObj.getString("Title"));
 				ex.setDescription(jObj.getString("Description"));
 				ex.setDoneToday(false);
+				//ex.setImgURLs(jObj.getJSONArray("PhotosPaths"));
+				
+				
 				
 				exerciseList.add(ex);
 						

@@ -42,9 +42,9 @@ public class ApiClient {
 		
 	}
 	
-	public static String getTodayAllExercises(String URI) {
+	public static String httpGET(String URI) {
 	
-			String getTodayAllExercise_url = endpoint + URI;
+			String httpGET_url = endpoint + URI;
             URL url;
 			try {
 	           
@@ -56,7 +56,7 @@ public class ApiClient {
 	            	}           	
 	            });
 				
-				url = new URL(getTodayAllExercise_url);
+				url = new URL(httpGET_url);
 	            HttpsURLConnection httpsCon = (HttpsURLConnection)url.openConnection();
 	            httpsCon.setRequestMethod("GET");
 	            httpsCon.setRequestProperty("User-Agent", "Droidz");

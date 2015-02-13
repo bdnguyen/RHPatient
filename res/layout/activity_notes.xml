@@ -7,7 +7,7 @@
     tools:context="com.pjwstk.rehapp.DoctorNotes$PlaceholderFragment" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewNoteIntro"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_weight="0.05"

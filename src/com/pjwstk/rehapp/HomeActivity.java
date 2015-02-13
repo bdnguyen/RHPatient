@@ -3,6 +3,7 @@ package com.pjwstk.rehapp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import android.app.ProgressDialog;
@@ -66,7 +67,6 @@ public class HomeActivity extends ActionBarActivity {
         SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());    
         
-        //Display formattedDate value in TextView
         int daysLeft = 6;
         String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
         ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
@@ -75,18 +75,18 @@ public class HomeActivity extends ActionBarActivity {
         //populateExerciseListHome();
         new loadExercisesTask().execute("therapy/GetTodayAllExercises");
         //Populate the List View
-        populateListViewHome();
+        //populateListViewHome();
         //Handle clicks on List View
-        registerClickCallback();
+        //registerClickCallback();
         
 	}
 	
 
-	private void populateExerciseListHome() {
-		todayExercises.add(new Exercise("Ćwiczenie izometryczne mięśnia czworogłowego (głowy przyśrodkowej)", "Leżąc tyłem lub siedząc z wyprostowanymi nogami podłóż nieco powyżej kolana zwinięty ręcznik. Nie odrywając pięty od podłoża naciśnij udem na ręcznik, tak, aby napiął się mięsień czworogłowy. Utrzymaj napięcie przez 5 sekund, a następnie rozluźnij nogę.", false));
-		todayExercises.add(new Exercise("Ćwiczenie zgięcia stawu kolanowego", "Stań przy ścianie, tak aby plecy i pośladki całkowicie przylegały do ściany. Przesuń stopy około 15 cm od ściany. Powoli staraj się zrobić przysiad, tak aby stawy kolanowe nie przekroczyły linii stóp. Postaraj się zejść jak najniżej i wytrzymać w tej pozycji 10-15 sekund. Wróć do pozycji wyjściowej.",false));
-		todayExercises.add(new Exercise("Ćwiczenie wyprostu stawu kolanowego", "Siedząc z wyprostowanymi nogami podłóż pod pietę złożony ręcznik. Rozluźnij mięśnie i pozwól, żeby staw kolanowy zaczął się prostować pod wpływem siły grawitacji. Podczas tego ćwiczenia napinaj mięsień czworogłowy. Postaraj się wytrzymać w tej pozycji 5 minut.",false));	
-	}
+//	private void populateExerciseListHome() {
+//		todayExercises.add(new Exercise("Ćwiczenie izometryczne mięśnia czworogłowego (głowy przyśrodkowej)", "Leżąc tyłem lub siedząc z wyprostowanymi nogami podłóż nieco powyżej kolana zwinięty ręcznik. Nie odrywając pięty od podłoża naciśnij udem na ręcznik, tak, aby napiął się mięsień czworogłowy. Utrzymaj napięcie przez 5 sekund, a następnie rozluźnij nogę.", false));
+//		todayExercises.add(new Exercise("Ćwiczenie zgięcia stawu kolanowego", "Stań przy ścianie, tak aby plecy i pośladki całkowicie przylegały do ściany. Przesuń stopy około 15 cm od ściany. Powoli staraj się zrobić przysiad, tak aby stawy kolanowe nie przekroczyły linii stóp. Postaraj się zejść jak najniżej i wytrzymać w tej pozycji 10-15 sekund. Wróć do pozycji wyjściowej.",false));
+//		todayExercises.add(new Exercise("Ćwiczenie wyprostu stawu kolanowego", "Siedząc z wyprostowanymi nogami podłóż pod pietę złożony ręcznik. Rozluźnij mięśnie i pozwól, żeby staw kolanowy zaczął się prostować pod wpływem siły grawitacji. Podczas tego ćwiczenia napinaj mięsień czworogłowy. Postaraj się wytrzymać w tej pozycji 5 minut.",false));	
+//	}
 	
 	private void populateListViewHome() {
 		HLAdapter = new HomeListAdapter();
@@ -102,13 +102,11 @@ public class HomeActivity extends ActionBarActivity {
 		
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// Make sure to have a view to work with (can be given null)
 			View itemView = convertView;
 			if (itemView == null) {
 				itemView = getLayoutInflater().inflate(R.layout.exercises_list_item_home, parent, false);
 			}
-			
-			// Find the exercise title to work with
+					
 			Exercise currentExercise = todayExercises.get(position);
 			
 			// Fill the view
@@ -145,7 +143,7 @@ public class HomeActivity extends ActionBarActivity {
 	}
 	
 	
-    private class loadExercisesTask extends AsyncTask<String, String, Boolean>{
+    private class loadExercisesTask extends AsyncTask<String, String, List<Exercise>>{
 
         @Override
         protected void onPreExecute() {
@@ -153,19 +151,24 @@ public class HomeActivity extends ActionBarActivity {
         }
 
         @Override
-        protected Boolean doInBackground(String... params) {
+        protected List<Exercise> doInBackground(String... params) {
 
-        	String responseContent = ApiClient.getTodayAllExercises(params[0]);
+        	String responseContent = ApiClient.httpGET(params[0]);
         	todayExercises = ExerciseJSONParser.parseFeed(responseContent);
-            return true;
+            return todayExercises;
         }
 
         @Override
-        protected void onPostExecute(Boolean result) {           
-        	super.onPostExecute(result);
+        protected void onPostExecute(List<Exercise> result) {           
+        	//Collections.copy(todayExercises, ExerciseJSONParser.parseFeed(result));
+        	//todayExercises = new ArrayList<Exercise>(ExerciseJSONParser.parseFeed(result));
+        	if(result != null){
+        		populateListViewHome();
+        	}
+        	registerClickCallback();
         }
 
-}
+    }
 	
 	
 	@Override
@@ -186,7 +189,6 @@ public class HomeActivity extends ActionBarActivity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.main_activity_actions, menu);
 	    return super.onCreateOptionsMenu(menu);

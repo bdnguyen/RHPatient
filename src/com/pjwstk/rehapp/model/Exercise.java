@@ -14,17 +14,19 @@ public class Exercise implements Parcelable {
 	private boolean doneToday;
 	private String treatmentType;
 	
-	public Exercise(String title, String description, boolean doneToday) {
+	public Exercise(String title, String description, boolean doneToday, ArrayList<String> imgURLs) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.doneToday = doneToday;
+		this.imgURLs = imgURLs;
 	}
 	
 	public Exercise(Parcel in) {
 		this.title = in.readString();
 		this.description = in.readString();
 		this.doneToday = in.readByte() != 0; //doneToday true if byte != 0
+		this.imgURLs = in.readArrayList(null);
 	}
 
 	public String getTitle() {
@@ -38,6 +40,14 @@ public class Exercise implements Parcelable {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public List<String> getImgURLs() {
+		return imgURLs;
+	}
+
+	public void setImgURLs(List<String> imgURLs) {
+		this.imgURLs = imgURLs;
 	}
 	
 	public void addImgURL(String iURL){
@@ -68,6 +78,8 @@ public class Exercise implements Parcelable {
 	public void setTreatmentType(String treatmentType) {
 		this.treatmentType = treatmentType;
 	}
+	
+	
 
 	@Override
 	public int describeContents() {
@@ -79,8 +91,9 @@ public class Exercise implements Parcelable {
 		out.writeString(title);
 		out.writeString(description);
 		out.writeByte((byte) (doneToday ? 1 : 0)); //if doneToday true, byte == 1
+		out.writeList(imgURLs);
 	}
-	
+
 	public static final Parcelable.Creator<Exercise> CREATOR = new Parcelable.Creator<Exercise>() {
 		public Exercise createFromParcel(Parcel in){
 			return new Exercise(in);
