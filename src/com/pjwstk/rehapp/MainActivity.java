@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -40,6 +41,7 @@ public class MainActivity extends ActionBarActivity {
 	private String pw;
 	protected String loginToken;
 	private static Context ct;
+	ProgressBar loginPB;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class MainActivity extends ActionBarActivity {
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));	    	    
 	    
+	    loginPB = (ProgressBar) findViewById(R.id.loginProgressBar);
+	    loginPB.setVisibility(View.INVISIBLE);
 	}
 	
 	public static Context getAppContext(){
@@ -73,18 +77,16 @@ public class MainActivity extends ActionBarActivity {
 	
 	private boolean isOnline(){
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo ni = cm.getActiveNetworkInfo();
-		if (ni != null && ni.isConnectedOrConnecting())
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting())
 			return true; 
 		else return false;
 	}
 	
 	private class loginTask extends AsyncTask<String, Void, Boolean>{
-		private ProgressDialog loginDialog = new ProgressDialog(MainActivity.this);
         @Override
         protected void onPreExecute() {
-        	loginDialog.setMessage("Loading...Please be 'patient'.");
-        	loginDialog.show();
+        	loginPB.setVisibility(View.VISIBLE);
         }
 		
 		@Override
@@ -92,27 +94,22 @@ public class MainActivity extends ActionBarActivity {
 			try {
 				loginToken = ConnectionWS.getAuthToken(uname, pw);
 				return true;
-			} catch (IOException e) {
-				e.printStackTrace();
-	        	if(loginDialog != null){
-					loginDialog.dismiss();
-				}  					
+			} catch (Exception e) {
+				e.printStackTrace();	
 				return false;
 			} 
 		}
 		
         protected void onPostExecute(final Boolean result) {                      
         	
-        	if(loginDialog != null){
-				loginDialog.dismiss();
-			}  	
+        	loginPB.setVisibility(View.INVISIBLE);
         	
         	if (result){
     			PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("loginToken", loginToken).commit();
     			Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
     			startActivity(intent);  			
     		}
-    		else Toast.makeText(getApplicationContext(), R.string.loginFailMessage, Toast.LENGTH_LONG).show();
+    		else Toast.makeText(MainActivity.getAppContext(), R.string.loginFailMessage, Toast.LENGTH_LONG).show();
         		
         }   
 	}
@@ -125,7 +122,7 @@ public class MainActivity extends ActionBarActivity {
 	    	pw = pwET.getText().toString().trim();
 	    	
 	    	new loginTask().execute();
-		} else Toast.makeText(getApplicationContext(), R.string.networkFailMessage, Toast.LENGTH_LONG).show();
+		} else Toast.makeText(MainActivity.getAppContext(), R.string.networkFailMessage, Toast.LENGTH_LONG).show();
 	}
 
 	

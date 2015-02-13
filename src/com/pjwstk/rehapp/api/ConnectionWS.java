@@ -145,7 +145,7 @@ public class ConnectionWS {
             rd.close();
 
             responseContent = response.toString();
-            System.out.println(responseContent);
+            //System.out.println(responseContent);
             
         if(responseContent != null){     
 			try {
@@ -156,7 +156,7 @@ public class ConnectionWS {
 				throw new RuntimeException(e);
 			}
         }
-		System.out.println(accessToken);
+		//System.out.println(accessToken);
 		return accessToken;
     }	
 }

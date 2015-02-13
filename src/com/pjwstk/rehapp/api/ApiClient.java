@@ -25,9 +25,6 @@ public class ApiClient {
 	
 	private static final String endpoint = "https://172.21.40.69/api/";
 	
-//	public static void main(String[] args) {
-//		new ApiClient().getTodayAllExercises("therapy/GetTodayAllExercises");
-//	}
 	
 	public static void getTherapistName(){
 		

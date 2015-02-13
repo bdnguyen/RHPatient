@@ -30,16 +30,16 @@ import com.pjwstk.rehapp.model.Exercise;
 import com.pjwstk.rehapp.parsers.ExerciseJSONParser;
 
 public class HomeActivity extends ActionBarActivity {
+	
 	private static final String TAG = "HomeActivity";
 	private static final int EXERCISE_DONE_REQUEST_CODE = 1;
 	private static Context ct;
 	
 	private ArrayAdapter<Exercise> HLAdapter = null; 
 	ListView list = null; 
-	private List<Exercise> todayExercises = new ArrayList<>(ExerciseJSONParser.parseFeed(ApiClient.getTodayAllExercises("therapy/GetTodayAllExercises")));
+	private List<Exercise> todayExercises = new ArrayList<>();
 	private int currentIndex = -1;	
 
-	
 	// Callback interface that allows this to notify the 'Home' activity when
 	// user clicks on a List Item
 	public interface ListSelectionListener {
@@ -73,6 +73,7 @@ public class HomeActivity extends ActionBarActivity {
                    	
         //Populate Exercise list
         //populateExerciseListHome();
+        new loadExercisesTask().execute("therapy/GetTodayAllExercises");
         //Populate the List View
         populateListViewHome();
         //Handle clicks on List View
@@ -112,7 +113,7 @@ public class HomeActivity extends ActionBarActivity {
 			
 			// Fill the view
 			TextView exTitleTxt = (TextView) itemView.findViewById(R.id.exerciseTitleHomeView);
-			exTitleTxt.setText(currentExercise.getTitle());
+			exTitleTxt.setText(currentExercise.getDescription());
 			CheckBox cb = (CheckBox) itemView.findViewById(R.id.homeCheckBox);
 			cb.setChecked(currentExercise.isDoneToday());
 			if (currentExercise.isDoneToday()){
@@ -138,35 +139,30 @@ public class HomeActivity extends ActionBarActivity {
 				SingleExIntent.putExtra("clickedExercise", clickedExercise);
 				startActivityForResult(SingleExIntent,EXERCISE_DONE_REQUEST_CODE);
 				overridePendingTransition(R.anim.slide_in_right, R.anim.hold);
-				//new loadingDialogTask().execute();		
+						
 			}
 		});			
 	}
 	
 	
-    private class loadingDialogTask extends AsyncTask<Void, Void, Void>{
-        ProgressDialog Asyncdialog = new ProgressDialog(HomeActivity.this);
+    private class loadExercisesTask extends AsyncTask<String, String, Boolean>{
 
         @Override
         protected void onPreExecute() {
-            //Asycdialog.setMessage(getString(R.string.loadingtype));
-        	Asyncdialog.setMessage("Loading exercise..");
-            Asyncdialog.show();
-            super.onPreExecute();
+        	super.onPreExecute();
         }
 
         @Override
-        protected Void doInBackground(Void... arg0) {
+        protected Boolean doInBackground(String... params) {
 
-            //do some lengthy stuff
-
-            return null;
+        	String responseContent = ApiClient.getTodayAllExercises(params[0]);
+        	todayExercises = ExerciseJSONParser.parseFeed(responseContent);
+            return true;
         }
 
         @Override
-        protected void onPostExecute(Void result) {           
-            Asyncdialog.dismiss();            
-            super.onPostExecute(result);
+        protected void onPostExecute(Boolean result) {           
+        	super.onPostExecute(result);
         }
 
 }

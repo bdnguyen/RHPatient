@@ -43,5 +43,13 @@
 
         <requestFocus />
     </EditText>
+
+    <ProgressBar
+        android:id="@+id/loginProgressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginBtn"
+        android:layout_below="@+id/loginBtn" />
     
 </RelativeLayout>
