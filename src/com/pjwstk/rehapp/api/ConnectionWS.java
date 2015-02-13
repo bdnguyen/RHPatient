@@ -46,7 +46,7 @@ public class ConnectionWS {
 		try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
             //InputStream certificateAuthorityInput = new BufferedInputStream(new FileInputStream("assets/RehabilitationAppCA.cer")); //
-            InputStream certificateAuthorityInput = MainActivity.getAppContext().getResources().getAssets().open("RehabilitationAppCA.cer");
+            InputStream certificateAuthorityInput = Rehapp.getAppContext().getResources().getAssets().open("RehabilitationAppCA.cer");
             Certificate certificateAuthority = certificateFactory.generateCertificate(certificateAuthorityInput);
 
             // Now we should have certificate authority loaded - check by checking SubjectDN name
@@ -64,7 +64,7 @@ public class ConnectionWS {
             KeyStore clientKeyStore = KeyStore.getInstance("BKS"); //pkcs12
             clientKeyStore.load(null, null);
             //InputStream clientInputStream = new FileInputStream("assets/clientcert.jks"); //p12 
-            InputStream clientInputStream = MainActivity.getAppContext().getResources().getAssets().open("clientcertificate.bks");
+            InputStream clientInputStream = Rehapp.getAppContext().getResources().getAssets().open("clientcertificate.bks");
             clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray()); //passwordToKeystore
 
             // Trustmanager that trusts ca from keystore

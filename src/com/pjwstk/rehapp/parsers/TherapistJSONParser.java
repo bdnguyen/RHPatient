@@ -8,10 +8,9 @@ import com.pjwstk.rehapp.model.Therapist;
 public class TherapistJSONParser {
 	public static Therapist parseFeed(String content) {	
 		try {
-				JSONObject jObj =  new JSONObject();
+				JSONObject jObj =  new JSONObject(content);
 				Therapist tp = new Therapist("");
-				tp.setName(jObj.getString("Name"));	
-				
+				tp.setName(jObj.optString("Name"));				
 				return tp;
 			
 		} catch (JSONException e) {

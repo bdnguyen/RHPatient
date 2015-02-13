@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -41,9 +42,16 @@ public class NotesActivity extends ActionBarActivity {
 	
 	private static final String TAG = "NoteActivity";
 	private List<Note> notes = new ArrayList();	
+	private static Context ct;
+	
 	ArrayAdapter<Note> noteAdapter;
 	EditText editTextNote;
 	Therapist tp = new Therapist("");
+	
+	
+	public static Context getAppContext(){
+		return NotesActivity.ct;
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,11 +155,10 @@ public class NotesActivity extends ActionBarActivity {
 	        protected void onPostExecute(String result) {           
 	        	tp = TherapistJSONParser.parseFeed(result);
 	    	    String therapistName = tp.getName();
-	    	    if (therapistName == null){
-	    	    	therapistName = "Zukowska";
-	    	    }
-	    	    String noteIntro = String.format(getResources().getString(R.string.noteIntro), therapistName);
-	    	    ((TextView)findViewById (R.id.textViewNoteIntro)).setText(noteIntro);	
+	    	    if (therapistName != null){	    	   
+	    	    	String noteIntro = String.format(NotesActivity.getAppContext().getResources().getString(R.string.noteIntro), therapistName);
+	    	    	((TextView)findViewById (R.id.textViewNoteIntro)).setText(noteIntro);
+	    	    } 
 	    	}	
 
 	    }

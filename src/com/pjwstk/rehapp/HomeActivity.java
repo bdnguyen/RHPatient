@@ -97,7 +97,7 @@ public class HomeActivity extends ActionBarActivity {
 	// Inner class for the custom Adapter
 	private class HomeListAdapter extends ArrayAdapter<Exercise> {
 		public HomeListAdapter() {
-			super(HomeActivity.this, R.layout.exercises_list_item_home, todayExercises);
+			super(HomeActivity.getAppContext(), R.layout.exercises_list_item_home, todayExercises);
 		}
 		
 		@Override
@@ -163,7 +163,7 @@ public class HomeActivity extends ActionBarActivity {
         	//Collections.copy(todayExercises, ExerciseJSONParser.parseFeed(result));
         	//todayExercises = new ArrayList<Exercise>(ExerciseJSONParser.parseFeed(result));
         	if(result != null){
-        		populateListViewHome();
+        		//populateListViewHome();
         	}
         	registerClickCallback();
         }

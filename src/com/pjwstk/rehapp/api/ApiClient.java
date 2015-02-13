@@ -62,8 +62,10 @@ public class ApiClient {
 	            httpsCon.setRequestProperty("User-Agent", "Droidz");
 	            httpsCon.setRequestProperty("Content-Type", "application/json");
 	            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
-	            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
-	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ PreferenceManager.getDefaultSharedPreferences(MainActivity.getApplicationContext);
+	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
+	            String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+	            httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
+	            
 	            
 	            InputStream inputStream = null;
 	            
