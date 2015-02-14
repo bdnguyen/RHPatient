@@ -15,9 +15,28 @@
         android:layout_alignLeft="@+id/editTextUsername"
         android:layout_below="@+id/editTextUsername"
         android:layout_marginTop="24dp"
+        android:layout_centerVertical="true"
+       	android:layout_centerHorizontal="true"
+       	android:maxLines="1"
+       	android:singleLine="true"
         android:ems="10"
-        android:gravity="center_vertical"
         android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+       	android:layout_centerHorizontal="true"
+       	android:maxLines="1"
+       	android:singleLine="true"
+        android:layout_marginTop="125dp"
+        android:ems="10"
+        android:hint="@string/login" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/loginBtn"
@@ -25,24 +44,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextPassword"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="33dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:hint="@string/login_button"
         android:onClick="login" />
-
-    <EditText
-        android:id="@+id/editTextUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:hint="@string/login" >
-
-        <requestFocus />
-    </EditText>
 
     <ProgressBar
         android:id="@+id/loginProgressBar"

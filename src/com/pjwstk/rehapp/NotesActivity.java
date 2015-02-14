@@ -47,6 +47,7 @@ public class NotesActivity extends ActionBarActivity {
 	ArrayAdapter<Note> noteAdapter;
 	EditText editTextNote;
 	Therapist tp = new Therapist("");
+	List<Note> noteList = new ArrayList<>();
 	
 	
 	public static Context getAppContext(){
@@ -62,7 +63,7 @@ public class NotesActivity extends ActionBarActivity {
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 	    bar.setDisplayHomeAsUpEnabled(true);
 	    
-	    new loadTherapistNameTask().execute("patient/GetTherapist");
+	    new LoadTherapistNameTask().execute("patient/GetTherapist");
 	    
         Button sendBtn = (Button) findViewById(R.id.sendNoteBtn);
         editTextNote = (EditText) findViewById(R.id.editTextNote);
@@ -85,13 +86,13 @@ public class NotesActivity extends ActionBarActivity {
 
 
 	private void populateNoteList() {
-		notes.add(new Note("Zukowska","Hello there", true));
-		notes.add(new Note("self","hi", false));
-		notes.add(new Note("Zukowska","test", true));
-		notes.add(new Note("Zukowska","test2", true));
-		notes.add(new Note("Zukowska","How are you", true));
-		notes.add(new Note("self","ok", false));
-		notes.add(new Note("self","I have a problem", false));
+//		notes.add(new Note("Zukowska","Hello there", true));
+//		notes.add(new Note("self","hi", false));
+//		notes.add(new Note("Zukowska","test", true));
+//		notes.add(new Note("Zukowska","test2", true));
+//		notes.add(new Note("Zukowska","How are you", true));
+//		notes.add(new Note("self","ok", false));
+//		notes.add(new Note("self","I have a problem", false));
 	}
 	
 	private void populateListViewNote() {
@@ -137,7 +138,7 @@ public class NotesActivity extends ActionBarActivity {
 		
 	}
 	
-	   private class loadTherapistNameTask extends AsyncTask<String, String, String>{
+	   private class LoadTherapistNameTask extends AsyncTask<String, String, String>{
 
 	        @Override
 	        protected void onPreExecute() {
@@ -156,7 +157,33 @@ public class NotesActivity extends ActionBarActivity {
 	        	tp = TherapistJSONParser.parseFeed(result);
 	    	    String therapistName = tp.getName();
 	    	    if (therapistName != null){	    	   
-	    	    	String noteIntro = String.format(NotesActivity.getAppContext().getResources().getString(R.string.noteIntro), therapistName);
+	    	    	String noteIntro = String.format(NotesActivity.this.getResources().getString(R.string.noteIntro), therapistName);
+	    	    	((TextView)findViewById (R.id.textViewNoteIntro)).setText(noteIntro);
+	    	    } 
+	    	}	
+
+	    }
+	   
+	   private class LoadNotes extends AsyncTask<String, String, String>{
+
+	        @Override
+	        protected void onPreExecute() {
+	        	super.onPreExecute();
+	        }
+
+	        @Override
+	        protected String doInBackground(String... params) {
+
+	        	String responseContent = ApiClient.httpGET(params[0]);	        	
+	            return responseContent;
+	        }
+
+	        @Override
+	        protected void onPostExecute(String result) {           
+	        	tp = TherapistJSONParser.parseFeed(result);
+	    	    String therapistName = tp.getName();
+	    	    if (therapistName != null){	    	   
+	    	    	String noteIntro = String.format(NotesActivity.this.getResources().getString(R.string.noteIntro), therapistName);
 	    	    	((TextView)findViewById (R.id.textViewNoteIntro)).setText(noteIntro);
 	    	    } 
 	    	}	

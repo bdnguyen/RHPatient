@@ -18,10 +18,11 @@ public class ExerciseJSONParser {
 				
 				JSONObject jObj =  exArray.getJSONObject(i);
 				Exercise ex = new Exercise("","",false,null);
-				ex.setTitle(jObj.getString("Description"));
+				ex.setTitle("Exercise " + i);
+				//ex.setTitle(jObj.getString("Title"));
 				ex.setDescription(jObj.getString("Description"));
 				ex.setDoneToday(false);
-				//ex.setImgURLs(jObj.getJSONArray("PhotosPaths"));
+				//(jObj.getJSONArray("PhotosPaths"));
 								
 				exerciseList.add(ex);						
 			}

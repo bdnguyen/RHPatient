@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">RehApp</string>
-    <string name="login">Enter your email address..</string>
+    <string name="login">Enter email address..</string>
     <string name="password">Enter your password..</string>
     <string name="login_button">Login</string>
     <string name="action_settings">Settings</string>

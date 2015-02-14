@@ -73,7 +73,7 @@ public class HomeActivity extends ActionBarActivity {
                    	
         //Populate Exercise list
         //populateExerciseListHome();
-        new loadExercisesTask().execute("therapy/GetTodayAllExercises");
+        new LoadExercisesTask().execute("therapy/GetTodayAllExercises");
         //Populate the List View
         //populateListViewHome();
         //Handle clicks on List View
@@ -97,7 +97,7 @@ public class HomeActivity extends ActionBarActivity {
 	// Inner class for the custom Adapter
 	private class HomeListAdapter extends ArrayAdapter<Exercise> {
 		public HomeListAdapter() {
-			super(HomeActivity.getAppContext(), R.layout.exercises_list_item_home, todayExercises);
+			super(HomeActivity.this, R.layout.exercises_list_item_home, todayExercises);
 		}
 		
 		@Override
@@ -111,7 +111,7 @@ public class HomeActivity extends ActionBarActivity {
 			
 			// Fill the view
 			TextView exTitleTxt = (TextView) itemView.findViewById(R.id.exerciseTitleHomeView);
-			exTitleTxt.setText(currentExercise.getDescription());
+			exTitleTxt.setText(currentExercise.getTitle());
 			CheckBox cb = (CheckBox) itemView.findViewById(R.id.homeCheckBox);
 			cb.setChecked(currentExercise.isDoneToday());
 			if (currentExercise.isDoneToday()){
@@ -143,7 +143,7 @@ public class HomeActivity extends ActionBarActivity {
 	}
 	
 	
-    private class loadExercisesTask extends AsyncTask<String, String, List<Exercise>>{
+    private class LoadExercisesTask extends AsyncTask<String, String, List<Exercise>>{
 
         @Override
         protected void onPreExecute() {
@@ -163,7 +163,7 @@ public class HomeActivity extends ActionBarActivity {
         	//Collections.copy(todayExercises, ExerciseJSONParser.parseFeed(result));
         	//todayExercises = new ArrayList<Exercise>(ExerciseJSONParser.parseFeed(result));
         	if(result != null){
-        		//populateListViewHome();
+        		populateListViewHome();
         	}
         	registerClickCallback();
         }

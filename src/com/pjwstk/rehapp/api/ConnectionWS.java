@@ -38,15 +38,14 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 public class ConnectionWS {
-	private String passwordtokeystore = "hJ4D2Vd6tc";
-	private String privatekeypassword = "6v9TGy53gA";
 	
 	public static SSLContext certHandler(){
 		SSLContext context = null;
 		try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
             //InputStream certificateAuthorityInput = new BufferedInputStream(new FileInputStream("assets/RehabilitationAppCA.cer")); //
-            InputStream certificateAuthorityInput = Rehapp.getAppContext().getResources().getAssets().open("RehabilitationAppCA.cer");
+            InputStream certificateAuthorityInput = Rehapp.getAppContext().getResources().getAssets().open("rehabilitationappca.cer");
+            //InputStream clientInputStream = Rehapp.getAppContext().getResources().openRawResource(R);
             Certificate certificateAuthority = certificateFactory.generateCertificate(certificateAuthorityInput);
 
             // Now we should have certificate authority loaded - check by checking SubjectDN name
@@ -63,7 +62,7 @@ public class ConnectionWS {
             // keytool -importkeystore -srckeystore mypfxfile.pfx -srcstoretype pkcs12 -destkeystore clientcert.jks -deststoretype JKS
             KeyStore clientKeyStore = KeyStore.getInstance("BKS"); //pkcs12
             clientKeyStore.load(null, null);
-            //InputStream clientInputStream = new FileInputStream("assets/clientcert.jks"); //p12 
+            //InputStream clientInputStream = new FileInputStream("assets/clientcert.jks"); //p12            
             InputStream clientInputStream = Rehapp.getAppContext().getResources().getAssets().open("clientcertificate.bks");
             clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray()); //passwordToKeystore
 

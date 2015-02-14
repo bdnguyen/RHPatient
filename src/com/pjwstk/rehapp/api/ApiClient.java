@@ -25,22 +25,11 @@ public class ApiClient {
 	
 	private static final String endpoint = "https://172.21.40.69/api/";
 	
-	
-	public static void getTherapistName(){
+	//PostNotDone(){
+    //postDone(){
+	//postNotes(){
 		
-	}
 	
-	public static void getDaysLeft(){
-		
-	}
-	
-	public static void getNotes(){
-		
-	}
-	
-	public static void postNotes(){
-		
-	}
 	
 	public static String httpGET(String URI) {
 	
@@ -62,9 +51,9 @@ public class ApiClient {
 	            httpsCon.setRequestProperty("User-Agent", "Droidz");
 	            httpsCon.setRequestProperty("Content-Type", "application/json");
 	            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
-	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
-	            String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
-	            httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
+	            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
+	            //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
 	            
 	            
 	            InputStream inputStream = null;

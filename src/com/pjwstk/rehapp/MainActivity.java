@@ -109,7 +109,7 @@ public class MainActivity extends ActionBarActivity {
     			Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
     			startActivity(intent);  			
     		}
-    		else Toast.makeText(MainActivity.getAppContext(), R.string.loginFailMessage, Toast.LENGTH_LONG).show();
+    		else Toast.makeText(MainActivity.getAppContext(), R.string.loginFailMessage, Toast.LENGTH_SHORT).show();
         		
         }   
 	}
@@ -122,7 +122,7 @@ public class MainActivity extends ActionBarActivity {
 	    	pw = pwET.getText().toString().trim();
 	    	
 	    	new loginTask().execute();
-		} else Toast.makeText(MainActivity.getAppContext(), R.string.networkFailMessage, Toast.LENGTH_LONG).show();
+		} else Toast.makeText(MainActivity.getAppContext(), R.string.networkFailMessage, Toast.LENGTH_SHORT).show();
 	}
 
 	

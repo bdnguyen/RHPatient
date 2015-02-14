@@ -3,6 +3,7 @@ package com.pjwstk.rehapp.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,9 +11,10 @@ public class Exercise implements Parcelable {
 	
 	private String title;
 	private String description;
-	List<String> imgURLs = new ArrayList<String>();
+	List<String> imgURLs = new ArrayList<>();
 	private boolean doneToday;
 	private String treatmentType;
+	List<Bitmap> imgs = new ArrayList<>();
 	
 	public Exercise(String title, String description, boolean doneToday, ArrayList<String> imgURLs) {
 		super();
