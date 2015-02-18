@@ -70,6 +70,7 @@ public class NotesActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				if (!editTextNote.getText().toString().isEmpty()) {
+					//new SendNoteTask().execute("message/create");
 					notes.add(new Note(editTextNote.getText().toString().trim(),false));
 					noteAdapter.setNotifyOnChange(true);
 					editTextNote.setText("");	
@@ -173,7 +174,15 @@ public class NotesActivity extends ActionBarActivity {
 
 	    }
 	
-	
+		private class SendNoteTask extends AsyncTask<String, Void, Void>{
+			@Override
+			protected Void doInBackground(String... params) {
+				if(editTextNote.getText().toString() != null){
+				ApiClient.httpPOST(params[0], editTextNote.getText().toString());
+				}
+				return null;
+			}
+		} 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main_activity_actions, menu);

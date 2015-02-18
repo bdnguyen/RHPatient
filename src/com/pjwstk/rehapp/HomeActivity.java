@@ -71,23 +71,10 @@ public class HomeActivity extends ActionBarActivity {
         String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
         ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
                    	
-        //Populate Exercise list
-        //populateExerciseListHome();
         new LoadExercisesTask().execute("therapy/GetTodayAllExercises");
-        //Populate the List View
-        //populateListViewHome();
-        //Handle clicks on List View
-        //registerClickCallback();
-        
 	}
 	
 
-//	private void populateExerciseListHome() {
-//		todayExercises.add(new Exercise("Ćwiczenie izometryczne mięśnia czworogłowego (głowy przyśrodkowej)", "Leżąc tyłem lub siedząc z wyprostowanymi nogami podłóż nieco powyżej kolana zwinięty ręcznik. Nie odrywając pięty od podłoża naciśnij udem na ręcznik, tak, aby napiął się mięsień czworogłowy. Utrzymaj napięcie przez 5 sekund, a następnie rozluźnij nogę.", false));
-//		todayExercises.add(new Exercise("Ćwiczenie zgięcia stawu kolanowego", "Stań przy ścianie, tak aby plecy i pośladki całkowicie przylegały do ściany. Przesuń stopy około 15 cm od ściany. Powoli staraj się zrobić przysiad, tak aby stawy kolanowe nie przekroczyły linii stóp. Postaraj się zejść jak najniżej i wytrzymać w tej pozycji 10-15 sekund. Wróć do pozycji wyjściowej.",false));
-//		todayExercises.add(new Exercise("Ćwiczenie wyprostu stawu kolanowego", "Siedząc z wyprostowanymi nogami podłóż pod pietę złożony ręcznik. Rozluźnij mięśnie i pozwól, żeby staw kolanowy zaczął się prostować pod wpływem siły grawitacji. Podczas tego ćwiczenia napinaj mięsień czworogłowy. Postaraj się wytrzymać w tej pozycji 5 minut.",false));	
-//	}
-	
 	private void populateListViewHome() {
 		HLAdapter = new HomeListAdapter();
 		ListView list = (ListView) findViewById(R.id.exercisesListViewHome);
@@ -152,7 +139,6 @@ public class HomeActivity extends ActionBarActivity {
 
         @Override
         protected List<Exercise> doInBackground(String... params) {
-
         	String responseContent = ApiClient.httpGET(params[0]);
         	todayExercises = ExerciseJSONParser.parseFeed(responseContent);
             return todayExercises;
@@ -222,7 +208,6 @@ public class HomeActivity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		Log.i(TAG, getClass().getSimpleName() + ":entered onResume()");
-		//overridePendingTransition(R.anim.hold, R.anim.slide_out_right);
 		super.onResume();
 	}	
 }

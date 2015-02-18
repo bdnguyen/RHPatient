@@ -69,6 +69,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        doneBtn.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
+					//new MarkExerciseTask().execute("Therapy/MarkAsDone");
 					Bundle extras = getIntent().getExtras();
 					Exercise CK = extras.getParcelable("clickedExercise");
 					if ((CK != null) && (CK.isDoneToday() == false)){
@@ -85,6 +86,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        notDoneBtn.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
+					//new MarkExerciseTask().execute("Therapy/MarkAsSkipped");
 					Bundle extras = getIntent().getExtras();
 					Exercise CK = extras.getParcelable("clickedExercise");
 			        if (CK.isDoneToday()){
@@ -111,6 +113,18 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        mPager.setAdapter(mPagerAdapter);
 	        
 	    }
+
+	private class MarkExerciseTask extends AsyncTask<String, Void, Void>{
+
+		@Override
+		protected Void doInBackground(String... params) {
+			Bundle extras = getIntent().getExtras();
+			Exercise CK = extras.getParcelable("clickedExercise");
+			ApiClient.httpPOST(params[0], CK.getExID() + "");
+			return null;
+		}
+		
+	}
 
 	
 //	private class LoadImagesTask extends AsyncTask<String, String, List<Bitmap>{

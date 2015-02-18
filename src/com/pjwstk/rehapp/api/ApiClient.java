@@ -1,11 +1,13 @@
 package com.pjwstk.rehapp.api;
 	
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +26,8 @@ import android.preference.PreferenceManager;
 public class ApiClient {
 	
 	private static final String endpoint = "https://172.21.40.69/api/";
-	
-	//PostNotDone(){
-    //postDone(){
-	//postNotes(){
-	
-	public static String httpPOST(String URI) {
+		
+	public static Void httpPOST(String URI, String URIParams) {
 		
 		String httpGET_url = endpoint + URI;
         URL url;
@@ -52,7 +50,12 @@ public class ApiClient {
             httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
             //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
             //httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
-            
+            DataOutputStream writer = new DataOutputStream(httpsCon.getOutputStream());
+            String Content = "";
+            //writer.write(URLEncoder.encode(.toString(),"UTF-8"));
+            writer.writeBytes(Content);
+            writer.flush();
+            writer.close();
             
             InputStream inputStream = null;
             
@@ -69,7 +72,7 @@ public class ApiClient {
                 response.append(line + "\n");
             }
             rd.close();
-    		return response.toString();         
+    		         
             
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -78,6 +81,7 @@ public class ApiClient {
 			e.printStackTrace();
 			return null;
 		}
+		return null;
 }
 	
 	
