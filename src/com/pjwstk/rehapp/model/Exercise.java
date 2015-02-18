@@ -29,6 +29,7 @@ public class Exercise implements Parcelable {
 		this.title = in.readString();
 		this.description = in.readString();
 		this.doneToday = in.readByte() != 0; //doneToday true if byte != 0
+		this.exID = in.readInt();
 		this.imgURLs = in.readArrayList(null);
 	}
 
@@ -102,6 +103,7 @@ public class Exercise implements Parcelable {
 		out.writeString(title);
 		out.writeString(description);
 		out.writeByte((byte) (doneToday ? 1 : 0)); //if doneToday true, byte == 1
+		out.writeInt(exID);
 		out.writeList(imgURLs);
 	}
 

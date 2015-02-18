@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.pjwstk.rehapp.api.ApiClient;
+import com.pjwstk.rehapp.api.HTTPRequestHandler;
 import com.pjwstk.rehapp.model.Exercise;
 import com.pjwstk.rehapp.parsers.ExerciseJSONParser;
 
@@ -37,13 +38,15 @@ import android.widget.Toast;
 public class SingleExerciseActivity extends FragmentActivity {
 	
 	private static final String TAG = "SingleExerciseActivity";
-		
+	private static final String TAG_PROGRAMEXERCISE_ID = "ProgramExerciseId";	
+	
 		TextToSpeech ttsObj;
 		TextView txtViewDesc;
 		
 		private List<Bitmap> exImages = new ArrayList<>();
 	    private ViewPager mPager;
 	    private PagerAdapter mPagerAdapter;
+	    
 	    
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        doneBtn.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					//new MarkExerciseTask().execute("Therapy/MarkAsDone");
+					new MarkExerciseTask().execute("Therapy/MarkAsDone");
 					Bundle extras = getIntent().getExtras();
 					Exercise CK = extras.getParcelable("clickedExercise");
 					if ((CK != null) && (CK.isDoneToday() == false)){
@@ -86,7 +89,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        notDoneBtn.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					//new MarkExerciseTask().execute("Therapy/MarkAsSkipped");
+					new MarkExerciseTask().execute("Therapy/MarkAsSkipped");
 					Bundle extras = getIntent().getExtras();
 					Exercise CK = extras.getParcelable("clickedExercise");
 			        if (CK.isDoneToday()){
@@ -113,32 +116,39 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        mPager.setAdapter(mPagerAdapter);
 	        
 	    }
-
+	
+	
 	private class MarkExerciseTask extends AsyncTask<String, Void, Void>{
 
 		@Override
 		protected Void doInBackground(String... params) {
 			Bundle extras = getIntent().getExtras();
 			Exercise CK = extras.getParcelable("clickedExercise");
-			ApiClient.httpPOST(params[0], CK.getExID() + "");
+			HTTPRequestHandler req = new HTTPRequestHandler();
+			req.setMethod("POST");
+			req.setURI(params[0]);
+			req.putParam(TAG_PROGRAMEXERCISE_ID,CK.getExID()+"");		
+			ApiClient.httpPOST(req);
 			return null;
 		}
+		
 		
 	}
 
 	
 //	private class LoadImagesTask extends AsyncTask<String, String, List<Bitmap>{
 //
-//        @Override
-//        protected void onPreExecute() {
-//        	super.onPreExecute();
-//        }
 //
 //        @Override
 //        protected List<Bitmap> doInBackground(String... params) {
-//
+//        	Bundle extras = getIntent().getExtras();
+//			Exercise CK = extras.getParcelable("clickedExercise");
+//			List<String> iU = CK.getImgURLs();
+//			HTTPRequestHandler req = new HTTPRequestHandler();
+//			req.setMethod("GETIMG");
 //        	String responseContent = ApiClient.httpGET(params[0]);
-//
+//        	
+//        	return res
 //        }
 //
 //        @Override

@@ -16,6 +16,7 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.pjwstk.rehapp.MainActivity;
 
@@ -27,9 +28,9 @@ public class ApiClient {
 	
 	private static final String endpoint = "https://172.21.40.69/api/";
 		
-	public static Void httpPOST(String URI, String URIParams) {
+	public static String httpPOST(HTTPRequestHandler req) {
 		
-		String httpGET_url = endpoint + URI;
+		String httpPOST_url = endpoint + req.getURI();
         URL url;
 		try {
            
@@ -41,28 +42,33 @@ public class ApiClient {
             	}           	
             });
 			
-			url = new URL(httpGET_url);
-            HttpsURLConnection httpsCon = (HttpsURLConnection)url.openConnection();
-            httpsCon.setRequestMethod("POST");
-            httpsCon.setRequestProperty("User-Agent", "Droidz");
-            httpsCon.setRequestProperty("Content-Type", "application/json");
-            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
-            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
+			url = new URL(httpPOST_url);
+            HttpsURLConnection httpsCon1 = (HttpsURLConnection)url.openConnection();
+            httpsCon1.setRequestMethod(req.getMethod());
+           // httpsCon1.setRequestProperty("User-Agent", "Droidz");
+            httpsCon1.setRequestProperty("Content-Type", "application/json");
+           // httpsCon1.setDoInput(true);
+           // httpsCon1.setDoOutput(true);
+            httpsCon1.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
+            httpsCon1.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
             //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
             //httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
-            DataOutputStream writer = new DataOutputStream(httpsCon.getOutputStream());
-            String Content = "";
-            //writer.write(URLEncoder.encode(.toString(),"UTF-8"));
-            writer.writeBytes(Content);
-            writer.flush();
-            writer.close();
+            if(req.getMethod().equals("POST")){
+                DataOutputStream writer = new DataOutputStream(httpsCon1.getOutputStream());
+                JSONObject jsonparams = new JSONObject(req.getParams());
+                String content = jsonparams.toString();
+                writer.writeBytes(content);
+                writer.flush();
+                writer.close();
+            }
+
             
             InputStream inputStream = null;
             
-            if(httpsCon.getResponseCode() >= 400){
-            	inputStream = httpsCon.getErrorStream();            	
+            if(httpsCon1.getResponseCode() >= 400){
+            	inputStream = httpsCon1.getErrorStream();            	
             } else {
-            	inputStream = httpsCon.getInputStream();
+            	inputStream = httpsCon1.getInputStream();
             }
             
             BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
@@ -72,7 +78,9 @@ public class ApiClient {
                 response.append(line + "\n");
             }
             rd.close();
-    		         
+            //System.out.println(response.toString());
+            String respo=response.toString();
+            return response.toString();         
             
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -81,8 +89,8 @@ public class ApiClient {
 			e.printStackTrace();
 			return null;
 		}
-		return null;
-}
+		
+	}
 	
 	
 	public static String httpGET(String URI) {

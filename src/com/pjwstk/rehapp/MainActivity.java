@@ -104,12 +104,12 @@ public class MainActivity extends ActionBarActivity {
         	
         	loginPB.setVisibility(View.INVISIBLE);
         	
-        	if (result){
-    			PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("loginToken", loginToken).commit();
+        	//if (result){
+    			//PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("loginToken", loginToken).commit();
     			Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
     			startActivity(intent);  			
-    		}
-    		else Toast.makeText(MainActivity.getAppContext(), R.string.loginFailMessage, Toast.LENGTH_SHORT).show();
+    		//}
+    		//else Toast.makeText(MainActivity.getAppContext(), R.string.loginFailMessage, Toast.LENGTH_SHORT).show();
         		
         }   
 	}

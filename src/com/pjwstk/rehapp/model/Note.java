@@ -5,8 +5,9 @@ import java.util.Date;
 public class Note {
 	private String issuer;
 	private String content;
+	private String sendingUserId;
 	private Date date;
-	//For testing
+	
 	private boolean fromTherapist;
 	
 	public Note(String content, boolean fromTherapist){
@@ -41,5 +42,13 @@ public class Note {
 
 	public void setfromTherapist(boolean fromTherapist) {
 		this.fromTherapist = fromTherapist;
+	}
+
+	public String getSendingUserId() {
+		return sendingUserId;
+	}
+
+	public void setSendingUserId(String sendingUserId) {
+		this.sendingUserId = sendingUserId;
 	}
 }

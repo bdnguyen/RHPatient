@@ -14,7 +14,7 @@ public class ExerciseJSONParser {
 			JSONArray exArray = new JSONArray(content);
 			List<Exercise> exerciseList = new ArrayList<>();
 			JSONArray imArray = new JSONArray();
-			//List<String> iUrls = new ArrayList<>();
+			List<String> iUrls = new ArrayList<>();
 			
 			for (int i = 0; i < exArray.length(); i++) {
 				
@@ -26,12 +26,13 @@ public class ExerciseJSONParser {
 				ex.setDescription(jObj.getString("Description"));
 				ex.setDoneToday(false);
 				
-//				imArray = jObj.getJSONArray("PhotosPaths");				
-//				if (imArray != null){
-//					for (int j = 0; j < imArray.length(); j++) {
-//						ex.getImgURLs().add(imArray.get(i).toString());
-//					}
-//				}
+				imArray = jObj.getJSONArray("PhotosPaths");				
+				if (imArray != null){
+					for (int j = 0; j < imArray.length(); j++) {					
+						iUrls.add(imArray.get(i).toString());
+						ex.setImgURLs(iUrls);
+					}
+				}
 				
 				exerciseList.add(ex);						
 			}

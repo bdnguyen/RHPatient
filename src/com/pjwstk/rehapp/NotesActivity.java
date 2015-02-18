@@ -34,6 +34,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.pjwstk.rehapp.R;
 import com.pjwstk.rehapp.api.ApiClient;
+import com.pjwstk.rehapp.api.HTTPRequestHandler;
 import com.pjwstk.rehapp.model.*;
 import com.pjwstk.rehapp.parsers.ExerciseJSONParser;
 import com.pjwstk.rehapp.parsers.NoteJSONParser;
@@ -42,6 +43,8 @@ import com.pjwstk.rehapp.parsers.TherapistJSONParser;
 public class NotesActivity extends ActionBarActivity {
 	
 	private static final String TAG = "NoteActivity";
+	private static final String TAG_RUSERID = "ReceivingUserId";
+	private static final String TAG_CONTENT = "Content";
 	private List<Note> notes = new ArrayList<>();	
 	private static Context ct;
 	private Therapist tp = new Therapist("");
@@ -70,7 +73,7 @@ public class NotesActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				if (!editTextNote.getText().toString().isEmpty()) {
-					//new SendNoteTask().execute("message/create");
+					new SendNoteTask().execute("message/create");
 					notes.add(new Note(editTextNote.getText().toString().trim(),false));
 					noteAdapter.setNotifyOnChange(true);
 					editTextNote.setText("");	
@@ -177,9 +180,13 @@ public class NotesActivity extends ActionBarActivity {
 		private class SendNoteTask extends AsyncTask<String, Void, Void>{
 			@Override
 			protected Void doInBackground(String... params) {
-				if(editTextNote.getText().toString() != null){
-				ApiClient.httpPOST(params[0], editTextNote.getText().toString());
-				}
+				//ApiClient.httpPOST(params[0], editTextNote.getText().toString());
+					HTTPRequestHandler req = new HTTPRequestHandler();
+					req.setMethod("POST");
+					req.setURI(params[0]);
+					req.putParam(TAG_RUSERID, notes.get(0).getSendingUserId());
+					req.putParam(TAG_CONTENT, editTextNote.getText().toString());
+					ApiClient.httpPOST(req);	
 				return null;
 			}
 		} 	

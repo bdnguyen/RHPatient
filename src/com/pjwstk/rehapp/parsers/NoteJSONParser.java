@@ -22,6 +22,7 @@ public class NoteJSONParser {
 				Note note = new Note("",true);
 				note.setIssuer(jObj.getString("SendingTherapistUser"));
 				note.setContent(jObj.getString("Content"));
+				note.setSendingUserId(jObj.getString("SendingUserId"));
 				if(jObj.getString("SendingTherapistUser") != null){
 					note.setfromTherapist(true);
 				} else {
