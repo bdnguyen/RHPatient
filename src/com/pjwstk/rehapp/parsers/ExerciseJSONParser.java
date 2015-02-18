@@ -13,6 +13,8 @@ public class ExerciseJSONParser {
 		try {
 			JSONArray exArray = new JSONArray(content);
 			List<Exercise> exerciseList = new ArrayList<>();
+			JSONArray imArray = new JSONArray();
+			//List<String> iUrls = new ArrayList<>();
 			
 			for (int i = 0; i < exArray.length(); i++) {
 				
@@ -20,10 +22,17 @@ public class ExerciseJSONParser {
 				Exercise ex = new Exercise("","",false,null);
 				ex.setTitle("Exercise " + i);
 				//ex.setTitle(jObj.getString("Title"));
+				ex.setExID(jObj.getInt("ProgramExerciseId"));
 				ex.setDescription(jObj.getString("Description"));
 				ex.setDoneToday(false);
-				//(jObj.getJSONArray("PhotosPaths"));
-								
+				
+//				imArray = jObj.getJSONArray("PhotosPaths");				
+//				if (imArray != null){
+//					for (int j = 0; j < imArray.length(); j++) {
+//						ex.getImgURLs().add(imArray.get(i).toString());
+//					}
+//				}
+				
 				exerciseList.add(ex);						
 			}
 			return exerciseList;

@@ -28,7 +28,57 @@ public class ApiClient {
 	//PostNotDone(){
     //postDone(){
 	//postNotes(){
+	
+	public static String httpPOST(String URI) {
 		
+		String httpGET_url = endpoint + URI;
+        URL url;
+		try {
+           
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+            	public boolean verify(String hostname, SSLSession session){
+            		if(hostname.equals("172.21.40.69"))
+            			return true;
+            		return false;
+            	}           	
+            });
+			
+			url = new URL(httpGET_url);
+            HttpsURLConnection httpsCon = (HttpsURLConnection)url.openConnection();
+            httpsCon.setRequestMethod("POST");
+            httpsCon.setRequestProperty("User-Agent", "Droidz");
+            httpsCon.setRequestProperty("Content-Type", "application/json");
+            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
+            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
+            //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+            //httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
+            
+            
+            InputStream inputStream = null;
+            
+            if(httpsCon.getResponseCode() >= 400){
+            	inputStream = httpsCon.getErrorStream();            	
+            } else {
+            	inputStream = httpsCon.getInputStream();
+            }
+            
+            BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            StringBuilder response = new StringBuilder();
+            while((line = rd.readLine()) != null) {
+                response.append(line + "\n");
+            }
+            rd.close();
+    		return response.toString();         
+            
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+}
 	
 	
 	public static String httpGET(String URI) {

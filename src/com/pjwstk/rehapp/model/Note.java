@@ -9,8 +9,7 @@ public class Note {
 	//For testing
 	private boolean fromTherapist;
 	
-	public Note(String issuer, String content, boolean fromTherapist){
-		this.issuer = issuer;
+	public Note(String content, boolean fromTherapist){
 		this.content = content;
 		this.fromTherapist = fromTherapist;
 	}

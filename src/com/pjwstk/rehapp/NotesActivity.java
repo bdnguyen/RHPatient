@@ -36,18 +36,18 @@ import com.pjwstk.rehapp.R;
 import com.pjwstk.rehapp.api.ApiClient;
 import com.pjwstk.rehapp.model.*;
 import com.pjwstk.rehapp.parsers.ExerciseJSONParser;
+import com.pjwstk.rehapp.parsers.NoteJSONParser;
 import com.pjwstk.rehapp.parsers.TherapistJSONParser;
 
 public class NotesActivity extends ActionBarActivity {
 	
 	private static final String TAG = "NoteActivity";
-	private List<Note> notes = new ArrayList();	
+	private List<Note> notes = new ArrayList<>();	
 	private static Context ct;
+	private Therapist tp = new Therapist("");
 	
 	ArrayAdapter<Note> noteAdapter;
 	EditText editTextNote;
-	Therapist tp = new Therapist("");
-	List<Note> noteList = new ArrayList<>();
 	
 	
 	public static Context getAppContext(){
@@ -62,9 +62,7 @@ public class NotesActivity extends ActionBarActivity {
 	    android.app.ActionBar bar = getActionBar();
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 	    bar.setDisplayHomeAsUpEnabled(true);
-	    
-	    new LoadTherapistNameTask().execute("patient/GetTherapist");
-	    
+	        
         Button sendBtn = (Button) findViewById(R.id.sendNoteBtn);
         editTextNote = (EditText) findViewById(R.id.editTextNote);
         
@@ -72,27 +70,16 @@ public class NotesActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				if (!editTextNote.getText().toString().isEmpty()) {
-					notes.add(new Note("self",editTextNote.getText().toString().trim(),false));
+					notes.add(new Note(editTextNote.getText().toString().trim(),false));
 					noteAdapter.setNotifyOnChange(true);
 					editTextNote.setText("");	
 				}							
 			}	        	
         });
 	    
-	    populateNoteList();
-	    populateListViewNote();
+        new LoadTherapistNameTask().execute("patient/GetTherapist");
+        new LoadNotes().execute("message/getallforinbox");
 		
-	}
-
-
-	private void populateNoteList() {
-//		notes.add(new Note("Zukowska","Hello there", true));
-//		notes.add(new Note("self","hi", false));
-//		notes.add(new Note("Zukowska","test", true));
-//		notes.add(new Note("Zukowska","test2", true));
-//		notes.add(new Note("Zukowska","How are you", true));
-//		notes.add(new Note("self","ok", false));
-//		notes.add(new Note("self","I have a problem", false));
 	}
 	
 	private void populateListViewNote() {
@@ -147,7 +134,6 @@ public class NotesActivity extends ActionBarActivity {
 
 	        @Override
 	        protected String doInBackground(String... params) {
-
 	        	String responseContent = ApiClient.httpGET(params[0]);	        	
 	            return responseContent;
 	        }
@@ -173,19 +159,16 @@ public class NotesActivity extends ActionBarActivity {
 
 	        @Override
 	        protected String doInBackground(String... params) {
-
-	        	String responseContent = ApiClient.httpGET(params[0]);	        	
+	        	String responseContent = ApiClient.httpGET(params[0]);	
+	        	notes = NoteJSONParser.parseFeed(responseContent);
 	            return responseContent;
 	        }
 
 	        @Override
 	        protected void onPostExecute(String result) {           
-	        	tp = TherapistJSONParser.parseFeed(result);
-	    	    String therapistName = tp.getName();
-	    	    if (therapistName != null){	    	   
-	    	    	String noteIntro = String.format(NotesActivity.this.getResources().getString(R.string.noteIntro), therapistName);
-	    	    	((TextView)findViewById (R.id.textViewNoteIntro)).setText(noteIntro);
-	    	    } 
+	        	if(result != null){
+	        		populateListViewNote();
+	        	}	   	    	
 	    	}	
 
 	    }

@@ -10,7 +10,7 @@ public class TherapistJSONParser {
 		try {
 				JSONObject jObj =  new JSONObject(content);
 				Therapist tp = new Therapist("");
-				tp.setName(jObj.optString("Name"));				
+				tp.setName(jObj.optString("Name")+" "+jObj.optString("Surname"));				
 				return tp;
 			
 		} catch (JSONException e) {

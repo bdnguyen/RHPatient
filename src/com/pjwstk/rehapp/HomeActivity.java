@@ -161,7 +161,6 @@ public class HomeActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(List<Exercise> result) {           
         	//Collections.copy(todayExercises, ExerciseJSONParser.parseFeed(result));
-        	//todayExercises = new ArrayList<Exercise>(ExerciseJSONParser.parseFeed(result));
         	if(result != null){
         		populateListViewHome();
         	}

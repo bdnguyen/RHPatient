@@ -19,7 +19,7 @@ public class NoteJSONParser {
 			for (int i = 0; i < jArray.length(); i++) {
 				
 				JSONObject jObj =  jArray.getJSONObject(i);
-				Note note = new Note("","",true);
+				Note note = new Note("",true);
 				note.setIssuer(jObj.getString("SendingTherapistUser"));
 				note.setContent(jObj.getString("Content"));
 				if(jObj.getString("SendingTherapistUser") != null){

@@ -33,29 +33,5 @@
 	<string name="loginFailMessage">Username or password not recognized, please try again.</string>
 	<string name="networkFailMessage">Network is unavailable.</string>
     
-    <string-array name="ExerciseTitles">
-        <item>Arm Exercise 1</item>
-        <item>Arm Exercise 2</item>
-        <item>Leg Exercise 1</item>
-        <item>Arm Exercise 2</item>
-        <item>Leg Exercise 1</item>
-        <item>Arm Exercise 2</item>
-        <item>Leg Exercise 1</item>
-    </string-array>
-    <string-array name="ExerciseDescs">
-        <item>    -Step one foot forward, letting that knee bend.\n
-    -Lean onto the front leg, bringing your head and chest toward the corner. \n
-    -Hold for 20-30 seconds. \n
-    -Stand up straight and switch feet. \n
-    -Repeat it on the other side. \n</item>
-        <item>Do things with arm</item>
-        <item>Move leg up</item>
-        <item>Raise arm</item>
-        <item>Do things with arm</item>
-        <item>Move leg up</item>
-        <item>Do things with arm</item>
-    </string-array>
-    
-
 
 </resources>

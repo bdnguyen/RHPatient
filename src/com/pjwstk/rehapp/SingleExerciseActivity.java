@@ -1,13 +1,19 @@
 package com.pjwstk.rehapp;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import com.pjwstk.rehapp.api.ApiClient;
 import com.pjwstk.rehapp.model.Exercise;
+import com.pjwstk.rehapp.parsers.ExerciseJSONParser;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -34,6 +40,8 @@ public class SingleExerciseActivity extends FragmentActivity {
 		
 		TextToSpeech ttsObj;
 		TextView txtViewDesc;
+		
+		private List<Bitmap> exImages = new ArrayList<>();
 	    private ViewPager mPager;
 	    private PagerAdapter mPagerAdapter;
 	    
@@ -41,8 +49,7 @@ public class SingleExerciseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_single_exercise);
-	        	      	        
-		    // Set ActionBar color
+	        	      	        	   
 		    android.app.ActionBar bar = getActionBar();
 		    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 		    bar.setDisplayHomeAsUpEnabled(false);
@@ -105,6 +112,29 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        
 	    }
 
+	
+//	private class LoadImagesTask extends AsyncTask<String, String, List<Bitmap>{
+//
+//        @Override
+//        protected void onPreExecute() {
+//        	super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected List<Bitmap> doInBackground(String... params) {
+//
+//        	String responseContent = ApiClient.httpGET(params[0]);
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(List<Bitmap> result) {           
+//        	if(result != null){
+//        		populateListViewHome();
+//        	}
+//        }
+//
+//    }
 	    
 	private class PhotoSlidePagerAdapter extends PagerAdapter {		
 			private int[] mImages = new int[] {

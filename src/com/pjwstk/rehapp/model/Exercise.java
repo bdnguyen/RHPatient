@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public class Exercise implements Parcelable {
 	
+	private int exID;
 	private String title;
 	private String description;
 	List<String> imgURLs = new ArrayList<>();
@@ -31,6 +32,14 @@ public class Exercise implements Parcelable {
 		this.imgURLs = in.readArrayList(null);
 	}
 
+	public int getExID() {
+		return exID;
+	}
+
+	public void setExID(int exID) {
+		this.exID = exID;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
