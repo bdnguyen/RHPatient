@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import com.pjwstk.rehapp.api.ApiClient;
 import com.pjwstk.rehapp.api.HTTPRequestHandler;
 import com.pjwstk.rehapp.model.Exercise;
@@ -60,12 +62,15 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        	      	        	   
 		    android.app.ActionBar bar = getActionBar();
 		    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
-		    bar.setDisplayHomeAsUpEnabled(false);
+		    bar.setDisplayHomeAsUpEnabled(true);
 		    //bar.hide();
 	        		    
 		    // set Exercise title on actionBar and Desc
 		    setTitleAndDesc();
 	        
+		    // set Images
+		    new LoadImagesTask().execute();
+		    
 	        // Initiate Text to Speech	        
 	        initiateTextToSpeech();
 	        
@@ -116,9 +121,9 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        });
 	        
 	        // Instantiate a ViewPager and a PagerAdapter.
-	        mPager = (ViewPager) findViewById(R.id.pager);
-	        mPagerAdapter = new PhotoSlidePagerAdapter();
-	        mPager.setAdapter(mPagerAdapter);
+//	        mPager = (ViewPager) findViewById(R.id.pager);
+//	        mPagerAdapter = new PhotoSlidePagerAdapter();
+//	        mPager.setAdapter(mPagerAdapter);
 	        
 	    }
 	
@@ -138,25 +143,29 @@ public class SingleExerciseActivity extends FragmentActivity {
 	}
 
 	
-	private class LoadImagesTask extends AsyncTask<String, String, List<Bitmap>>{
+	private class LoadImagesTask extends AsyncTask<Void, Void, ArrayList<Bitmap>>{
 
 
         @Override
-        protected List<Bitmap> doInBackground(String... params) {
-        	Bundle extras = getIntent().getExtras();
+        protected ArrayList<Bitmap> doInBackground(Void... params) {
+        	Bundle extras = getIntent().getExtras();       	
 			Exercise CK = extras.getParcelable("clickedExercise");
 			ArrayList<String> iU = (ArrayList<String>) CK.getImgURLs();
-			for(int i = 0; i < iU.size() ; i++){
-				exImages.add(getBitmapFromURL(iU.get(i).toString()));
+			if (iU != null && !iU.isEmpty()){
+				for(int i = 0; i < iU.size(); i++){
+		       		exImages.add(getBitmapFromURL(iU.get(i).toString()));
+				}
 			}
-			return exImages;
+			return (ArrayList<Bitmap>) exImages;
         }
 
         @Override
-        protected void onPostExecute(List<Bitmap> result) {           
+        protected void onPostExecute(ArrayList<Bitmap> result) {           
         	if(result != null && !result.isEmpty()){
-        		
-        	}
+    	        mPager = (ViewPager) findViewById(R.id.pager);
+    	        mPagerAdapter = new PhotoSlidePagerAdapter();
+    	        mPager.setAdapter(mPagerAdapter); 	        
+        	} else Toast.makeText(getApplicationContext(), R.string.loadExImagesFailMessage, Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -164,7 +173,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 	public static Bitmap getBitmapFromURL(String src) {
 	    try {
 	        URL url = new URL(src);
-	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 	        connection.setDoInput(true);
 	        connection.connect();
 	        InputStream input = connection.getInputStream();

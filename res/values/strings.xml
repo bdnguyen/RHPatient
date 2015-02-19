@@ -31,6 +31,7 @@
 	<string name="networkFailMessage">Network is unavailable.</string>
 	<string name="loadTodayExerciseFailMessage">There are no exercises available.</string>
 	<string name="loadNoteFailMessage">There are no notes available.</string>
+	<string name="loadExImagesFailMessage">There are no images available.</string>
     
 
 </resources>

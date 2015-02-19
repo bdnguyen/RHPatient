@@ -184,7 +184,6 @@ public class NotesActivity extends ActionBarActivity {
 		private class SendNoteTask extends AsyncTask<String, Void, Void>{
 			@Override
 			protected Void doInBackground(String... params) {
-				//ApiClient.httpPOST(params[0], editTextNote.getText().toString());
 					HTTPRequestHandler req = new HTTPRequestHandler();
 					req.setMethod("POST");
 					req.setURI(params[0]);
