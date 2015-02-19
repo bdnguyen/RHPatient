@@ -21,6 +21,8 @@ import org.json.JSONObject;
 import com.pjwstk.rehapp.MainActivity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
 
 
@@ -139,5 +141,49 @@ public class ApiClient {
 				return null;
 			}
 	}
+	
+	public static Bitmap getBitmapFromURL(String URI) {
+		
+		String httpGET_url = URI;
+        URL url;
+		try {
+           
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+            	public boolean verify(String hostname, SSLSession session){
+            		if(hostname.equals("172.21.40.69"))
+            			return true;
+            		return false;
+            	}           	
+            });
+			
+			url = new URL(httpGET_url);
+            HttpsURLConnection httpsCon = (HttpsURLConnection)url.openConnection();
+            httpsCon.setRequestMethod("GET");
+            httpsCon.setRequestProperty("User-Agent", "Droidz");
+            httpsCon.setRequestProperty("Content-Type", "application/json");
+            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
+            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); 	           
+            //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+            //httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
+            
+            InputStream inputStream = null;
+            
+            if(httpsCon.getResponseCode() >= 400){
+            	inputStream = httpsCon.getErrorStream();            	
+            } else {
+            	inputStream = httpsCon.getInputStream();
+            }
+            inputStream = httpsCon.getInputStream();
+	        Bitmap myBitmap = BitmapFactory.decodeStream(inputStream);
+	        return myBitmap;     
+            
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+}
 }
 

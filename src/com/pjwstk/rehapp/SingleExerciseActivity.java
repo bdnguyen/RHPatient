@@ -63,7 +63,6 @@ public class SingleExerciseActivity extends FragmentActivity {
 		    android.app.ActionBar bar = getActionBar();
 		    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
 		    bar.setDisplayHomeAsUpEnabled(true);
-		    //bar.hide();
 	        		    
 		    // set Exercise title on actionBar and Desc
 		    setTitleAndDesc();
@@ -153,7 +152,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 			ArrayList<String> iU = (ArrayList<String>) CK.getImgURLs();
 			if (iU != null && !iU.isEmpty()){
 				for(int i = 0; i < iU.size(); i++){
-		       		exImages.add(getBitmapFromURL(iU.get(i).toString()));
+		       		exImages.add(ApiClient.getBitmapFromURL(iU.get(i).toString()));
 				}
 			}
 			return (ArrayList<Bitmap>) exImages;
@@ -170,20 +169,6 @@ public class SingleExerciseActivity extends FragmentActivity {
 
     }
 	
-	public static Bitmap getBitmapFromURL(String src) {
-	    try {
-	        URL url = new URL(src);
-	        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-	        connection.setDoInput(true);
-	        connection.connect();
-	        InputStream input = connection.getInputStream();
-	        Bitmap myBitmap = BitmapFactory.decodeStream(input);
-	        return myBitmap;
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        return null;
-	    }
-	}
 	    
 	private class PhotoSlidePagerAdapter extends PagerAdapter {		
 //			private int[] mImages = new int[] {
@@ -277,7 +262,6 @@ public class SingleExerciseActivity extends FragmentActivity {
 		Log.i(TAG, getClass().getSimpleName() + ":entered onPause()");
 	      if(ttsObj !=null){
 	          ttsObj.stop();
-//	          ttsObj.shutdown();
 	      }
 		super.onPause();
 	}
