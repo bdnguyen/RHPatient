@@ -1334,12 +1334,13 @@ containing a value of this type.
         public static final int action_schedule=0x7f0b0014;
         public static final int action_settings=0x7f0b0011;
         public static final int app_name=0x7f0b000d;
-        public static final int choose_from_gallery_btn=0x7f0b002b;
+        public static final int choose_from_gallery_btn=0x7f0b002c;
         public static final int editTextNoteHint=0x7f0b0023;
         public static final int exDoneBtnTitle=0x7f0b0024;
         public static final int exNotDoneBtnTitle=0x7f0b0025;
         public static final int exTTSBtnTitle=0x7f0b0026;
         public static final int homeIntro=0x7f0b0019;
+        public static final int loadNoteFailMessage=0x7f0b002a;
         public static final int loadTodayExerciseFailMessage=0x7f0b0029;
         public static final int login=0x7f0b000e;
         public static final int loginFailMessage=0x7f0b0027;
@@ -1349,12 +1350,12 @@ containing a value of this type.
         public static final int password=0x7f0b000f;
         public static final int photos=0x7f0b0020;
         public static final int sendNoteBtnTitle=0x7f0b0022;
-        public static final int take_photo_btn=0x7f0b002c;
+        public static final int take_photo_btn=0x7f0b002d;
         public static final int title_activity_calendar=0x7f0b0021;
         public static final int title_activity_doctor_notes=0x7f0b001e;
         public static final int title_activity_exercises=0x7f0b001d;
         public static final int title_activity_home=0x7f0b001b;
-        public static final int title_activity_photos=0x7f0b002a;
+        public static final int title_activity_photos=0x7f0b002b;
         public static final int title_activity_schedule=0x7f0b001c;
         public static final int title_activity_single_ex=0x7f0b001f;
     }

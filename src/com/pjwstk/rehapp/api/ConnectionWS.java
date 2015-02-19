@@ -43,40 +43,32 @@ public class ConnectionWS {
 		SSLContext context = null;
 		try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-            //InputStream certificateAuthorityInput = new BufferedInputStream(new FileInputStream("assets/RehabilitationAppCA.cer")); //
             InputStream certificateAuthorityInput = Rehapp.getAppContext().getResources().getAssets().open("rehabilitationappca.cer");
-            //InputStream clientInputStream = Rehapp.getAppContext().getResources().openRawResource(R);
             Certificate certificateAuthority = certificateFactory.generateCertificate(certificateAuthorityInput);
 
-            // Now we should have certificate authority loaded - check by checking SubjectDN name
 
             certificateAuthorityInput.close();
 
-            // Keystore containing ca
             String keyStoreType = KeyStore.getDefaultType();
             KeyStore keyStore = KeyStore.getInstance(keyStoreType);
             keyStore.load(null, null);
             keyStore.setCertificateEntry("ca", certificateAuthority);
 
-			// to transfer from pfx to jks
-            // keytool -importkeystore -srckeystore mypfxfile.pfx -srcstoretype pkcs12 -destkeystore clientcert.jks -deststoretype JKS
-            KeyStore clientKeyStore = KeyStore.getInstance("BKS"); //pkcs12
-            clientKeyStore.load(null, null);
-            //InputStream clientInputStream = new FileInputStream("assets/clientcert.jks"); //p12            
+            KeyStore clientKeyStore = KeyStore.getInstance("BKS");
+            clientKeyStore.load(null, null);          
             InputStream clientInputStream = Rehapp.getAppContext().getResources().getAssets().open("clientcertificate.bks");
-            clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray()); //passwordToKeystore
+            clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray()); 
 
-            // Trustmanager that trusts ca from keystore
+            
             String trustManagerFactoryAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
             TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(trustManagerFactoryAlgorithm);
             trustManagerFactory.init(keyStore);
 
-            // Key manager that trusts client certificate
-            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("X509"); //X.509 //Sunx509
-            keyManagerFactory.init(clientKeyStore, "6v9TGy53gA".toCharArray()); //privateKeyPassword
+            
+            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("X509");
+            keyManagerFactory.init(clientKeyStore, "6v9TGy53gA".toCharArray()); 
 
 
-            // We create ssl context that uses trustmanager
             context = SSLContext.getInstance("TLS");
             context.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
 
@@ -122,12 +114,12 @@ public class ConnectionWS {
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             DataOutputStream writer = new DataOutputStream(urlConnection.getOutputStream());
-            String Content = "grant_type=password"+"&username="+uname+"&password="+pw; //patient@pjwstk.edu.pl pw:Zg7e3T8F
+            String Content = "grant_type=password"+"&username="+uname+"&password="+pw; 
             writer.writeBytes(Content);
             writer.flush();
             writer.close();
             
-            //parse the response
+            
             InputStream inputStream = null;
             if(urlConnection.getResponseCode() >= 400){
             	inputStream = urlConnection.getErrorStream();            	
@@ -143,8 +135,7 @@ public class ConnectionWS {
             }
             rd.close();
 
-            responseContent = response.toString();
-            //System.out.println(responseContent);
+            responseContent = response.toString();           
             
         if(responseContent != null){     
 			try {
@@ -155,7 +146,6 @@ public class ConnectionWS {
 				throw new RuntimeException(e);
 			}
         }
-		//System.out.println(accessToken);
 		return accessToken;
     }	
 }

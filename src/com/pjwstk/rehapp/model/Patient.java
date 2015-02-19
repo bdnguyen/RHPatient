@@ -29,6 +29,5 @@ public class Patient {
 	public void setTherapist(Therapist therapist) {
 		this.therapist = therapist;
 	}
-	
-	
+		
 }

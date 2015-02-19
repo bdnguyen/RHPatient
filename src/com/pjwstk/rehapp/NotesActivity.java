@@ -2,6 +2,7 @@ package com.pjwstk.rehapp;
 
 import java.util.ArrayList;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,6 +33,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.pjwstk.rehapp.R;
 import com.pjwstk.rehapp.api.ApiClient;
 import com.pjwstk.rehapp.api.HTTPRequestHandler;
@@ -165,14 +168,15 @@ public class NotesActivity extends ActionBarActivity {
 	        protected String doInBackground(String... params) {
 	        	String responseContent = ApiClient.httpGET(params[0]);	
 	        	notes = NoteJSONParser.parseFeed(responseContent);
+	        	Collections.reverse(notes);
 	            return responseContent;
 	        }
 
 	        @Override
 	        protected void onPostExecute(String result) {           
-	        	if(result != null){
+	        	if(result != null && !result.isEmpty()){
 	        		populateListViewNote();
-	        	}	   	    	
+	        	} else Toast.makeText(getApplicationContext(), R.string.loadNoteFailMessage, Toast.LENGTH_SHORT).show();	   	    	
 	    	}	
 
 	    }

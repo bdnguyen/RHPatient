@@ -1,5 +1,9 @@
 package com.pjwstk.rehapp;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,6 +13,8 @@ import java.util.List;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -63,7 +69,6 @@ public class HomeActivity extends ActionBarActivity {
 	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));	    
 	    bar.setDisplayHomeAsUpEnabled(false);
 	    
-	    // Set Today's Date
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());    
@@ -145,8 +150,7 @@ public class HomeActivity extends ActionBarActivity {
         }
 
         @Override
-        protected void onPostExecute(List<Exercise> result) {           
-        	//Collections.copy(todayExercises, ExerciseJSONParser.parseFeed(result));
+        protected void onPostExecute(List<Exercise> result) {                 	
         	if(result != null && !result.isEmpty()){
         		populateListViewHome();
         	} else Toast.makeText(getApplicationContext(), R.string.loadTodayExerciseFailMessage, Toast.LENGTH_SHORT).show();
@@ -162,16 +166,13 @@ public class HomeActivity extends ActionBarActivity {
 	        if (resultCode == RESULT_OK) {
 	        	Bundle res = data.getExtras();
 	        	Exercise CK = res.getParcelable("clickedExercise");
-//	        	Toast.makeText(getApplicationContext(), ""+CK.isDoneToday(), Toast.LENGTH_LONG).show();
-//	        	Toast.makeText(getApplicationContext(), ""+todayExercises.get(0).isDoneToday(), Toast.LENGTH_SHORT).show();
 	        	//update ex object
 	        	todayExercises.get(currentIndex).setDoneToday(CK.isDoneToday());
 	        	HLAdapter.notifyDataSetChanged();
 	        }
 	    }
 	}
-	
-	
+		
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();

@@ -76,6 +76,28 @@ public class Exercise implements Parcelable {
 		}
 	}
 	
+	public List<Bitmap> getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(List<Bitmap> imgs) {
+		this.imgs = imgs;
+	}
+	
+	public void addImgs(Bitmap bm){
+		if(imgs != null){
+			if(!imgs.contains(bm)){
+				imgs.add(bm);
+			}
+		}
+	}
+	
+	public void removeImgs(Bitmap bm){
+		if(imgs.contains(bm)){
+			imgs.remove(bm);
+		}
+	}
+	
 	public boolean isDoneToday() {
 		return doneToday;
 	}

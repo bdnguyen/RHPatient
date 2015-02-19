@@ -1,5 +1,9 @@
 package com.pjwstk.rehapp;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -15,6 +19,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -133,41 +138,55 @@ public class SingleExerciseActivity extends FragmentActivity {
 	}
 
 	
-//	private class LoadImagesTask extends AsyncTask<String, String, List<Bitmap>{
-//
-//
-//        @Override
-//        protected List<Bitmap> doInBackground(String... params) {
-//        	Bundle extras = getIntent().getExtras();
-//			Exercise CK = extras.getParcelable("clickedExercise");
-//			List<String> iU = CK.getImgURLs();
-//			HTTPRequestHandler req = new HTTPRequestHandler();
-//			req.setMethod("GETIMG");
-//        	String responseContent = ApiClient.httpGET(params[0]);
-//        	
-//        	return res
-//        }
-//
-//        @Override
-//        protected void onPostExecute(List<Bitmap> result) {           
-//        	if(result != null){
-//        		populateListViewHome();
-//        	}
-//        }
-//
-//    }
+	private class LoadImagesTask extends AsyncTask<String, String, List<Bitmap>>{
+
+
+        @Override
+        protected List<Bitmap> doInBackground(String... params) {
+        	Bundle extras = getIntent().getExtras();
+			Exercise CK = extras.getParcelable("clickedExercise");
+			ArrayList<String> iU = (ArrayList<String>) CK.getImgURLs();
+			for(int i = 0; i < iU.size() ; i++){
+				exImages.add(getBitmapFromURL(iU.get(i).toString()));
+			}
+			return exImages;
+        }
+
+        @Override
+        protected void onPostExecute(List<Bitmap> result) {           
+        	if(result != null && !result.isEmpty()){
+        		
+        	}
+        }
+
+    }
+	
+	public static Bitmap getBitmapFromURL(String src) {
+	    try {
+	        URL url = new URL(src);
+	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        connection.setDoInput(true);
+	        connection.connect();
+	        InputStream input = connection.getInputStream();
+	        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+	        return myBitmap;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 	    
 	private class PhotoSlidePagerAdapter extends PagerAdapter {		
-			private int[] mImages = new int[] {
-				R.drawable.ex_izo1,
-				R.drawable.ex_izo2,
-				R.drawable.ex_izo3,
-				R.drawable.ex_izo4
-			};
+//			private int[] mImages = new int[] {
+//				R.drawable.ex_izo1,
+//				R.drawable.ex_izo2,
+//				R.drawable.ex_izo3,
+//				R.drawable.ex_izo4
+//			};
 
 			@Override
 			public int getCount() {
-				return mImages.length;
+				return exImages.size();
 			}
 	
 			@Override
@@ -183,7 +202,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 		//				 R.dimen.padding_medium);
 		//				 imageView.setPadding(padding, padding, padding, padding);
 					imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-					imageView.setImageResource(mImages[position]);
+					imageView.setImageBitmap(exImages.get(position));
 					((ViewPager) container).addView(imageView, 0);
 				return imageView;
 			}
