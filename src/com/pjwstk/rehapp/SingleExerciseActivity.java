@@ -119,7 +119,6 @@ public class SingleExerciseActivity extends FragmentActivity {
 	
 	
 	private class MarkExerciseTask extends AsyncTask<String, Void, Void>{
-
 		@Override
 		protected Void doInBackground(String... params) {
 			Bundle extras = getIntent().getExtras();
@@ -130,9 +129,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 			req.putParam(TAG_PROGRAMEXERCISE_ID,CK.getExID()+"");		
 			ApiClient.httpPOST(req);
 			return null;
-		}
-		
-		
+		}		
 	}
 
 	

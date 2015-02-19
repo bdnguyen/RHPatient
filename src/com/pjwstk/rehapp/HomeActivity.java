@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pjwstk.rehapp.api.ApiClient;
 import com.pjwstk.rehapp.model.Exercise;
@@ -102,7 +103,7 @@ public class HomeActivity extends ActionBarActivity {
 			CheckBox cb = (CheckBox) itemView.findViewById(R.id.homeCheckBox);
 			cb.setChecked(currentExercise.isDoneToday());
 			if (currentExercise.isDoneToday()){
-				exTitleTxt.setTextColor(getResources().getColor(R.color.greenhospital));
+				exTitleTxt.setTextColor(getResources().getColor(R.color.blueRHTheme));
 			} else { 
 				exTitleTxt.setTextColor(getResources().getColor(R.color.red));
 			}
@@ -114,8 +115,7 @@ public class HomeActivity extends ActionBarActivity {
 		ListView list = (ListView) findViewById(R.id.exercisesListViewHome);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View viewClicked,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
 				if (currentIndex != position) {
 					currentIndex = position;
 				}
@@ -147,9 +147,9 @@ public class HomeActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(List<Exercise> result) {           
         	//Collections.copy(todayExercises, ExerciseJSONParser.parseFeed(result));
-        	if(result != null){
+        	if(result != null && !result.isEmpty()){
         		populateListViewHome();
-        	}
+        	} else Toast.makeText(getApplicationContext(), R.string.loadTodayExerciseFailMessage, Toast.LENGTH_SHORT).show();
         	registerClickCallback();
         }
 

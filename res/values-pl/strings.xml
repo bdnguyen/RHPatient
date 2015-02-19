@@ -31,5 +31,6 @@
     <string name="exNotDoneBtnTitle">Nie wykonano</string>
     <string name="exTTSBtnTitle">Słuchaj instrukcji</string>
     <string name="loginFailMessage">Nazwa użytkownika lub hasło nie jest rozpoznawany, spróbuj ponownie .</string>
-    <string name="networkFailMessage">Sieć jest niedostępna</string>  
+    <string name="networkFailMessage">Sieć jest niedostępna</string>
+    <string name="loadTodayExerciseFailMessage">Brak ćwiczeń dostępne.</string>  
 </resources>

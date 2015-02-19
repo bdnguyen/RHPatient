@@ -29,6 +29,7 @@
     <string name="exTTSBtnTitle">Text to Speech</string>
 	<string name="loginFailMessage">Username or password not recognized, please try again.</string>
 	<string name="networkFailMessage">Network is unavailable.</string>
+	<string name="loadTodayExerciseFailMessage">There are no exercises available.</string>
     
 
 </resources>

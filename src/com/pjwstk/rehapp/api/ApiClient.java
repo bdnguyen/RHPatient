@@ -79,7 +79,6 @@ public class ApiClient {
             }
             rd.close();
             //System.out.println(response.toString());
-            String respo=response.toString();
             return response.toString();         
             
 		} catch (MalformedURLException e) {
