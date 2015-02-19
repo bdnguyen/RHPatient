@@ -175,6 +175,7 @@ public class ApiClient {
             }
             inputStream = httpsCon.getInputStream();
 	        Bitmap myBitmap = BitmapFactory.decodeStream(inputStream);
+	        System.out.println((""+ myBitmap == null));
 	        return myBitmap;     
             
 		} catch (MalformedURLException e) {

@@ -50,7 +50,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 		TextToSpeech ttsObj;
 		TextView txtViewDesc;
 		
-		private List<Bitmap> exImages = new ArrayList<>();
+		private ArrayList<Bitmap> exImages = new ArrayList<>();
 	    private ViewPager mPager;
 	    private PagerAdapter mPagerAdapter;
 	    
@@ -120,12 +120,15 @@ public class SingleExerciseActivity extends FragmentActivity {
 	        });
 	        
 	        // Instantiate a ViewPager and a PagerAdapter.
-//	        mPager = (ViewPager) findViewById(R.id.pager);
-//	        mPagerAdapter = new PhotoSlidePagerAdapter();
-//	        mPager.setAdapter(mPagerAdapter);
+	        //populateViewPager();
 	        
 	    }
 	
+	private void populateViewPager(){
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPagerAdapter = new PhotoSlidePagerAdapter();
+        mPager.setAdapter(mPagerAdapter);
+	}
 	
 	private class MarkExerciseTask extends AsyncTask<String, Void, Void>{
 		@Override
@@ -155,15 +158,15 @@ public class SingleExerciseActivity extends FragmentActivity {
 		       		exImages.add(ApiClient.getBitmapFromURL(iU.get(i).toString()));
 				}
 			}
-			return (ArrayList<Bitmap>) exImages;
+			System.out.println(""+exImages.size());
+			return exImages;
+			
         }
 
         @Override
         protected void onPostExecute(ArrayList<Bitmap> result) {           
         	if(result != null && !result.isEmpty()){
-    	        mPager = (ViewPager) findViewById(R.id.pager);
-    	        mPagerAdapter = new PhotoSlidePagerAdapter();
-    	        mPager.setAdapter(mPagerAdapter); 	        
+        		populateViewPager();	
         	} else Toast.makeText(getApplicationContext(), R.string.loadExImagesFailMessage, Toast.LENGTH_SHORT).show();
         }
 
@@ -171,12 +174,6 @@ public class SingleExerciseActivity extends FragmentActivity {
 	
 	    
 	private class PhotoSlidePagerAdapter extends PagerAdapter {		
-//			private int[] mImages = new int[] {
-//				R.drawable.ex_izo1,
-//				R.drawable.ex_izo2,
-//				R.drawable.ex_izo3,
-//				R.drawable.ex_izo4
-//			};
 
 			@Override
 			public int getCount() {
