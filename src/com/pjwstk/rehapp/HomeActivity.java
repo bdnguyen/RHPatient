@@ -74,9 +74,9 @@ public class HomeActivity extends ActionBarActivity {
         SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());    
         
-        int daysLeft = 6;
-        String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
-        ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
+//        int daysLeft = 6;
+//        String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
+//        ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
                    	
         new LoadExercisesTask().execute("therapy/GetTodayAllExercises");
 	}
@@ -137,11 +137,6 @@ public class HomeActivity extends ActionBarActivity {
 	
 	
     private class LoadExercisesTask extends AsyncTask<String, String, List<Exercise>>{
-    	ProgressBar loadExPB;
-        @Override
-        protected void onPreExecute() {
-        	loadExPB.setVisibility(View.VISIBLE);
-        }
 
         @Override
         protected List<Exercise> doInBackground(String... params) {
@@ -151,9 +146,7 @@ public class HomeActivity extends ActionBarActivity {
         }
 
         @Override
-        protected void onPostExecute(List<Exercise> result) {                 	
-        	loadExPB.setVisibility(View.INVISIBLE);
-        	
+        protected void onPostExecute(List<Exercise> result) {                 	      	
         	if(result != null && !result.isEmpty()){
         		populateListViewHome();
         	} else Toast.makeText(getApplicationContext(), R.string.loadTodayExerciseFailMessage, Toast.LENGTH_SHORT).show();

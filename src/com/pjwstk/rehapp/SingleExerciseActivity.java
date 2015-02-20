@@ -145,12 +145,6 @@ public class SingleExerciseActivity extends FragmentActivity {
 
 	
 	private class LoadImagesTask extends AsyncTask<Void, Void, ArrayList<Bitmap>>{
-    	ProgressBar loadImgsPB;
-        @Override
-        protected void onPreExecute() {
-        	loadImgsPB.setVisibility(View.VISIBLE);
-        }
-
         @Override
         protected ArrayList<Bitmap> doInBackground(Void... params) {
         	Bundle extras = getIntent().getExtras();       	
@@ -168,9 +162,7 @@ public class SingleExerciseActivity extends FragmentActivity {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Bitmap> result){
-        	loadImgsPB.setVisibility(View.INVISIBLE);
-        	
+        protected void onPostExecute(ArrayList<Bitmap> result){       	
         	if(result != null && !result.isEmpty()){
         		populateViewPager();	
         	} else Toast.makeText(getApplicationContext(), R.string.loadExImagesFailMessage, Toast.LENGTH_SHORT).show();
