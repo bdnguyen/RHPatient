@@ -29,8 +29,8 @@ public class ExerciseJSONParser {
 				
 				imArray = jObj.getJSONArray("PhotosPaths");				
 				if (imArray != null){
-					for (int j = 0; j < imArray.length(); j++) {					
-						iUrls.add(imArray.get(i).toString());
+					for (int j = 0; j < imArray.length(); j++){					
+						iUrls.add(imArray.get(j).toString());
 						ex.setImgURLs(iUrls);
 					}
 				}

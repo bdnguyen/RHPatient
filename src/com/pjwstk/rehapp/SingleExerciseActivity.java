@@ -154,9 +154,11 @@ public class SingleExerciseActivity extends FragmentActivity {
 			if (iU != null && !iU.isEmpty()){
 				for(int i = 0; i < iU.size(); i++){
 		       		exImages.add(ApiClient.getBitmapFromURL(iU.get(i).toString()));
+		       		System.out.println(""+iU.get(i).toString());
 				}
 			}
 			System.out.println(""+exImages.size());
+			
 			return exImages;
 			
         }
