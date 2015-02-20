@@ -118,9 +118,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 					speakText(v);
 				}	        	
 	        });
-	        
-	        // Instantiate a ViewPager and a PagerAdapter.
-	        //populateViewPager();
+	    
 	        
 	    }
 	
@@ -227,10 +225,14 @@ public class SingleExerciseActivity extends FragmentActivity {
   	      public void onInit(final int status) {
       		 new Thread(new Runnable(){
       			 public void run(){
-          	         if(status != TextToSpeech.ERROR){
-          	        	 //ttsObj.setLanguage(new Locale("pl_PL"));
+          	         if(status != TextToSpeech.ERROR){        	        	 
+          	        	if(Locale.getDefault().getLanguage().equals("en")){
           	        	 ttsObj.setLanguage(Locale.ENGLISH);
           	        	 ttsObj.setSpeechRate((float)0.7);
+          	        	} else if(Locale.getDefault().getLanguage().equals("pl")){
+          	        	 ttsObj.setLanguage(new Locale("pl_PL"));
+          	        	 ttsObj.setSpeechRate((float)0.7);
+          	        	}
           	         }	
       			 }				      
       		 }).start();
