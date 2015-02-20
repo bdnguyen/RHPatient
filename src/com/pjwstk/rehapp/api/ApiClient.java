@@ -60,7 +60,7 @@ public class ApiClient {
                 writer.writeBytes(content);
                 writer.flush();
                 writer.close();
-            }
+            } 
 
             
             InputStream inputStream = null;
@@ -95,8 +95,7 @@ public class ApiClient {
 	
 			String httpGET_url = endpoint + URI;
             URL url;
-			try {
-	           
+			try {       
 				HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
 	            	public boolean verify(String hostname, SSLSession session){
 	            		if(hostname.equals("172.21.40.69"))

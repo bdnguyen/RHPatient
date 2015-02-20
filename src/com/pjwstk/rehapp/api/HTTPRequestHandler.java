@@ -7,6 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class HTTPRequestHandler {
+	
+	private static final String endpoint = "https://172.21.40.69/";
+	private static final String APIendpoint = "https://172.21.40.69/api/";
+	
 	private String URI;
 	private String method;
 	Map<String,String> params = new HashMap<>();

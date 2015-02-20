@@ -49,16 +49,10 @@ public class NotesActivity extends ActionBarActivity {
 	private static final String TAG_RUSERID = "ReceivingUserId";
 	private static final String TAG_CONTENT = "Content";
 	private List<Note> notes = new ArrayList<>();	
-	private static Context ct;
 	private Therapist tp = new Therapist("");
 	
 	ArrayAdapter<Note> noteAdapter;
 	EditText editTextNote;
-	
-	
-	public static Context getAppContext(){
-		return NotesActivity.ct;
-	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

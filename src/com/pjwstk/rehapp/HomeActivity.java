@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -136,10 +137,10 @@ public class HomeActivity extends ActionBarActivity {
 	
 	
     private class LoadExercisesTask extends AsyncTask<String, String, List<Exercise>>{
-
+    	ProgressBar loadExPB;
         @Override
         protected void onPreExecute() {
-        	super.onPreExecute();
+        	loadExPB.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -151,6 +152,8 @@ public class HomeActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(List<Exercise> result) {                 	
+        	loadExPB.setVisibility(View.INVISIBLE);
+        	
         	if(result != null && !result.isEmpty()){
         		populateListViewHome();
         	} else Toast.makeText(getApplicationContext(), R.string.loadTodayExerciseFailMessage, Toast.LENGTH_SHORT).show();

@@ -38,6 +38,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -144,7 +145,11 @@ public class SingleExerciseActivity extends FragmentActivity {
 
 	
 	private class LoadImagesTask extends AsyncTask<Void, Void, ArrayList<Bitmap>>{
-
+    	ProgressBar loadImgsPB;
+        @Override
+        protected void onPreExecute() {
+        	loadImgsPB.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected ArrayList<Bitmap> doInBackground(Void... params) {
@@ -154,17 +159,18 @@ public class SingleExerciseActivity extends FragmentActivity {
 			if (iU != null && !iU.isEmpty()){
 				for(int i = 0; i < iU.size(); i++){
 		       		exImages.add(ApiClient.getBitmapFromURL(iU.get(i).toString()));
-		       		System.out.println(""+iU.get(i).toString());
+		       		//System.out.println(""+iU.get(i).toString());
 				}
 			}
-			System.out.println(""+exImages.size());
-			
+			//System.out.println(""+exImages.size());			
 			return exImages;
 			
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Bitmap> result) {           
+        protected void onPostExecute(ArrayList<Bitmap> result){
+        	loadImgsPB.setVisibility(View.INVISIBLE);
+        	
         	if(result != null && !result.isEmpty()){
         		populateViewPager();	
         	} else Toast.makeText(getApplicationContext(), R.string.loadExImagesFailMessage, Toast.LENGTH_SHORT).show();
