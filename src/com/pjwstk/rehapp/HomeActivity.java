@@ -1,20 +1,12 @@
 package com.pjwstk.rehapp;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -30,7 +22,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,9 +65,9 @@ public class HomeActivity extends ActionBarActivity {
         SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());    
         
-//        int daysLeft = 6;
-//        String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
-//        ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
+        int daysLeft = 8;
+        String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
+        ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
                    	
         new LoadExercisesTask().execute("therapy/GetTodayAllExercises");
 	}

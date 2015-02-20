@@ -2,10 +2,8 @@ package com.pjwstk.rehapp.api;
 
 
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,12 +28,7 @@ import javax.net.ssl.TrustManagerFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.pjwstk.rehapp.MainActivity;
-import com.pjwstk.rehapp.R;
 import com.pjwstk.rehapp.Rehapp;
-
-import android.preference.PreferenceManager;
-import android.widget.Toast;
 
 public class ConnectionWS {
 	
@@ -45,7 +38,6 @@ public class ConnectionWS {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
             InputStream certificateAuthorityInput = Rehapp.getAppContext().getResources().getAssets().open("rehabilitationappca.cer");
             Certificate certificateAuthority = certificateFactory.generateCertificate(certificateAuthorityInput);
-
 
             certificateAuthorityInput.close();
 

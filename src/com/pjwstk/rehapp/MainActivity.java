@@ -4,11 +4,6 @@ package com.pjwstk.rehapp;
 
 import java.io.IOException;
 
-import org.json.JSONException;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,20 +12,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.os.Build;
-import android.preference.PreferenceManager;
 
-import com.pjwstk.rehapp.R;
 import com.pjwstk.rehapp.api.ConnectionWS;
 
 
@@ -104,12 +94,12 @@ public class MainActivity extends ActionBarActivity {
         	
         	loginPB.setVisibility(View.INVISIBLE);
         	
-        	//if (result){
-    			//PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("loginToken", loginToken).commit();
+        	if (result){
+    			PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("loginToken", loginToken).commit();
     			Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
     			startActivity(intent);  			
-    		//}
-    		//else Toast.makeText(MainActivity.getAppContext(), R.string.loginFailMessage, Toast.LENGTH_SHORT).show();
+    		}
+    		else Toast.makeText(MainActivity.getAppContext(), R.string.loginFailMessage, Toast.LENGTH_SHORT).show();
         		
         }   
 	}

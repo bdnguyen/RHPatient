@@ -1,14 +1,13 @@
 package com.pjwstk.rehapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class CalendarActivity extends ActionBarActivity {
 
@@ -19,12 +18,8 @@ public class CalendarActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calendar);
 		
-	    // Set ActionBar color
 	    android.app.ActionBar bar = getActionBar();
-	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));
-//	    int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
-//	    TextView abTitle = (TextView) findViewById(titleId);
-//	    abTitle.setTextColor(Color.WHITE);	    
+	    bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#069c88")));    
 	    bar.setDisplayHomeAsUpEnabled(true);
 	}
 

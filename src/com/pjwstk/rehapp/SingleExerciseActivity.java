@@ -1,32 +1,15 @@
 package com.pjwstk.rehapp;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
-import javax.net.ssl.HttpsURLConnection;
-
-import com.pjwstk.rehapp.api.ApiClient;
-import com.pjwstk.rehapp.api.HTTPRequestHandler;
-import com.pjwstk.rehapp.model.Exercise;
-import com.pjwstk.rehapp.parsers.ExerciseJSONParser;
-
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
@@ -36,11 +19,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.pjwstk.rehapp.api.ApiClient;
+import com.pjwstk.rehapp.api.HTTPRequestHandler;
+import com.pjwstk.rehapp.model.Exercise;
 
 
 public class SingleExerciseActivity extends FragmentActivity {
@@ -68,7 +53,7 @@ public class SingleExerciseActivity extends FragmentActivity {
 		    // set Exercise title on actionBar and Desc
 		    setTitleAndDesc();
 	        
-		    // set Images
+		    // set Exercise Photos
 		    new LoadImagesTask().execute();
 		    
 	        // Initiate Text to Speech	        
@@ -228,10 +213,10 @@ public class SingleExerciseActivity extends FragmentActivity {
           	         if(status != TextToSpeech.ERROR){        	        	 
           	        	if(Locale.getDefault().getLanguage().equals("en")){
           	        	 ttsObj.setLanguage(Locale.ENGLISH);
-          	        	 ttsObj.setSpeechRate((float)0.7);
+          	        	 ttsObj.setSpeechRate((float)0.8);
           	        	} else if(Locale.getDefault().getLanguage().equals("pl")){
           	        	 ttsObj.setLanguage(new Locale("pl_PL"));
-          	        	 ttsObj.setSpeechRate((float)0.7);
+          	        	 ttsObj.setSpeechRate((float)0.8);
           	        	}
           	         }	
       			 }				      

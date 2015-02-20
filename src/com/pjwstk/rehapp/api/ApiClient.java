@@ -7,23 +7,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.List;
-import java.util.Map;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.pjwstk.rehapp.MainActivity;
-
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.preference.PreferenceManager;
 
 
 public class ApiClient {

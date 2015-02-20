@@ -3,9 +3,6 @@ package com.pjwstk.rehapp.api;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class HTTPRequestHandler {
 	
 	private static final String endpoint = "https://172.21.40.69/";

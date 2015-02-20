@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+
 public class ExercisesPhotosFragment extends Fragment {
 private static final String TAG = "ExercisesPhotosFragment";
 @Override
