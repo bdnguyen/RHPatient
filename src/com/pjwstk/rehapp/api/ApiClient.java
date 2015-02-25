@@ -14,8 +14,11 @@ import javax.net.ssl.SSLSession;
 
 import org.json.JSONObject;
 
+import com.pjwstk.rehapp.MainActivity;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
 
 
 public class ApiClient {
@@ -42,9 +45,9 @@ public class ApiClient {
             httpsCon1.setRequestProperty("User-Agent", "Droidz");
             httpsCon1.setRequestProperty("Content-Type", "application/json");
             httpsCon1.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
-            httpsCon1.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
-            //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
-            //httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
+            //httpsCon1.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
+            String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+            httpsCon1.setRequestProperty("Authorization", "Bearer "+ tk);
             if(req.getMethod().equals("POST")){
                 DataOutputStream writer = new DataOutputStream(httpsCon1.getOutputStream());
                 JSONObject jsonparams = new JSONObject(req.getParams());
@@ -102,9 +105,9 @@ public class ApiClient {
 	            httpsCon.setRequestProperty("User-Agent", "Droidz");
 	            httpsCon.setRequestProperty("Content-Type", "application/json");
 	            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
-	            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); 	           
-	            //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
-	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
+	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); 	           
+	            String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+	            httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
 	            
 	            
 	            InputStream inputStream = null;
@@ -153,9 +156,9 @@ public class ApiClient {
             httpsCon.setRequestProperty("User-Agent", "Droidz");
             httpsCon.setRequestProperty("Content-Type", "application/json");
             httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
-            httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); 	           
-            //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
-            //httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
+            //httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); 	           
+            String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+            httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
             
             InputStream inputStream = null;
             

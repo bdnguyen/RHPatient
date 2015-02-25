@@ -40,27 +40,29 @@ public class ConnectionWS {
             Certificate certificateAuthority = certificateFactory.generateCertificate(certificateAuthorityInput);
 
             certificateAuthorityInput.close();
-
+            
+            // Keystore containing CA
             String keyStoreType = KeyStore.getDefaultType();
             KeyStore keyStore = KeyStore.getInstance(keyStoreType);
             keyStore.load(null, null);
             keyStore.setCertificateEntry("ca", certificateAuthority);
-
+            
+            // convert from pfx to bks
             KeyStore clientKeyStore = KeyStore.getInstance("BKS");
             clientKeyStore.load(null, null);          
             InputStream clientInputStream = Rehapp.getAppContext().getResources().getAssets().open("clientcertificate.bks");
             clientKeyStore.load(clientInputStream, "hJ4D2Vd6tc".toCharArray()); 
 
-            
+            // TrustManager that trusts CA from keystore
             String trustManagerFactoryAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
             TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(trustManagerFactoryAlgorithm);
             trustManagerFactory.init(keyStore);
 
-            
+            // Key manager that trusts client certificate
             KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("X509");
             keyManagerFactory.init(clientKeyStore, "6v9TGy53gA".toCharArray()); 
 
-
+            // Creating ssl context that uses TrustManager
             context = SSLContext.getInstance("TLS");
             context.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
 
