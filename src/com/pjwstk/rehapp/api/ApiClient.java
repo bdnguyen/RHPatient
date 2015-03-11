@@ -15,6 +15,7 @@ import javax.net.ssl.SSLSession;
 import org.json.JSONObject;
 
 import com.pjwstk.rehapp.MainActivity;
+import com.pjwstk.rehapp.Rehapp;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -46,7 +47,7 @@ public class ApiClient {
             httpsCon1.setRequestProperty("Content-Type", "application/json");
             httpsCon1.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
             //httpsCon1.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); //patient@pjwstk.edu.pl   Zg7e3T8F	           
-            String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+            String tk = PreferenceManager.getDefaultSharedPreferences(Rehapp.getAppContext()).getString("loginToken", "");
             httpsCon1.setRequestProperty("Authorization", "Bearer "+ tk);
             if(req.getMethod().equals("POST")){
                 DataOutputStream writer = new DataOutputStream(httpsCon1.getOutputStream());
@@ -106,7 +107,8 @@ public class ApiClient {
 	            httpsCon.setRequestProperty("Content-Type", "application/json");
 	            httpsCon.setSSLSocketFactory(ConnectionWS.certHandler().getSocketFactory());
 	            //httpsCon.setRequestProperty("Authorization", "Bearer "+ConnectionWS.getAuthToken("test@test.pl", "r9ARj76B")); 	           
-	            String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+	            //String tk = PreferenceManager.getDefaultSharedPreferences(MainActivity.getAppContext()).getString("loginToken", "");
+	            String tk = PreferenceManager.getDefaultSharedPreferences(Rehapp.getAppContext()).getString("loginToken", "");
 	            httpsCon.setRequestProperty("Authorization", "Bearer "+ tk);
 	            
 	            

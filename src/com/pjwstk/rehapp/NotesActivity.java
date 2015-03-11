@@ -46,6 +46,7 @@ public class NotesActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
 		setContentView(R.layout.activity_notes);
 	    
 	    android.app.ActionBar bar = getActionBar();
@@ -190,13 +191,22 @@ public class NotesActivity extends ActionBarActivity {
 	        	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent);
 	            return true;
-	        case R.id.action_calendar:
-	        	Intent intent2 = new Intent(this,CalendarActivity.class);
-	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent2);
-	            return true;
-	        case R.id.action_notes:            
-	            return true;      
+//	        case R.id.action_calendar:
+//	        	Intent intent2 = new Intent(this,CalendarActivity.class);
+//	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//	            startActivity(intent2);
+//	            return true;
+	        case R.id.action_notes:
+	        	Intent refresh = new Intent(this, NotesActivity.class);
+	        	startActivity(refresh);
+	        	finish(); 
+	            return true; 
+	        case R.id.action_logout:
+	        	Intent login = new Intent(this, MainActivity.class);
+	        	startActivity(login);
+	        	finish(); 
+	            return true;          
+	            
      
 	        default:
 	            return super.onOptionsItemSelected(item);

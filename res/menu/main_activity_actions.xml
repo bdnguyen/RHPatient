@@ -11,9 +11,14 @@
           android:title="@string/action_notes"
           RehApp:showAsAction="ifRoom|withText" />
     
-    <item android:id="@+id/action_calendar"
-          android:icon="@drawable/ic_menu_my_calendar"
-          android:title="@string/action_calendar"
-          android:showAsAction="ifRoom|withText" />        
+    <item android:id="@+id/action_logout"
+          android:title="@string/action_logout"
+          android:icon="@drawable/ic_menu_exercise"
+          RehApp:showAsAction="withText" />    
+    
+<!--     <item android:id="@+id/action_calendar" -->
+<!--           android:icon="@drawable/ic_menu_my_calendar" -->
+<!--           android:title="@string/action_calendar" -->
+<!--           android:showAsAction="ifRoom|withText" />         -->
     
 </menu>

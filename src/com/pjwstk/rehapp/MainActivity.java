@@ -50,11 +50,11 @@ public class MainActivity extends ActionBarActivity {
 		return MainActivity.ct;
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		getMenuInflater().inflate(R.menu.main, menu);
+//		return true;
+//	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -120,5 +120,10 @@ public class MainActivity extends ActionBarActivity {
 	protected void onPause() {
 		super.onPause();
 	}	
+	
+    @Override
+    public void onBackPressed() {
+            //super.onBackPressed();
+    }	
 	
 }

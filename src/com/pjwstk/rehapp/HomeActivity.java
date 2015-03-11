@@ -171,17 +171,27 @@ public class HomeActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case R.id.action_home:
+//	        	new LoadExercisesTask().execute("therapy/GetTodayAllExercises");
+//	        	HLAdapter.notifyDataSetChanged();
+	        	Intent refresh = new Intent(this, HomeActivity.class);
+	        	startActivity(refresh);
+	        	finish(); 
 	            return true;
-	        case R.id.action_calendar:
-	        	Intent intent2 = new Intent(this,CalendarActivity.class);
-	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-	            startActivity(intent2);	         
-	            return true;
+//	        case R.id.action_calendar:
+//	        	Intent intent2 = new Intent(this,CalendarActivity.class);
+//	        	intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//	            startActivity(intent2);	         
+//	            return true;
 	        case R.id.action_notes:
 	        	Intent intent3 = new Intent(this,NotesActivity.class);
 	        	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 	            startActivity(intent3);
-	            return true;          
+	            return true;
+	        case R.id.action_logout:
+	        	Intent login = new Intent(this, MainActivity.class);
+	        	startActivity(login);
+	        	finish(); 
+	            return true;      
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

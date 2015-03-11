@@ -37,8 +37,8 @@ public class CalendarActivity extends ActionBarActivity {
         	intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
             return true;
-        case R.id.action_calendar:
-            return true;           
+//        case R.id.action_calendar:
+//            return true;           
         case R.id.action_notes:
         	Intent intent3 = new Intent(this,NotesActivity.class);
         	intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
