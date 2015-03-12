@@ -65,8 +65,9 @@ public class HomeActivity extends ActionBarActivity {
         SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());    
         
-        int daysLeft = 8;
-        String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
+//        int daysLeft = 8;
+//        String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate, daysLeft);
+        String homeIntro = String.format(getResources().getString(R.string.homeIntro), formattedDate);
         ((TextView)findViewById (R.id.homeIntroView)).setText(homeIntro);
                    	
         new LoadExercisesTask().execute("therapy/GetTodayAllExercises");

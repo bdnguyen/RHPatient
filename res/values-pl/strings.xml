@@ -13,7 +13,8 @@
     <string name="action_exercises">Exercises</string>
     <string name="action_notes">Komunikator</string>
     <string name="action_calendar">Kalendarz</string>
-    <string name="homeIntro">Dzisiaj jest: %1$s, \nDni pozostałych do końca leczenia: %2$d</string>
+    <string name="homeIntro">Dzisiaj jest: %1$s</string>
+    <string name="homeIntro1">Dzisiaj jest: %1$s, \nDni pozostałych do końca leczenia: %2$d</string>
     <string name="noteIntro">Twój terapeuta jest: %1$s</string>
     <string name="title_activity_home">Aktywność główna</string>
     <string name="title_activity_schedule">Schedule</string>
