@@ -1,1 +1,1 @@
-Android app for Rehab project
+Android app for a hospital's Rehabilitation program
